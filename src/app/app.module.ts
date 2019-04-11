@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -15,6 +17,8 @@ import { environment } from '../environments/environment';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
+    CoreModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     BrowserAnimationsModule
