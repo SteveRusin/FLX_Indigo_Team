@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { Routes , RouterModule} from '@angular/router';
-import { PlayerComponent } from './player.component';
+import { PlayerProfileComponent } from './player-profile.component';
 
 const routes: Routes = [
-  { path: '', component: PlayerComponent }
+  { path: '', component: PlayerProfileComponent }
 ];
 
 @NgModule({
@@ -13,6 +13,6 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [PlayerComponent]
+  declarations: [PlayerProfileComponent]
 })
-export class PlayerModule { }
+export class PlayerProfileModule { }

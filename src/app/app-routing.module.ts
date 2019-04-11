@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'profile', loadChildren: './player/player.module#PlayerModule' }
+  { path: 'profile', loadChildren: './player-profile/player-profile.module#PlayerProfileModule' }
 ];
 
 @NgModule({
