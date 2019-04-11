@@ -20,7 +20,7 @@ import { environment } from '../environments/environment';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    CoreModule,
+    CoreModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule
   ],

@@ -18,7 +18,7 @@ export class CoreModule {
             throw new Error('CoreModule is already loaded. Import it in the AppModule only');
         }
     }
-    static forRot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders {
         return {
             ngModule: CoreModule,
             providers: []
