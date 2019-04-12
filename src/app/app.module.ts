@@ -9,10 +9,12 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { environment } from '../environments/environment';
+import { BattleComponent } from './battle/battle.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BattleComponent
   ],
   imports: [
     BrowserModule,

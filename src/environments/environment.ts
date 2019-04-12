@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment:Record<string, boolean | Object> = {
-  production: false,
+  production: true,
   firebaseConfig : {
     apiKey: 'AIzaSyAHif6HXbccv1wvIEBUmFT2GQwSYYSenCk',
     authDomain: 'epam-indigo-project.firebaseapp.com',
