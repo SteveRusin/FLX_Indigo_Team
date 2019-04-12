@@ -1,23 +1,12 @@
-import { FirebaseOptions } from '@angular/fire';
+import { fireConfig } from './../firebase.config';
+import { EnvironmentInterface } from './environment.interface';
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-interface EnvironmentInterface {
-  production: boolean;
-  firebaseConfig: FirebaseOptions;
-}
-
 export const environment: EnvironmentInterface = {
   production: false,
-  firebaseConfig : {
-    apiKey: 'AIzaSyAHif6HXbccv1wvIEBUmFT2GQwSYYSenCk',
-    authDomain: 'epam-indigo-project.firebaseapp.com',
-    databaseURL: 'https://epam-indigo-project.firebaseio.com',
-    projectId: 'epam-indigo-project',
-    storageBucket: 'epam-indigo-project.appspot.com',
-    messagingSenderId: '833805581525'
-  }
+  fireConfig
 };
 
 /*
