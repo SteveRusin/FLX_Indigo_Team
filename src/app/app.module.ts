@@ -21,7 +21,7 @@ import { routes } from './app-routing.module';
     SharedModule,
     RouterModule.forRoot(routes),
     CoreModule.forRoot(),
-    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireModule.initializeApp(environment.fireConfig),
     AngularFireDatabaseModule,
     BrowserAnimationsModule
   ],
