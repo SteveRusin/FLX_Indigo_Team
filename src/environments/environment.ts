@@ -1,10 +1,14 @@
 import { FirebaseOptions } from '@angular/fire';
-
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
-export const environment:Record<string, FirebaseOptions | Boolean> = {
+interface EnvironmentInterface {
+  production: boolean;
+  firebaseConfig: FirebaseOptions;
+}
+
+export const environment: EnvironmentInterface = {
   production: false,
   firebaseConfig : {
     apiKey: 'AIzaSyAHif6HXbccv1wvIEBUmFT2GQwSYYSenCk',

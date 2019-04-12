@@ -1,4 +1,5 @@
-export const routes: {
-  path: string; loadChildren: string; }[] = [
-  {path: 'profile', loadChildren: './player-profile/player-profile.module#PlayerProfileModule' }
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  { path: 'profile', loadChildren: './player-profile/player-profile.module#PlayerProfileModule' }
 ];

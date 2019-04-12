@@ -9,7 +9,7 @@ export class PlayerProfileComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  public ngOnInit(): void {
 
+  }
 }
