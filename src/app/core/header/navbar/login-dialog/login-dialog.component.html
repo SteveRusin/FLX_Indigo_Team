@@ -1,0 +1,19 @@
+<mat-dialog-content>
+  <h1 mat-dialog-title>
+    Authorization
+  </h1>
+
+  <mat-form-field>
+    <input placeholder="email" matInput [(ngModel)]="data.email">
+  </mat-form-field><br>
+  <mat-form-field>
+    <input placeholder="password" matInput [(ngModel)]="data.password">
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data">Login</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data">Login with Google</button>
+  <button mat-raised-button color="warn" (click)="onNoClick()">Close</button>
+</mat-dialog-actions>
