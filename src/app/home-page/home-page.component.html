@@ -1,0 +1,37 @@
+<div class="main">
+  <div class="main-background">
+    <img class="img-pikachu" src="../../assets/pokemons/pikachu.png"/>
+    <img class="img-pokeball" src="../../assets/pokemons/pokeball.png"/>
+    <button class="btn-go">
+        <img class="img-go" src="../../assets/pokemons/btnGO.png"/>
+    </button>
+  </div>
+  <div class="faq">
+    <span class="faq_header"> F A Q </span>
+  </div>
+  <div class="faq-cards">
+    <div class="faq-card-in-row">
+        <div [ngClass]="applyClass==true ? 'open-card' : 'card'" (click)="changeStyles()">
+            <h3>Important text 1</h3>
+            <p>some explanations</p>
+          </div>
+          <div [ngClass]="applyClass==true ? 'card' : 'open-card'" (click)="changeStyles()">
+            <h3>Important text 2</h3>
+            <p>some explanations</p>
+          </div>
+    </div>
+    <div class="faq-card-in-row">
+      <div [ngClass]="applyClass==true ? 'card' : 'open-card'" (click)="changeStyles()">
+        <h3>Important text 3</h3>
+        <p>some explanations</p>
+      </div>
+      <div [ngClass]="applyClass==true ? 'card' : 'open-card'" (click)="changeStyles()">
+        <h3>Important text 4</h3>
+        <p>some explanations</p>
+      </div>
+    </div>
+    <img class="img-blbsaur" src="../../assets/pokemons/bulbasaur.png"/>
+  </div>
+</div>
+<div class="footer">
+</div>
