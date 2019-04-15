@@ -1,15 +1,15 @@
 @import '../variables.scss';
 
 @mixin cards($col) {
-    border-radius: 1em;
     margin: 1em;
     padding: 1em;
+    border-radius: 1em;
     cursor: pointer;
 
     h3 {
+        width: 60%;
         padding-bottom: 0.5em;
         border-bottom: 1px solid $col;
-        width: 60%;
     }
 }
 
@@ -17,18 +17,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    //background: #fff7cb;
     padding-top: 5em;
+    //background: #fff7cb;
 }
 
 .main-background {
-    background-image: linear-gradient(145deg, lighten(#0E1E30, 5%) 0%, var(--indigo) 100%);
+    position: relative;
+    align-items: flex-end;
     height: 30em;
     width: 50em;
-    border-radius: 2em;
-    align-items: flex-end;
-    position: relative;
     margin-bottom: 3em;
+    background-image: linear-gradient(145deg, lighten(#0E1E30, 5%) 0%, var(--indigo) 100%);
+    border-radius: 2em;
 
     .img-pikachu {
         position: absolute;
@@ -48,46 +48,46 @@
 
     .btn-go {
         position: absolute;
+        display: flex;
+        align-items: center;
+        width: 20em;
         left: 30em;
         bottom: 2em;
         background: none;
         border: none;
-        display: flex;
-        align-items: center;
-        width: 20em;
         cursor: pointer;
 
         .img-go {
+            position: relative;
             height: 20em;
             width: 20em;
-            position: relative;
         }
     }
 
   }
 
   .faq {
-      border-top: 2px solid var(--blue);
-      width: 50em;
+    width: 50em;
+    border-top: 2px solid var(--blue);
 
       .faq_header {
-          color: var(--white);
-          background: var(--blue);
-          height: 2em;
-          border-radius: 1em;
-          padding: 0.5em 4em;
-          margin-left: 20em;
+        padding: 0.5em 4em;
+        margin-left: 20em;
+        height: 2em;
+        border-radius: 1em;
+        color: var(--white);
+        background: var(--blue);
       }
 
 }
 
 .faq-cards {
+    position: relative;
     display: flex;
     align-items: flex-end;
     flex-direction: column;
     margin-top: 1em;
     margin-bottom: 2em;
-    position: relative;
 
     .faq-card-in-row {
         display: flex;
@@ -96,17 +96,17 @@
 
         .open-card {
             @include cards(var(--blue));
-            background: var(--yellow);
             height: 15em;
             width: 28em;
+            background: var(--yellow);
         }
 
         .card {
             @include cards(var(--yellow));
-            background-image: linear-gradient(145deg, var(--blue) 0%, var(--indigo) 100%);
-            color: var(--white);
             height: 10em;
             width: 15em;
+            color: var(--white);
+            background-image: linear-gradient(145deg, var(--blue) 0%, var(--indigo) 100%);
         }
     }
 
@@ -120,6 +120,6 @@
 }
 
 .footer {
-    background: var(--yellow);
     height: 5em;
+    background: var(--yellow);
 }

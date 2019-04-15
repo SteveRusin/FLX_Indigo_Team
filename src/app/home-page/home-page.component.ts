@@ -6,15 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  applyClass: boolean = true;
+  public applyClass: boolean = true;
 
   constructor() { }
 
   public ngOnInit(): void {
   }
 
-  changeStyles(): void {
-    this.applyClass = !this.applyClass;
-  }
+  public changeStyles(): void { }
 
 }
