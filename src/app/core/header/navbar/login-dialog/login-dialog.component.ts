@@ -1,3 +1,4 @@
+import { AuthService } from './../../../../services/auth.service';
 import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
@@ -12,9 +13,12 @@ export class LoginDialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<LoginDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    @Inject(MAT_DIALOG_DATA) public data: DialogData, public authService: AuthService) { }
   
   public onNoClick(): void {
     this.dialogRef.close();
+  }
+  public signInWithGoogle(): void {
+    this.authService.signInWithGoogle();
   }
 }
