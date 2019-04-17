@@ -9,8 +9,13 @@
     h3 {
         width: 60%;
         padding-bottom: 0.5em;
+        font-size: 1em;
         border-bottom: 1px solid $col;
     }
+}
+
+:host {
+    font-family: 'Poppins', sans-serif;
 }
 
 .main {
@@ -18,43 +23,70 @@
     flex-direction: column;
     align-items: center;
     padding-top: 5em;
-    //background: #fff7cb;
+}
+
+.main-page-desc {
+    position: absolute;
+    width: 30em;
+    top: 5em;
+    left: 40em;
+    
+    p {
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
+    h2 {
+        margin: 0;
+        padding: 0;
+        color: white;
+    }
 }
 
 .main-background {
     position: relative;
     align-items: flex-end;
-    height: 30em;
-    width: 50em;
+    height: 90vh;
+    width: 100vw;
     margin-bottom: 3em;
-    background-image: linear-gradient(145deg, lighten(#0E1E30, 5%) 0%, var(--indigo) 100%);
-    border-radius: 2em;
+    background-image: linear-gradient(to bottom, var(--blue) 10%, var(--indigo) 90%);
+
+    &::after {
+        content: '';
+        display: block;
+        position: relative;
+        margin-top: 90vh;
+        height: 5em;
+        background-image: linear-gradient(to bottom, var(--indigo), var(--white));
+        z-index: -1;
+    }
 
     .img-pikachu {
         position: absolute;
         height: 27em;
         width: 30em;
-        bottom: 6em;
-        right: 25em;
+        bottom: 3em;
+        right: 40em;
     }
 
     .img-pokeball {
         position: absolute;
-        height: 8em;
-        width: 8em;
-        left: 30em;
+        height: 6em;
+        width: 6em;
+        left: 45em;
         bottom: 23em;
     }
 
-    .btn-go {
+    .wrapper-btn {
         position: absolute;
         display: flex;
         align-items: center;
-        width: 20em;
-        left: 30em;
+        left: 40em;
         bottom: 2em;
-        background: none;
-        border: none;
+    }
+
+    .btn-go {
+        background: var(--indigo);
         cursor: pointer;
 
         .img-go {
@@ -67,16 +99,24 @@
   }
 
   .faq {
-    width: 50em;
-    border-top: 2px solid var(--blue);
+      display: flex;
+      justify-content: space-between;
+      width: 50em;
+      margin-top: 1em;
 
       .faq_header {
-        padding: 0.5em 4em;
-        margin-left: 20em;
-        height: 2em;
-        border-radius: 1em;
-        color: var(--white);
-        background: var(--blue);
+          margin: 1em 1em 0 1em;
+          padding: 0;
+          text-align: center;
+          color: var(--blue);
+          background: var(--white);
+      }
+
+      span {
+          margin-top: 3.3em;
+          width: 20em;
+          height: 2px;
+          background: var(--blue);
       }
 
 }
@@ -86,7 +126,6 @@
     display: flex;
     align-items: flex-end;
     flex-direction: column;
-    margin-top: 1em;
     margin-bottom: 2em;
 
     .faq-card-in-row {
@@ -112,9 +151,9 @@
 
     .img-blbsaur {
         position: absolute;
-        height: 25em;
-        width: 20em;
-        top: 10em;
+        height: 22em;
+        width: 17em;
+        top: 12em;
         left: -5em;
     }
 }
@@ -123,3 +162,4 @@
     height: 5em;
     background: var(--yellow);
 }
+
