@@ -2,5 +2,8 @@
   <a mat-button routerLink="/home">Home</a>
   <a mat-button routerLink="/game">Game</a>
   <a mat-button routerLink="/profile">Profile</a>
-  <button mat-button (click)="dialogForm()">Login</button>
+  <a mat-button (click)="dialogForm()">Login</a>
+  
+  <a mat-button *ngIf="!isLoggedIn" (click)="dialogForm()">Sign In</a>
+  <a mat-button *ngIf="isLoggedIn" (click)="logout()">Sign Out</a>
 </nav>

@@ -9,16 +9,16 @@ import { Observable } from 'rxjs';
 export class AuthService {
   private user: Observable<firebase.User>;
   private userDetails: firebase.User = null;
-  
+
   constructor(private _firebaseAuth: AngularFireAuth,
               private router: Router) {
-      this.user = _firebaseAuth.authState;
-
+      this.user = this._firebaseAuth.authState;
       this.user.subscribe(
         (user:any) => {
           if (user) {
             this.userDetails = user;
-            console.log(this.userDetails);
+            // this.isLoggedIn();
+            // console.log(this.userDetails);
           } else {
             this.userDetails = null;
           }
@@ -32,15 +32,16 @@ export class AuthService {
     );
   }
 
-  public isLoggedIn() {
-    if (this.userDetails === null ) {
-        return false;
-      } else {
-        return true;
-      }
-    }
+  public isLoggedIn(): boolean {
+    return this.userDetails !== null;
+  }
+  
   public logout() {
       this._firebaseAuth.auth.signOut()
-      .then((res: any) => this.router.navigate(['/']));
+      .then(this.userDetails = null)
+      .then((res: any) => {
+        this.router.navigate(['/']);
+        console.log(res);
+      });
     }
 }
