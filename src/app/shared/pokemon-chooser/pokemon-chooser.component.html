@@ -1,0 +1,44 @@
+<mat-horizontal-stepper #stepper linear labelPosition="bottom">
+  <ng-template matStepperIcon="edit">
+    <mat-icon>check</mat-icon>
+  </ng-template>
+
+  <mat-step label="Choose Pokemon" #stepOne completed= "false">
+    <div>
+      <div class="pokemon-list">
+        <div id="{{pokemon.id}}" class="pokemon" *ngFor="let pokemon of pokemons" (click)="choosePokemon(pokemon.id, stepOne, stepper)">
+          <img src="{{pokemon.sprite}}" alt="photo">
+          <p>{{pokemon.name}}</p>
+        </div>
+      </div>
+    </div>
+  </mat-step>
+
+  <mat-step label="Choose Opponent" #stepTwo completed= "false">
+    <div>
+      <div class="pokemon-list">
+        <div id="{{pokemon.id}}" class="pokemon" *ngFor="let pokemon of pokemons" (click)="choosePokemon(pokemon.id, stepTwo, stepper)">
+          <img src="{{pokemon.sprite}}" alt="photo">
+          <p>{{pokemon.name}}</p>
+        </div>
+      </div>
+    </div>
+  </mat-step>
+
+  <mat-step label="Go to fight" #stepThree completed= "false">
+      <div>
+        <div class= "pokemon-list">
+          <div id="{{pokemonOne.id}}" class="pokemon">
+            <img src="{{pokemonOne.sprite}}" alt="photo">
+            <p>{{pokemonOne.name}}</p>
+          </div>
+          <div class="vs">VS</div>
+          <div id="{{pokemonTwo.id}}" class="pokemon">
+            <img src="{{pokemonTwo.sprite}}" alt="photo">
+            <p>{{pokemonTwo.name}}</p>
+          </div>
+        </div>
+        <div class= "to-fight"><button (click)="fightMessage()">FIGHT</button></div>
+      </div>
+  </mat-step>
+</mat-horizontal-stepper>

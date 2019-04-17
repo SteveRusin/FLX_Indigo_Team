@@ -1,0 +1,46 @@
+mat-horizontal-stepper {
+    padding: 3em;
+}
+.pokemon-list {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1em;
+  flex-wrap: wrap;
+  .pokemon {
+    border-radius: 8px;
+    background-color: indigo;
+    border: none;
+    padding: 2em;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 8px 6px yellow;
+    }
+    p {
+      margin: 0.8em 0;
+      text-align: center;
+      font-size: 1.2em;
+      color: #fff;
+    }
+  }
+}
+
+.to-fight {
+  width: 20%;
+  margin: 2em auto;
+  button{
+    width: 100%;
+    padding: 0.4em;
+    font-size: 1.2em;
+    background-color: indigo;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    &:hover {
+      cursor: pointer;
+      box-shadow: 0 0 8px 6px yellow;
+    }
+  }
+}
+.vs {
+  font-size: 4em;
+}
