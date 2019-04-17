@@ -48,7 +48,9 @@ export class PokemonChooserComponent implements OnInit {
       stepper.selectedIndex === 0 ?
         this.pokemonOne = this.getPokemon(id) :
         this.pokemonTwo = this.getPokemon(id);
-        step.completed = false ? null : step.completed = true;
+        if(!step.completed) {
+          step.completed = true;
+        }
         stepper.next();
     }
 
