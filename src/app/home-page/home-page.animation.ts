@@ -4,11 +4,11 @@ import { trigger,
   animate
 } from '@angular/animations';
 
-export const HomePageAnimationsComponent = {
+export const homePageAnimationsComponent: any = {
   animate: trigger('fade', [
     transition('void => *', [
       style({ opacity: 0 }),
       animate(1000)
     ])
   ])
-}
+};

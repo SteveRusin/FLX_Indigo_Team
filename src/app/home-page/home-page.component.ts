@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HomePageAnimationsComponent } from './home-page.animation';
+import { homePageAnimationsComponent } from './home-page.animation';
 
 @Component({
   selector: 'app-home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
   animations: [
-    HomePageAnimationsComponent.animate
+    homePageAnimationsComponent.animate
   ]
 })
 export class HomePageComponent implements OnInit {
