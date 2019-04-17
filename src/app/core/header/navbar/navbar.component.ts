@@ -15,13 +15,12 @@ export class NavbarComponent implements OnInit {
   public dialogWithForm: MatDialogRef<LoginDialogComponent, DialogData>;
   public email: string;
   public password: string;
-  public isLoggedIn: boolean;
+  public profileAvatar: any;
 
   constructor(private dialog: MatDialog,
               public authService: AuthService) {
-                
-    this.isLoggedIn = authService.isLoggedIn();
-    console.log(`login - ${this.isLoggedIn}`);
+    authService.isLoggedIn();
+    console.log(authService.userDetails + 'sdfdsfdsf');
   }
 
   public ngOnInit(): void {
