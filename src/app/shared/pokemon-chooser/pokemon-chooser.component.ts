@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatStepper } from '@angular/material/stepper';
+import { CdkStep } from '@angular/cdk/stepper';
 @Component({
   selector: 'app-pokemon-chooser',
   templateUrl: './pokemon-chooser.component.html',
@@ -44,17 +45,19 @@ export class PokemonChooserComponent implements OnInit {
     public pokemonOne: any = this.pokemons[0];
     public pokemonTwo: any = this.pokemons[0];
 
-    public choosePokemon(id: number, step: any, stepper: any): void {
-      stepper.selectedIndex === 0 ?
-        this.pokemonOne = this.getPokemon(id) :
+    public choosePokemon(id: number, step: CdkStep, stepper: MatStepper): void {
+      if(stepper.selectedIndex === 0) {
+        this.pokemonOne = this.getPokemon(id);
+      } else {
         this.pokemonTwo = this.getPokemon(id);
-        if(!step.completed) {
-          step.completed = true;
-        }
-        stepper.next();
+      }
+      if(!step.completed) {
+        step.completed = true;
+      }
+      stepper.next();
     }
 
-    public getPokemon(id:number): any {
+    public getPokemon(id: number): any {
       return this.pokemons.find((pokemon: any) => pokemon.id === id);
     }
 
@@ -62,5 +65,5 @@ export class PokemonChooserComponent implements OnInit {
       alert('FIGHT');
     }
 
-    public ngOnInit():void {}
+    public ngOnInit(): void {}
 }
