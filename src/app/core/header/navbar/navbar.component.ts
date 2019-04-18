@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private dialog: MatDialog,
               public authService: AuthService) {
-                
+
     this.isLoggedIn = authService.isLoggedIn();
     console.log(`login - ${this.isLoggedIn}`);
   }

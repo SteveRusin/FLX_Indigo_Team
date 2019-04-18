@@ -16,8 +16,7 @@ export class HomePageComponent implements OnInit {
 
   public ngOnInit(): void { }
 
-  public changeStyles(id: number): void {
-    const el: any = document.getElementById(`${id}`);
+  public changeStyles(): void {
     this.isClicked = !this.isClicked;
   }
 
