@@ -10,13 +10,15 @@ import { homePageAnimationsComponent } from './home-page.animation';
   ]
 })
 export class HomePageComponent implements OnInit {
-  public applyClass: boolean = true;
+  public isClicked: boolean = true;
 
   constructor() { }
 
-  public ngOnInit(): void {
-  }
+  public ngOnInit(): void { }
 
-  public changeStyles(): void { }
+  public changeStyles(id: number): void {
+    const el: any = document.getElementById(`${id}`);
+    this.isClicked = !this.isClicked;
+  }
 
 }
