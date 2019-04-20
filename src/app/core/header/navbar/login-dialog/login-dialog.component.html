@@ -1,19 +1,42 @@
-<mat-dialog-content>
-  <h1 mat-dialog-title>
-    Login
-  </h1>
+<div class="dialog-wrap">
 
-  <mat-form-field>
-    <input placeholder="email" matInput [(ngModel)]="data.email">
-  </mat-form-field><br>
-  <mat-form-field>
-    <input placeholder="password" matInput [(ngModel)]="data.password">
-  </mat-form-field>
 
-</mat-dialog-content>
+  <mat-toolbar color="primary">
+    <h1 mat-dialog-title>
+      Login to continue
+    </h1>
+  </mat-toolbar>
 
-<mat-dialog-actions>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data">Login</button>
-  <button mat-raised-button color="primary" (click)="signInWithGoogle()">Login with Google</button>
-  <button mat-raised-button color="warn" (click)="onNoClick()">Close</button>
-</mat-dialog-actions>
+  <dialog-login-form></dialog-login-form>
+
+  <div class="or-line">
+    <div class="line"></div>
+    <div style="display:inline-block;">or</div>
+    <div class="line"></div>
+
+    <p>Don't have an account yet? <a href="#">Sign up!</a></p>
+  </div>
+</div>
+
+
+
+<!-- <div class="form-container">
+    <form [formGroup]="formLogin">
+      <mat-form-field>
+        <input matInput placeholder="Enter your email"
+                        [formControlName]="email"
+                        required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Enter your password"
+                        [formControlName]="[password]"
+                        [type]="hide ? 'password' : 'text'"> -->
+        <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
+      <!-- </mat-form-field>
+    </form>
+      <mat-dialog-actions>
+        <button mat-raised-button color="primary" [mat-dialog-close]="data" (click)="signInWithEmailAndPassword()">Login</button>
+        <button mat-raised-button color="primary" (click)="signInWithGoogle()">Login with Google</button>
+      </mat-dialog-actions>
+  </div> -->

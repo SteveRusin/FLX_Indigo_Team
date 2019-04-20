@@ -8,7 +8,6 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 import { AuthService } from './services/auth.service';
-
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -21,12 +20,12 @@ import { routes } from './app-routing.module';
     AppComponent
   ],
   imports: [
+    AngularFireModule.
+      initializeApp(environment.fireConfig),
     BrowserModule,
     SharedModule,
     RouterModule.forRoot(routes),
     CoreModule.forRoot(),
-    AngularFireModule.
-      initializeApp(environment.fireConfig, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule

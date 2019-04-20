@@ -1,0 +1,17 @@
+.mat-dialog-actions button {
+  margin: 5px 0;
+  padding: 5px;
+  width: 100%;
+}
+.mat-form-field {
+  width: 100%;
+}
+
+.form-container,
+.mat-dialog-actions {
+  display: flex;
+  flex-direction: column;
+}
+.form-container > * {
+  padding: 5px 20px;
+}

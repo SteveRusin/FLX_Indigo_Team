@@ -15,12 +15,12 @@ export class NavbarComponent implements OnInit {
   public dialogWithForm: MatDialogRef<LoginDialogComponent, DialogData>;
   public email: string;
   public password: string;
-  public profileAvatar: any;
+  public profileAvatar: string;
 
-  constructor(private dialog: MatDialog,
+  constructor(public dialog: MatDialog,
               public authService: AuthService) {
     authService.isLoggedIn();
-    console.log(authService.userDetails + 'sdfdsfdsf');
+    // console.log(authService.userDetails + ' sdfdsfdsf');
   }
 
   public ngOnInit(): void {
@@ -31,12 +31,11 @@ export class NavbarComponent implements OnInit {
   }
 
   public dialogForm(): void {
- 
     this.dialogWithForm = this.dialog
     .open(LoginDialogComponent, {
       data: { email: this.email, password: this.password }
     });
-    
+
     this.dialogWithForm.afterClosed()
     .subscribe((result:DialogData) => {
       console.log(this.dialogWithForm);
