@@ -6,21 +6,22 @@ import { AuthService } from 'src/app/services/auth.service';
 import { LoginDialogComponent } from '../login-dialog.component';
 
 @Component({
-  selector: 'dialog-login-form',
-  templateUrl: './login-form.component.html',
-  styleUrls: ['./login-form.component.scss']
+  selector: 'dialog-authorization-form',
+  templateUrl: './authorization-form.component.html',
+  styleUrls: ['./authorization-form.component.scss']
 })
-
-export class LoginFormComponent {
+export class AuthorizationFormComponent {
   public hide: boolean = true;
+  public nickname: string;
   public email: FormControl = new FormControl('', [Validators.required, Validators.email]);
   public password: string;
 
-  public loginForm: FormGroup;
+  public authorizationForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<LoginDialogComponent>,
               public authService: AuthService) {
-    this.loginForm = new FormGroup({
+    this.authorizationForm = new FormGroup({
+      nickname: new FormControl(),
       email: new FormControl(),
       password: new FormControl()
     });
@@ -29,21 +30,22 @@ export class LoginFormComponent {
   public getErrorMessage(): string {
     return this.email.hasError('required') ? 'Please enter a valid email address' :
            this.email.hasError('email') ? 'Not a valid email' : '';
-    }
+  }
 
   public onSubmit(): any {
     // TODO: Use EventEmitter with form value
     console.warn(this.email.value);
   }
 
-  public signInWithGoogle(): void {
-    this.authService.signInWithGoogle();
-    this.dialogRef.close();
+  public authorizationWithEmailAndPassword(): void {
+    this.authService
+      .createUserWithEmailAndPassword(this.authorizationForm.value.email,
+                                      this.authorizationForm.value.password,
+                                      this.authorizationForm.value.nickname);
   }
 
-  public signInWithEmailAndPassword(): void {
-    console.log(this.loginForm.value);
-    this.authService
-      .signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password);
+  public authorizationWithGoogle(): void {
+    this.authService.signInWithGoogle();
+    this.dialogRef.close();
   }
 }

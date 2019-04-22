@@ -24,3 +24,16 @@
     padding: 1em 0;
   }
 }
+
+.mat-form-field {
+  width: 100%;
+}
+
+.form-container,
+.mat-dialog-actions {
+  display: flex;
+  flex-direction: column;
+}
+.form-container > * {
+  padding: 5px 20px;
+}

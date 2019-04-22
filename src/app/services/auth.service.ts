@@ -10,8 +10,6 @@ export class AuthService {
   private user: Observable<firebase.User>;
   public userDetails: firebase.User = null;
   public profileAvatar: string;
-  public email: string;
-  public password: string;
 
   constructor(private _firebaseAuth: AngularFireAuth,
               private router: Router) {
@@ -42,9 +40,8 @@ export class AuthService {
   public logout(): void {
     this._firebaseAuth.auth.signOut()
     .then(this.userDetails = null)
-    .then((res: void) => {
+    .then(() => {
       this.router.navigate(['/']);
-      console.log(res);
     });
   }
 
@@ -62,5 +59,25 @@ export class AuthService {
        }
        console.log(error);
      });
+  }
+
+  public createUserWithEmailAndPassword(email: string, password: string, nickname: string): void {
+    firebase.auth()
+    .createUserWithEmailAndPassword(email, password)
+      .then((player: any) => {
+        player.user.updateProfile({
+          displayName: nickname
+        });
+      })
+      .catch((error: any) => {
+        const errorCode:string = error.code;
+        const errorMessage: string = error.message;
+        if (errorCode === 'auth/weak-password') {
+          alert('The password is too weak.');
+        } else {
+          alert(errorMessage);
+        }
+        console.log(error);
+      });
   }
 }

@@ -14,6 +14,7 @@ import { NavbarComponent } from './header/navbar/navbar.component';
 import { LoginDialogComponent } from './header/navbar/login-dialog/login-dialog.component';
 import { LoginFormComponent } from './header/navbar/login-dialog/login-form/login-form.component';
 import { MaterialModule } from '../material-module/material.module';
+import { AuthorizationFormComponent } from './header/navbar/login-dialog/authorization-form/authorization-form.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { MaterialModule } from '../material-module/material.module';
       LogoComponent,
       NavbarComponent,
       LoginDialogComponent,
-      LoginFormComponent
+      LoginFormComponent,
+      AuthorizationFormComponent
     ],
     imports: [
       BrowserAnimationsModule,

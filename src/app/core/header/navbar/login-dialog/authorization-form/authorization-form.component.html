@@ -1,12 +1,22 @@
 <mat-toolbar color="primary">
   <h1 mat-dialog-title>
-    Login to continue
+    Authorization
   </h1>
 </mat-toolbar>
 
-<form [formGroup]="loginForm">
-      <!-- (ngSubmit)="onSubmit()"> -->
+
+<form [formGroup]="authorizationForm"
+      (ngSubmit)="onSubmit()">
+
   <div class="form-container">
+
+    <mat-form-field class="example-full-width">
+      <input matInput type="text"
+                      placeholder="Nickname"
+                      formControlName="nickname"
+                      required>
+    </mat-form-field>  
+
     <mat-form-field class="example-full-width">
       <input matInput type="email"
                       placeholder="Enter your email"
@@ -15,28 +25,21 @@
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
 
-
     <mat-form-field>
       <input matInput placeholder="Enter your password"
                       formControlName="password"
                       [type]="hide ? 'password' : 'text'">
       <!-- <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon> -->
     </mat-form-field>
-    
+
     <mat-dialog-actions>
       <button mat-raised-button color="primary"
-                      (click)="signInWithEmailAndPassword()">Login</button>
+                      (click)="authorizationWithEmailAndPassword()">authorization</button>
 
       <button mat-raised-button color="primary"
-                      (click)="signInWithGoogle()">Login with Google</button>
+                      (click)="authorizationWithGoogle()">authorization with Google</button>
     </mat-dialog-actions>
+
   </div>
+
 </form>
-
-<div class="or-line">
-  <div class="line"></div>
-  <div style="display:inline-block;">or</div>
-  <div class="line"></div>
-
-  <p>Don't have an account yet? <a href="#">Sign up!</a></p>
-</div>
