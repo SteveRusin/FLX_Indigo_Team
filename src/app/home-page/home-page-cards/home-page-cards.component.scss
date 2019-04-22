@@ -1,0 +1,88 @@
+@import "../../variables.scss";
+
+@mixin cards($col) {
+  margin: 1em;
+  padding: 1em;
+  border-radius: 1em;
+  cursor: pointer;
+
+  mat-card-title {
+    padding-bottom: 0.5em;
+    font-size: 1em;
+    border-bottom: 1px solid $col;
+  }
+}
+
+mat-icon {
+  display: none;
+}
+
+mat-card-subtitle {
+  color: var(--white);
+}
+
+.faq-cards {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 50em;
+  height: 80vh;
+  margin-bottom: 2em;
+
+  .card {
+    @include cards(var(--yellow));
+    color: var(--white);
+    background-image: linear-gradient(145deg, var(--blue) 0%, var(--indigo) 100%);
+  }
+
+  .open-card {
+    @include cards(var(--blue));
+    background: var(--yellow);
+  }
+
+  .img-blbsaur {
+    position: absolute;
+    height: 21em;
+    width: 17em;
+    top: 9em;
+    left: -12em;
+    z-index: -1;
+  }
+}
+
+.card-container {
+  position: relative;
+  margin: 0 1.5em;
+  perspective: 500px;
+  -webkit-perspective: 500px;
+  -webkit-transform: scale(1, 1);
+  -webkit-transition-timing-function: ease-out;
+  -webkit-transition-duration: 500ms;
+
+  .flippable-card {
+    position: relative;
+    margin-right: 1em;
+    width: 18em;
+    height: 12em;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+
+    mat-card {
+      display: block;
+      position: absolute;
+      width: 20em;
+      height: 12em;
+      backface-visibility: hidden;
+      transition-timing-function: ease-out;
+    }
+
+    & .back {
+      transform: rotateY(180deg);
+    }
+
+    &:hover {
+      transform: rotateY(180deg) translateX(-21%);
+    }
+  }
+}
