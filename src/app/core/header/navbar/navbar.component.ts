@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { DialogData } from './login-dialog/DialogData';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoginDialogService } from './login-dialog/login-dialog.service';
 
 @Component({
   selector: 'header-navbar',
@@ -18,7 +19,8 @@ export class NavbarComponent implements OnInit {
   public profileAvatar: string;
 
   constructor(public dialog: MatDialog,
-              public authService: AuthService) {
+              public authService: AuthService,
+              public loginDialogService: LoginDialogService) {
     authService.isLoggedIn();
     // console.log(authService.userDetails + ' sdfdsfdsf');
   }
@@ -31,6 +33,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public dialogForm(): void {
+    this.loginDialogService.authorization = false;
     this.dialogWithForm = this.dialog
     .open(LoginDialogComponent, {
       data: { email: this.email, password: this.password }

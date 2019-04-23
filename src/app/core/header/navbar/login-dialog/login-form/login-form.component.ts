@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material';
 
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginDialogComponent } from '../login-dialog.component';
+import { LoginDialogService } from './../login-dialog.service';
 
 @Component({
   selector: 'dialog-login-form',
@@ -15,15 +16,19 @@ export class LoginFormComponent {
   public hide: boolean = true;
   public email: FormControl = new FormControl('', [Validators.required, Validators.email]);
   public password: string;
-
   public loginForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<LoginDialogComponent>,
+              public loginDialogService: LoginDialogService,
               public authService: AuthService) {
     this.loginForm = new FormGroup({
       email: new FormControl(),
       password: new FormControl()
     });
+  }
+
+  public signInForm(): void {
+    this.loginDialogService.signInForm();
   }
 
   public getErrorMessage(): string {
@@ -45,5 +50,6 @@ export class LoginFormComponent {
     console.log(this.loginForm.value);
     this.authService
       .signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password);
+    this.dialogRef.close();
   }
 }

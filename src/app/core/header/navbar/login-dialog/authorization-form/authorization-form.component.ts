@@ -42,6 +42,7 @@ export class AuthorizationFormComponent {
       .createUserWithEmailAndPassword(this.authorizationForm.value.email,
                                       this.authorizationForm.value.password,
                                       this.authorizationForm.value.nickname);
+    this.dialogRef.close();
   }
 
   public authorizationWithGoogle(): void {

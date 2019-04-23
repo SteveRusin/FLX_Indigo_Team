@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { DialogData } from './DialogData';
 import { AuthService } from 'src/app/services/auth.service';
+import { LoginDialogService } from './login-dialog.service';
 
 @Component({
   selector: 'navbar-login-dialog',
@@ -15,6 +16,7 @@ export class LoginDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<LoginDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-                             public authService: AuthService) { }
-
+                             public authService: AuthService,
+                             public loginDialogService: LoginDialogService
+                             ) { }
 }
