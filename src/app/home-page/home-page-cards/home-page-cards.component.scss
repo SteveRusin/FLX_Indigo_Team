@@ -1,17 +1,5 @@
 @import "../../variables.scss";
-
-@mixin cards($col) {
-  margin: 1em;
-  padding: 1em;
-  border-radius: 1em;
-  cursor: pointer;
-
-  mat-card-title {
-    padding-bottom: 0.5em;
-    font-size: 1em;
-    border-bottom: 1px solid $col;
-  }
-}
+@import "./mixins.scss";
 
 mat-icon {
   display: none;
