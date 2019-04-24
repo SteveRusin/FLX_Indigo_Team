@@ -19,16 +19,15 @@ export class LoginFormComponent {
   public loginForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<LoginDialogComponent>,
-              public loginDialogService: LoginDialogService,
-              public authService: AuthService) {
-    this.loginForm = new FormGroup({
-      email: new FormControl(),
-      password: new FormControl()
-    });
+    public loginDialogService: LoginDialogService, public authService: AuthService) {
+      this.loginForm = new FormGroup({
+        email: new FormControl(),
+        password: new FormControl()
+      });
   }
 
-  public signInForm(): void {
-    this.loginDialogService.signInForm();
+  public signInForm(): boolean {
+    return this.loginDialogService.signInForm();
   }
 
   public getErrorMessage(): string {

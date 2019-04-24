@@ -15,16 +15,15 @@ export class AuthorizationFormComponent {
   public nickname: string;
   public email: FormControl = new FormControl('', [Validators.required, Validators.email]);
   public password: string;
-
   public authorizationForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<LoginDialogComponent>,
-              public authService: AuthService) {
-    this.authorizationForm = new FormGroup({
-      nickname: new FormControl(),
-      email: new FormControl(),
-      password: new FormControl()
-    });
+    public authService: AuthService) {
+      this.authorizationForm = new FormGroup({
+        nickname: new FormControl(),
+        email: new FormControl(),
+        password: new FormControl()
+      });
   }
 
   public getErrorMessage(): string {

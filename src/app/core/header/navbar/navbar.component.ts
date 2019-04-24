@@ -19,10 +19,10 @@ export class NavbarComponent implements OnInit {
   public profileAvatar: string;
 
   constructor(public dialog: MatDialog,
-              public authService: AuthService,
-              public loginDialogService: LoginDialogService) {
-    authService.isLoggedIn();
-    // console.log(authService.userDetails + ' sdfdsfdsf');
+    public authService: AuthService,
+    public loginDialogService: LoginDialogService) {
+      authService.isLoggedIn();
+      // console.log(authService.userDetails + ' sdfdsfdsf');
   }
 
   public ngOnInit(): void {

@@ -15,7 +15,7 @@ export class AuthService {
               private router: Router) {
     this.user = this._firebaseAuth.authState;
     this.user.subscribe(
-      (user:firebase.User) => {
+      (user: firebase.User) => {
         if (user) {
           this.userDetails = user;
           this.profileAvatar = this.userDetails.photoURL;
@@ -39,10 +39,8 @@ export class AuthService {
   
   public logout(): void {
     this._firebaseAuth.auth.signOut()
-    .then(this.userDetails = null)
-    .then(() => {
-      this.router.navigate(['/']);
-    });
+    .then(() => this.userDetails = null)
+    .then(() => this.router.navigate(['/']));
   }
 
   public signInWithEmailAndPassword(email: string, password: string): void {
@@ -70,7 +68,7 @@ export class AuthService {
         });
       })
       .catch((error: any) => {
-        const errorCode:string = error.code;
+        const errorCode: string = error.code;
         const errorMessage: string = error.message;
         if (errorCode === 'auth/weak-password') {
           alert('The password is too weak.');

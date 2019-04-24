@@ -2,13 +2,13 @@
   overflow: visible;
   width: 25em;
 }
-.mat-dialog-container {
-  padding: 0;
-  overflow: hidden;
-}
-.mat-toolbar-single-row {
-  margin-bottom: 0.5em;
-}
+// .mat-dialog-container {
+//   padding: 0;
+//   overflow: hidden;
+// }
+// .mat-toolbar-single-row {
+//   margin-bottom: 0.5em;
+// }
 
 .line {
   width: 45%;
@@ -29,8 +29,7 @@
   width: 100%;
 }
 
-.form-container,
-.mat-dialog-actions {
+.form-container {
   display: flex;
   flex-direction: column;
 }

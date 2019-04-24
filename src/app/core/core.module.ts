@@ -1,5 +1,8 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {
+  FormsModule,
+  ReactiveFormsModule
+} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import {
   NgModule,
@@ -7,13 +10,22 @@ import {
   Optional,
   SkipSelf
 } from '@angular/core';
+import {
+  MatButtonModule,
+  MatButtonToggleModule,
+  MatCardModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatIconModule,
+  MatInputModule,
+  MatToolbarModule
+} from '@angular/material';
 
 import { HeaderComponent } from './header/header.component';
 import { LogoComponent } from './header/logo/logo.component';
 import { NavbarComponent } from './header/navbar/navbar.component';
 import { LoginDialogComponent } from './header/navbar/login-dialog/login-dialog.component';
 import { LoginFormComponent } from './header/navbar/login-dialog/login-form/login-form.component';
-import { MaterialModule } from '../material-module/material.module';
 import { AuthorizationFormComponent } from './header/navbar/login-dialog/authorization-form/authorization-form.component';
 import { LoginDialogService } from './header/navbar/login-dialog/login-dialog.service';
 
@@ -31,7 +43,14 @@ import { LoginDialogService } from './header/navbar/login-dialog/login-dialog.se
       RouterModule,
       FormsModule,
       ReactiveFormsModule,
-      MaterialModule
+      MatButtonModule,
+      MatButtonToggleModule,
+      MatCardModule,
+      MatDialogModule,
+      MatFormFieldModule,
+      MatIconModule,
+      MatInputModule,
+      MatToolbarModule,
     ],
     exports: [
       HeaderComponent

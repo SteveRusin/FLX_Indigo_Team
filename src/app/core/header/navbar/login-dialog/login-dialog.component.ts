@@ -16,7 +16,9 @@ export class LoginDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<LoginDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-                             public authService: AuthService,
-                             public loginDialogService: LoginDialogService
-                             ) { }
+      public authService: AuthService, public loginDialogService: LoginDialogService) { }
+
+  public authorisationForm(): boolean {
+    return this.loginDialogService.signInForm();
+  }
 }
