@@ -35,7 +35,7 @@ export class AuthService {
   public isLoggedIn(): boolean {
     return this.userDetails !== null;
   }
-  
+
   public logout() {
       this._firebaseAuth.auth.signOut()
       .then(this.userDetails = null)
