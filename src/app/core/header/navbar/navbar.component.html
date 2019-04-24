@@ -6,6 +6,6 @@
     <img src="{{authService.profileAvatar}}" alt="avatar" class="profile-avatar">
   </a>
 
-  <a mat-button *ngIf="!authService.isLoggedIn()" (click)="dialogForm()">Login</a>
-  <a mat-button *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</a>
+  <a mat-button *ngIf="!isLogged()" (click)="dialogForm()">Login</a>
+  <a mat-button *ngIf="isLogged()" (click)="logout()">Logout</a>
 </nav>
