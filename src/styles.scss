@@ -22,10 +22,6 @@ body::-webkit-scrollbar-thumb {
   border: 0.1em solid #ffffff;
 }
 
-body::-webkit-scrollbar-track {
-  background:rgba(255, 255, 255, 0.7);
-}
-
 body::-webkit-scrollbar-thumb:hover {
   background: lighten(#fece00, 10%);
 }

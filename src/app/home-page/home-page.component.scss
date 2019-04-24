@@ -598,6 +598,7 @@
   top: 140px;
   transform-origin: 0 bottom;
   animation: tailmove 3s ease infinite;
+  will-change: transform;
 
   .part1 {
     position: absolute;
