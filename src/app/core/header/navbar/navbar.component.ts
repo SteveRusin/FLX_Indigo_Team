@@ -20,10 +20,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(public dialog: MatDialog,
     public authService: AuthService,
-    public loginDialogService: LoginDialogService) {
-      authService.isLoggedIn();
-      // console.log(authService.userDetails + ' sdfdsfdsf');
-  }
+    public loginDialogService: LoginDialogService) { }
 
   public isLogged(): boolean {
     return this.authService.isLoggedIn();
