@@ -66,6 +66,7 @@
     bottom: 5em;
     -webkit-transition-timing-function: ease-out;
     -webkit-transition-duration: 500ms;
+    will-change: transform;
 
     &:hover {
       transform: scale(1.1, 1.1);
