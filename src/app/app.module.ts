@@ -12,11 +12,13 @@ import { CoreModule } from './core/core.module';
 import { environment } from '../environments/environment';
 import { BattleComponent } from './battle/battle.component';
 import { routes } from './app-routing.module';
+import { BattleInfoComponent } from './battle/battle.info/battle.info.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BattleComponent
+    BattleComponent,
+    BattleInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,19 @@
+.battle-field {
+    background: url('https://www.ssbwiki.com/images/thumb/7/73/SSBU-Pok%C3%A9mon_Stadium_2.png/1200px-SSBU-Pok%C3%A9mon_Stadium_2.png') border-box;
+    background-size: cover;
+    border: 1px solid red;
+    width: 700px;
+    height: 400px;
+    h1 {
+        color: snow;
+        text-align: center;
+    }
+}
+.battle-btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative;
+    top: 330px;
+    
+}
