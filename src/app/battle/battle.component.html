@@ -1,17 +1,17 @@
-<div  class="battle-field">
-    <app-battle-info [health] = "health" [pokemonA]="pokemonA" [pokemonB]="pokemonB"></app-battle-info>
+<div class="battle-field">
+    <app-battle-info [health]="health" [pokemonA]="pokemonA" [pokemonB]="pokemonB"></app-battle-info>
     <h1>{{title}}</h1>
 
-<div class="battle-btns" *ngIf="this.battleService.isAlive(this.pokemonA) && this.battleService.isAlive(this.pokemonB)">
-    <div class="left-corner">
-        <button (click)="currentBasePunch()">punch</button>
-        <button  id="spec-attack-btn" (click)="currentSpecAttack()">super punch</button>
-        <button (click)="currentDefence()">Defence</button>
+    <div class="battle-btns" *ngIf="this.battleService.isAlive(this.pokemonA) && this.battleService.isAlive(this.pokemonB)">
+        <div class="left-corner">
+            <button #baseButtonCurrent (click)="currentBasePunch()">punch</button>
+            <button #specButtonCurrent (click)="currentSpecAttack()">super punch</button>
+            <button #defenceButtonCurrent class= "defence-buttons" (click)="currentDefence()">Defence</button>
+        </div>
+        <div class="right-corner">
+            <button #baseButtonOpponent (click)="opponentBasePunch()">punch</button>
+            <button #specButtonOpponent (click)="opponentSpecAttack()">super punch</button>
+            <button #defenceButtonOpponent class= "defence-buttons" (click)="opponentDefence()">Defence</button>
+        </div>
     </div>
-    <div class="right-corner">
-        <button (click)="opponentBasePunch()">punch</button>
-        <button id="spec-attack-btn" (click)="opponentSpecAttack()">super punch</button>
-        <button (click)="opponentDefence()">Defence</button>
-    </div>
-</div>
 </div>
