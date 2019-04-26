@@ -29,5 +29,7 @@ export class PokemonChooserComponent implements OnInit {
     stepper.next();
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    console.log("Hello");
+  }
 }
