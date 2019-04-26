@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
 import { BattleService } from './battle.service';
 import { Pokemon } from '../models/pokemon.interface';
 import { BattleInfoComponent } from '../battle/battle.info/battle.info.component';
@@ -26,7 +26,7 @@ export class BattleComponent implements OnInit {
 
   @ViewChild('opponentPunch') public opponentPunch: ElementRef;
 
-  constructor(public battleService: BattleService, public elementRef: ElementRef) {
+  constructor(public battleService: BattleService, public elementRef: ElementRef, public renderer: Renderer2) {
   }
   public pokemonA: Pokemon = {
     name: 'picachu',
@@ -62,37 +62,37 @@ export class BattleComponent implements OnInit {
   };
 
   public currentBasePunch(): void {
-    this.setCurrentDisable();
     this.pokemonB.health = this.battleService.basePunch(this.pokemonA, this.pokemonB) + this.rightCornerDefence;
     this.rightCornerDefence = 0;
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
+    this.setCurrentDisable();
   }
   public currentSpecAttack(): void {
-    this.setCurrentDisable();
     this.pokemonB.health = this.battleService.specAttack(this.pokemonA, this.pokemonB);
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
+    this.setCurrentDisable();
   }
 
   public opponentBasePunch(): void {
-    this.setOpponentDisable();
     this.pokemonA.health = this.battleService.basePunch(this.pokemonB, this.pokemonA) + this.leftCornerDefence;
     this.leftCornerDefence = 0;
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
+    this.setOpponentDisable();
   }
 
   public opponentSpecAttack(): void {
     // check cof
-    this.setOpponentDisable();
     this.pokemonA.health = this.battleService.specAttack(this.pokemonB, this.pokemonA);
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
+    this.setOpponentDisable();
   }
   public currentDefence(): void {
-    this.setCurrentDisable();
     this.leftCornerDefence = this.battleService.setDefence(this.pokemonA, this.pokemonB);
+    this.setCurrentDisable();
   }
   public opponentDefence(): void {
-    this.setOpponentDisable();
     this.rightCornerDefence = this.battleService.setDefence(this.pokemonB, this.pokemonA);
+    this.setOpponentDisable();
   }
 
   public setProgressLine(currentHealth: number, opponentHealth: number): void {
@@ -105,29 +105,35 @@ export class BattleComponent implements OnInit {
   }
 
   public setCurrentDisable(): void {
-    this.baseButtonCurrent.nativeElement.style.setProperty('display', 'none');
-    this.specButtonCurrent.nativeElement.style.setProperty('display', 'none');
-    this.defenceButtonCurrent.nativeElement.setAttribute('class', '');
-
-    setTimeout(() => {
-      this.defenceButtonCurrent.nativeElement.setAttribute('class', 'defence-buttons');
-    }, 4000);
-    this.baseButtonOpponent.nativeElement.style.setProperty('display', '');
-    this.specButtonOpponent.nativeElement.style.setProperty('display', '');
-    this.defenceButtonOpponent.nativeElement.style.setProperty('display', '');
+    this.renderer.addClass(this.baseButtonCurrent.nativeElement, 'hide-buttons');
+    this.renderer.addClass(this.specButtonCurrent.nativeElement, 'hide-buttons');
+    this.renderer.removeClass(this.defenceButtonCurrent.nativeElement, 'hide-buttons');
+    if (this.battleService.isAlive(this.pokemonB)) {
+      setTimeout(() => {
+        this.renderer.addClass(this.defenceButtonCurrent.nativeElement, 'hide-buttons');
+      }, 2000);
+      setTimeout(() => {
+        this.renderer.removeClass(this.baseButtonOpponent.nativeElement, 'hide-buttons');
+        this.renderer.removeClass(this.specButtonOpponent.nativeElement, 'hide-buttons');
+        this.renderer.addClass(this.defenceButtonOpponent.nativeElement, 'hide-buttons');
+      }, 4000);
+    }
   }
 
   public setOpponentDisable(): void {
-    this.baseButtonOpponent.nativeElement.style.setProperty('display', 'none');
-    this.specButtonOpponent.nativeElement.style.setProperty('display', 'none');
-    this.defenceButtonOpponent.nativeElement.setAttribute('class', '');
-    setTimeout(() => {
-      this.defenceButtonOpponent.nativeElement.setAttribute('class', 'defence-buttons');
-    }, 4000);
-
-    this.baseButtonCurrent.nativeElement.style.setProperty('display', '');
-    this.specButtonCurrent.nativeElement.style.setProperty('display', '');
-    this.defenceButtonCurrent.nativeElement.style.setProperty('display', '');
+    this.renderer.addClass(this.baseButtonOpponent.nativeElement, 'hide-buttons');
+    this.renderer.addClass(this.specButtonOpponent.nativeElement, 'hide-buttons');
+    this.renderer.removeClass(this.defenceButtonOpponent.nativeElement, 'hide-buttons');
+    if (this.battleService.isAlive(this.pokemonA)) {
+      setTimeout(() => {
+        this.renderer.addClass(this.defenceButtonOpponent.nativeElement, 'hide-buttons');
+      }, 2000);
+      setTimeout(() => {
+        this.renderer.removeClass(this.baseButtonCurrent.nativeElement, 'hide-buttons');
+        this.renderer.removeClass(this.specButtonCurrent.nativeElement, 'hide-buttons');
+        this.renderer.addClass(this.defenceButtonCurrent.nativeElement, 'hide-buttons');
+      }, 4000);
+    }
   }
 
   public ngOnInit(): void {

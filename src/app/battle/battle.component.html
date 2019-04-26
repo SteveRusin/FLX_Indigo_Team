@@ -6,12 +6,12 @@
         <div class="left-corner">
             <button #baseButtonCurrent (click)="currentBasePunch()">punch</button>
             <button #specButtonCurrent (click)="currentSpecAttack()">super punch</button>
-            <button #defenceButtonCurrent class= "defence-buttons" (click)="currentDefence()">Defence</button>
+            <button #defenceButtonCurrent class= "hide-buttons" (click)="currentDefence()">Defence</button>
         </div>
         <div class="right-corner">
-            <button #baseButtonOpponent (click)="opponentBasePunch()">punch</button>
-            <button #specButtonOpponent (click)="opponentSpecAttack()">super punch</button>
-            <button #defenceButtonOpponent class= "defence-buttons" (click)="opponentDefence()">Defence</button>
+            <button #baseButtonOpponent class= "hide-buttons"  (click)="opponentBasePunch()">punch</button>
+            <button #specButtonOpponent class= "hide-buttons"  (click)="opponentSpecAttack()">super punch</button>
+            <button #defenceButtonOpponent class= "hide-buttons" (click)="opponentDefence()">Defence</button>
         </div>
     </div>
 </div>

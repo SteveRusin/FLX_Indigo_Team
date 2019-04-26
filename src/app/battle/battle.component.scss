@@ -1,9 +1,9 @@
 .battle-field {
+    margin: 0 auto;
     background: url('https://www.ssbwiki.com/images/thumb/7/73/SSBU-Pok%C3%A9mon_Stadium_2.png/1200px-SSBU-Pok%C3%A9mon_Stadium_2.png') border-box;
     background-size: cover;
-    border: 1px solid red;
-    width: 700px;
-    height: 400px;
+    width: 80vw;
+    height: 90vh;
     h1 {
         color: snow;
         text-align: center;
@@ -14,9 +14,9 @@
     flex-direction: row;
     justify-content: space-between;
     position: relative;
-    top: 330px;
+    top: 70vh;
 
 }
-.defence-buttons {
+.hide-buttons {
     display: none
 }

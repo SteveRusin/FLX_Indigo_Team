@@ -1,9 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { AuthService } from './services/auth.service';
 
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
@@ -17,19 +21,21 @@ import { BattleInfoComponent } from './battle/battle.info/battle.info.component'
 @NgModule({
   declarations: [
     AppComponent,
-    BattleComponent,
-    BattleInfoComponent
+    // BattleComponent,
+    // BattleInfoComponent
   ],
   imports: [
     BrowserModule,
     SharedModule,
     RouterModule.forRoot(routes),
     CoreModule.forRoot(),
-    AngularFireModule.initializeApp(environment.fireConfig),
+    AngularFireModule.
+      initializeApp(environment.fireConfig, 'angular-auth-firebase'),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [ AuthService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
