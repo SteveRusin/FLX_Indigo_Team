@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
-import { PokemonInterface } from './pokemon-interface';
-import { pokemons } from './pokemon-list';
+import { Pokemon } from './pokemon-interface';
+import { PokemonChooserService } from '../../services/pokemon-chooser.service';
 
 @Component({
   selector: 'app-pokemon-chooser',
@@ -12,12 +12,13 @@ import { pokemons } from './pokemon-list';
 
 export class PokemonChooserComponent implements OnInit {
 
-  constructor() {}
+  constructor(private pokemonChooserService: PokemonChooserService) {}
 
-  public pokemonsList: PokemonInterface[] = pokemons;
-  public selectedPokemon: PokemonInterface[] = [];
+  public pokemonsList: Pokemon[] = [];
+  public userPokemons: Pokemon[] = [];
+  public selectedPokemon: Pokemon[] = [];
 
-  public choosePokemon(pokemon: PokemonInterface, step: CdkStep, stepper: MatStepper): void {
+  public choosePokemon(pokemon: Pokemon, step: CdkStep, stepper: MatStepper): void {
     if(stepper.selectedIndex === 0) {
       this.selectedPokemon[0] = pokemon;
     } else {
@@ -29,7 +30,22 @@ export class PokemonChooserComponent implements OnInit {
     stepper.next();
   }
 
+  public filerPokemon(userPokemons: Pokemon[]): void {
+    const id: string[] = userPokemons.map((el: any) => el.payload.doc.id);
+    this.userPokemons = this.pokemonsList.filter( (el: Pokemon) => {
+      return id.includes(el.id);
+    });
+  }
+
   public ngOnInit(): void {
-    console.log("Hello");
+    this.pokemonChooserService.getPokemons()
+    .subscribe((pokemons: Pokemon[]) => {
+      this.pokemonsList = pokemons;
+    });
+
+    this.pokemonChooserService.getUserPokemons()
+    .subscribe((userPokemons: any) => {
+      this.filerPokemon(userPokemons);
+    });
   }
 }
