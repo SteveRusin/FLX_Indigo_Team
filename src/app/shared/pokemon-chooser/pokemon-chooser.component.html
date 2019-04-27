@@ -3,7 +3,7 @@
     <mat-icon>check</mat-icon>
   </ng-template>
 
-  <mat-step label="Choose Pokemon" #stepOne completed= 'false'>
+  <mat-step label="Choose Pokemon" #stepOne completed="false">
     <div class="pokemon-list">
       <app-pokemon-card
         *ngFor="let pokemon of userPokemons" [pokemon]="pokemon"
@@ -12,7 +12,7 @@
     </div>
   </mat-step>
 
-  <mat-step label="Choose Opponent" #stepTwo completed= 'false'>
+  <mat-step label="Choose Opponent" #stepTwo completed="false">
     <div class="pokemon-list">
       <app-pokemon-card
         *ngFor="let pokemon of pokemonsList" [pokemon]="pokemon"
@@ -21,7 +21,7 @@
     </div>
   </mat-step>
 
-  <mat-step label="Go to fight" #stepThree completed='false'>
+  <mat-step label="Go to fight" #stepThree completed="false">
     <div class="pokemon-list">
       <app-pokemon-card *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-pokemon-card>
     </div>
