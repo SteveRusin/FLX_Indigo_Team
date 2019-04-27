@@ -88,11 +88,11 @@ export class BattleComponent implements OnInit {
   }
   public currentDefence(): void {
     this.leftCornerDefence = this.battleService.setDefence(this.pokemonA, this.pokemonB);
-    this.setCurrentDisable();
+    //this.setCurrentDisable();
   }
   public opponentDefence(): void {
     this.rightCornerDefence = this.battleService.setDefence(this.pokemonB, this.pokemonA);
-    this.setOpponentDisable();
+    //this.setOpponentDisable();
   }
 
   public setProgressLine(currentHealth: number, opponentHealth: number): void {
