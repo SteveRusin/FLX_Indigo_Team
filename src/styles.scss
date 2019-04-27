@@ -1,4 +1,4 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 *,
 *::before,
@@ -9,23 +9,21 @@
 body {
   margin: 0;
   padding: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
   scrollbar-track-color: #000;
 }
 
 body::-webkit-scrollbar {
   width: 0.7em;
+  background: inherit;
 }
 
 body::-webkit-scrollbar-thumb {
   background: #fece00;
   border-radius: 1em;
-  border: 0.1em solid #ffffff;
 }
 
 body::-webkit-scrollbar-track {
-  background:rgba(255, 255, 255, 0.7);
+  background: inherit;
 }
 
 body::-webkit-scrollbar-thumb:hover {
@@ -39,3 +37,13 @@ mat-dialog-container.mat-dialog-container {
 mat-dialog-container.mat-toolbar-single-row {
   margin-bottom: 0.5em;
 }
+
+// .cdk-overlay-container,
+// .cdk-global-overlay-wrapper,
+// .cdk-global-overlay-wrapper {
+
+//   &::-webkit-scrollbar-track,
+//   &::-webkit-scrollbar {
+//     background-color: inherit;
+//   }
+// }
