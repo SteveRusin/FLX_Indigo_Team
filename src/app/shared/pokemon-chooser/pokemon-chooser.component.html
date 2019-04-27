@@ -5,25 +5,25 @@
 
   <mat-step label="Choose Pokemon" #stepOne completed="false">
     <div class="pokemon-list">
-      <pokemon-card
+      <app-pokemon-card
         *ngFor="let pokemon of userPokemons" [pokemon]="pokemon"
         (changedPokemon)="choosePokemon($event, stepOne, stepper)">
-      </pokemon-card>
+      </app-pokemon-card>
     </div>
   </mat-step>
 
   <mat-step label="Choose Opponent" #stepTwo completed="false">
     <div class="pokemon-list">
-      <pokemon-card
+      <app-pokemon-card
         *ngFor="let pokemon of pokemonsList" [pokemon]="pokemon"
         (changedPokemon)="choosePokemon($event, stepTwo, stepper)">
-      </pokemon-card>
+      </app-pokemon-card>
     </div>
   </mat-step>
 
   <mat-step label="Go to fight" #stepThree completed="false">
     <div class="pokemon-list">
-      <pokemon-card *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></pokemon-card>
+      <app-pokemon-card *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-pokemon-card>
     </div>
   </mat-step>
 </mat-horizontal-stepper>
