@@ -110,7 +110,6 @@
 }
 
 // Pokemon
-
 .container {
   position: relative;
   width: 320px;
@@ -129,7 +128,6 @@
     left: 20px;
     width: 50px;
     height: 140px;
-
     border-radius: 5px 125% 0px 125%;
 
     -webkit-transform: rotate(-26deg) skewX(25deg) skewY(0deg);
@@ -216,6 +214,7 @@
     border-top: 1px solid var(--bordercolor);
     overflow: hidden;
     z-index: 100;
+
     .punta {
       position: absolute;
       content: "";
@@ -301,6 +300,7 @@
         border-top-left-radius: 150%90px;
         border-bottom-left-radius: 150%90px;
       }
+
       &:after {
         content: "";
         display: block;
@@ -359,6 +359,7 @@
         transform: rotateZ(10deg);
         top: 50px;
         left: 10px;
+
         &:before {
           content: "";
           position: absolute;
@@ -386,6 +387,7 @@
       -webkit-transform: rotateZ(-36deg);
       transform: rotateZ(-36deg);
     }
+
     .mouth {
       position: absolute;
       width: 25px;
@@ -397,6 +399,7 @@
       left: 48px;
       -webkit-transform: rotateZ(55deg);
       transform: rotateZ(55deg);
+
       &:before {
         content: "";
         display: block;
@@ -413,6 +416,7 @@
       }
     }
   }
+
   .mid {
     position: absolute;
     width: 160px;
@@ -426,6 +430,7 @@
     border-bottom: 3px solid var(--bordercolor);
     border-right: 3px solid var(--bordercolor);
     z-index: 1;
+
     &:before {
       position: absolute;
       content: "";
@@ -438,6 +443,7 @@
       -webkit-transform: rotateZ(-8deg);
       transform: rotateZ(-8deg);
     }
+
     &:after {
       position: absolute;
       content: "";
@@ -562,6 +568,7 @@
     -webkit-transform: rotateZ(17deg);
     transform: rotateZ(17deg);
     border: 3px solid var(--bordercolor);
+
     &:before {
       content: "";
       display: block;
@@ -613,6 +620,7 @@
     -webkit-transform: rotateZ(-50deg);
     transform: rotateZ(-50deg);
   }
+
   .part2 {
     position: absolute;
     bottom: 49px;
@@ -624,6 +632,7 @@
     -webkit-transform: rotateZ(40deg);
     transform: rotateZ(40deg);
     border-right: 2px solid var(--bordercolor);
+
     &:before {
       position: absolute;
       content: "";
