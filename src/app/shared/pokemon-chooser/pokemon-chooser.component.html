@@ -6,7 +6,7 @@
   <mat-step label="Choose Pokemon" #stepOne completed="false">
     <div class="pokemon-list">
       <pokemon-card
-        *ngFor="let pokemon of pokemonsList" [pokemon]="pokemon"
+        *ngFor="let pokemon of userPokemons" [pokemon]="pokemon"
         (changedPokemon)="choosePokemon($event, stepOne, stepper)">
       </pokemon-card>
     </div>
