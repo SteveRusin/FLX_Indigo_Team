@@ -15,9 +15,9 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 
 import { environment } from '../environments/environment';
-import { BattleComponent } from './battle/battle.component';
 import { routes } from './app-routing.module';
-import { BattleInfoComponent } from './battle/battle.info/battle.info.component';
+import { from } from 'rxjs';
+import { PokemonChooserModule } from './shared/pokemon-chooser/pokemon-chooser.module';
 
 @NgModule({
   declarations: [
@@ -36,8 +36,9 @@ import { BattleInfoComponent } from './battle/battle.info/battle.info.component'
     AngularFireAuthModule,
     BrowserAnimationsModule,
     AngularFirestoreModule,
+    PokemonChooserModule
   ],
-  providers: [ AuthService ],
-  bootstrap: [ AppComponent ]
+  providers: [AuthService],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 
 import { BattleComponent } from './battle.component';
 import { BattleInfoComponent } from './battle.info/battle.info.component';
-
 import { gameRoutes } from './battle-routing.module';
-import { from } from 'rxjs';
+
+//import { PokemonChooserComponent } from '../shared/pokemon-chooser/pokemon-chooser.component';
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(gameRoutes)],
