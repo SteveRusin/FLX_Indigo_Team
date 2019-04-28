@@ -3,6 +3,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
 import { Pokemon } from './pokemon-interface';
 import { PokemonChooserService } from '../../services/pokemon-chooser.service';
+import { ToBattleService } from '../../services/to-battle.service';
 
 @Component({
   selector: 'app-pokemon-chooser',
@@ -12,7 +13,7 @@ import { PokemonChooserService } from '../../services/pokemon-chooser.service';
 
 export class PokemonChooserComponent implements OnInit {
 
-  constructor(private pokemonChooserService: PokemonChooserService) {}
+  constructor(private pokemonChooserService: PokemonChooserService, private toBattle: ToBattleService) {}
 
   public pokemonsList: Pokemon[] = [];
   public userPokemons: Pokemon[] = [];
@@ -35,6 +36,11 @@ export class PokemonChooserComponent implements OnInit {
     this.userPokemons = this.pokemonsList.filter( (el: Pokemon) => {
       return id.includes(el.id);
     });
+  }
+
+  public sendPokemons(): void {
+    //const [userPokemon, opponentPokemon]: Pokemon[] = this.selectedPokemon;
+    this.toBattle.sendPokemons(this.selectedPokemon);
   }
 
   public ngOnInit(): void {
