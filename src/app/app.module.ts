@@ -9,6 +9,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -32,7 +33,7 @@ import { routes } from './app-routing.module';
     BrowserAnimationsModule,
     AngularFirestoreModule,
   ],
-  providers: [ AuthService ],
+  providers: [ AuthService, AuthGuardService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

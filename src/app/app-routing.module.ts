@@ -6,11 +6,11 @@ import {
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: './home-page/home-page.module#HomePageModule',
+    loadChildren: './home-page/home-page.module#HomePageModule'
   },
   {
     path: 'profile',
-    loadChildren: './player-profile/player-profile.module#PlayerProfileModule',
+    loadChildren: './home-page/home-page.module#HomePageModule',
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '' }
