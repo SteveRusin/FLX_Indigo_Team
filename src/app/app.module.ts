@@ -16,6 +16,8 @@ import { CoreModule } from './core/core.module';
 import { environment } from '../environments/environment';
 import { routes } from './app-routing.module';
 
+import { ToBattleService } from './services/to-battle.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -32,7 +34,7 @@ import { routes } from './app-routing.module';
     BrowserAnimationsModule,
     AngularFirestoreModule,
   ],
-  providers: [ AuthService ],
+  providers: [ AuthService, ToBattleService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
