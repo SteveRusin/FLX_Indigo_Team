@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject} from 'rxjs';
 import { Pokemon } from '../shared/pokemon-chooser/pokemon-interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
+
 export class ToBattleService {
 
   private subject: any = new Subject<any>();
