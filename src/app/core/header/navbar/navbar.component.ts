@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { DialogData } from './login-dialog/DialogData';
@@ -12,11 +14,12 @@ import { LoginDialogService } from './login-dialog/login-dialog.service';
   styleUrls: ['./navbar.component.scss']
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
   public dialogWithForm: MatDialogRef<LoginDialogComponent, DialogData>;
   public email: string;
   public password: string;
   public profileAvatar: string;
+  private destroy$: Subject<any> = new Subject();
 
   constructor(public dialog: MatDialog,
     public authService: AuthService,
@@ -41,12 +44,17 @@ export class NavbarComponent implements OnInit {
     });
 
     this.dialogWithForm.afterClosed()
+    .pipe(takeUntil(this.destroy$))
     .subscribe((result:DialogData) => {
-      console.log(this.dialogWithForm);
       if (result) {
         this.email = result.email;
         this.password = result.password;
       }
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }
