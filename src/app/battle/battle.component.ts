@@ -1,19 +1,22 @@
-import { Component, OnInit, ElementRef, ViewChild, Renderer2 } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2, OnDestroy,Output,EventEmitter } from '@angular/core';
 import { BattleService } from './battle.service';
 import { Pokemon } from '../models/pokemon.interface';
 import { BattleInfoComponent } from '../battle/battle.info/battle.info.component';
-
+import { ToBattleService } from '../services/to-battle.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss'],
   providers: [BattleService]
 })
-export class BattleComponent implements OnInit {
+export class BattleComponent implements OnInit, OnDestroy {
   public title: string = '';
   public leftCornerDefence: number = 0;
   public rightCornerDefence: number = 0;
   public isVisibleFight: boolean = false;
+  public pokemons: any = {};
+  public subscription: Subscription;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
@@ -24,32 +27,34 @@ export class BattleComponent implements OnInit {
   @ViewChild('baseButtonOpponent') public baseButtonOpponent: ElementRef;
   @ViewChild('specButtonOpponent') public specButtonOpponent: ElementRef;
   @ViewChild('defenceButtonOpponent') public defenceButtonOpponent: ElementRef;
-
   @ViewChild('opponentPunch') public opponentPunch: ElementRef;
 
-  constructor(public battleService: BattleService, public elementRef: ElementRef, public renderer: Renderer2) {
+  constructor(public battleService: BattleService, public elementRef: ElementRef, public renderer: Renderer2, private toBattle: ToBattleService) {
+    this.subscription = this.toBattle.getPokemons()
+      .subscribe((pokemons: Pokemon[]) => {
+        this.pokemons = pokemons;
+      });
   }
-  public getSelectedPokemons($event: any): void {
-    this.pokemonA = $event[0];
-    this.pokemonB = $event[1];
-    this.health.aHealth = $event[0].health;
-    this.health.bHealth = $event[1].health;
-    this.isVisibleFight = true;
-  }
-  public pokemonA: Pokemon = {
-  };
+  public pokemonA: Pokemon = {};
   public pokemonB: Pokemon = {};
   public health: any = {
     aHealth: this.pokemonA.health,
     bHealth: this.pokemonB.health
   };
+  public startFight(): void {
+    this.pokemonA = { ...this.pokemons.userPokemon };
+    this.pokemonB = { ...this.pokemons.opponentPokemon };
+    this.health.aHealth = this.pokemons.userPokemon.health;
+    this.health.bHealth = this.pokemons.opponentPokemon.health;
+    this.pokemonA.state = 'current';
+    this.pokemonB.state = 'opponent';
+    this.isVisibleFight = true;
+  }
 
   public currentBasePunch(): void {
-    console.log(this.pokemonA.health, this.pokemonB.health);
     this.pokemonB.health = this.battleService.basePunch(this.pokemonA, this.pokemonB) + this.rightCornerDefence;
     this.rightCornerDefence = 0;
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
-    console.log(this.pokemonA.health);
     this.setCurrentDisable();
 
   }
@@ -84,7 +89,6 @@ export class BattleComponent implements OnInit {
   public setProgressLine(currentHealth: number, opponentHealth: number): void {
     const current: number = Math.round(currentHealth * 100 / this.health.aHealth);
     const opponent: number = Math.round(opponentHealth * 100 / this.health.bHealth);
-    console.log(current,opponent);
     this.battleInfo.leftElement(current);
     this.battleInfo.rightElement(opponent);
   }
@@ -122,5 +126,8 @@ export class BattleComponent implements OnInit {
   }
 
   public ngOnInit(): void {
+  }
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

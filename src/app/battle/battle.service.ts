@@ -6,7 +6,6 @@ import { from } from 'rxjs';
   providedIn: 'root'
 })
 export class BattleService {
-  // type?
   public counterArr: any = [];
 
   constructor() { }
@@ -18,8 +17,8 @@ export class BattleService {
   public basePunch(a: Pokemon, b: Pokemon): number {
 
     let currentAbility: number;
-    if(this.counterArr.indexOf(a.id)!==-1) {
-      this.counterArr.push(a.id);
+    if(this.counterArr.indexOf(a.state)!==-1) {
+      this.counterArr.push(a.state);
 
     }
 
@@ -34,20 +33,20 @@ export class BattleService {
   }
 
   public specAttack(a: Pokemon, b: Pokemon): number {
-    let isId: boolean = true;
-    let amountOfId: number = 0;
+    let isState: boolean = true;
+    let amountOfStates: number = 0;
 
-    for (const id of this.counterArr) {
-      if (id === a.id) {
-        isId = false;
-        amountOfId++;
+    for (const state of this.counterArr) {
+      if (state === a.state) {
+        isState = false;
+        amountOfStates++;
 
       }
     }
-    if(amountOfId<a.specAttack.moves) {
-      amountOfId = 0;
+    if(amountOfStates<a.specAttack.moves) {
+      amountOfStates = 0;
     }
-    if (isId || amountOfId > a.specAttack.moves) {
+    if (isState|| amountOfStates > a.specAttack.moves) {
       if(a.specAttack.hasOwnProperty('damage')) {
         b.health -= a.specAttack.damage;
       } else if(a.specAttack.hasOwnProperty('recovery')) {
@@ -58,18 +57,16 @@ export class BattleService {
 
       this.counterArr = this.counterArr.filter((el: string) => {
 
-          return el!==a.id;
+          return el!==a.state;
 
       });
-      this.counterArr.push(a.id);
-      amountOfId = 0;
+      this.counterArr.push(a.state);
+      amountOfStates = 0;
     }
-    console.log(`superpunch is ${b.health}`);
 
     return b.health;
   }
   public setDefence(a: Pokemon,b: Pokemon): number {
-    // test decision
     let currentAbility:number;
     for (const key in b.ability) {
       if (b.ability.hasOwnProperty(key)) {
@@ -79,7 +76,6 @@ export class BattleService {
 
     let defence: number= 10 + Math.random() * (currentAbility + 1 - 10);
     defence= Math. floor(defence);
-    console.log(defence);
 
     return  currentAbility - defence;
   }

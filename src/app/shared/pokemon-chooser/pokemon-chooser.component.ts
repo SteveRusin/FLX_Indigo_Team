@@ -1,11 +1,10 @@
-import { Component, OnInit,
-//test
-Output,EventEmitter
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
 import { Pokemon } from './pokemon-interface';
 import { PokemonChooserService } from '../../services/pokemon-chooser.service';
+import { ToBattleService } from '../../services/to-battle.service';
+import { BattleComponent } from '../../battle/battle.component';
 
 @Component({
   selector: 'app-pokemon-chooser',
@@ -15,21 +14,13 @@ import { PokemonChooserService } from '../../services/pokemon-chooser.service';
 
 export class PokemonChooserComponent implements OnInit {
 
-  constructor(private pokemonChooserService: PokemonChooserService) {}
+  constructor(private pokemonChooserService: PokemonChooserService, private toBattle: ToBattleService, private battle: BattleComponent) {}
 
   public pokemonsList: Pokemon[] = [];
   public userPokemons: Pokemon[] = [];
   public selectedPokemon: Pokemon[] = [];
   public isVisible: boolean = true;
-  @Output() public selectedPokemonExport: EventEmitter<any> = new EventEmitter();
 
-  public passPokemons(): any {
-    this.selectedPokemonExport.emit(this.selectedPokemon);
-    if(this.selectedPokemon.length === 2) {
-      this.isVisible = false;
-    }
-
-  }
   public choosePokemon(pokemon: Pokemon, step: CdkStep, stepper: MatStepper): void {
     if(stepper.selectedIndex === 0) {
       this.selectedPokemon[0] = pokemon;
@@ -47,6 +38,12 @@ export class PokemonChooserComponent implements OnInit {
     this.userPokemons = this.pokemonsList.filter( (el: Pokemon) => {
       return id.includes(el.id);
     });
+  }
+
+  public sendPokemons(): void {
+    const [userPokemon, opponentPokemon]: Pokemon[] = this.selectedPokemon;
+    this.toBattle.sendPokemons({ userPokemon, opponentPokemon });
+    this.battle.startFight();
   }
 
   public ngOnInit(): void {

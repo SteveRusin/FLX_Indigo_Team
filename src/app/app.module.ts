@@ -15,10 +15,9 @@ import { CoreModule } from './core/core.module';
 
 import { environment } from '../environments/environment';
 import { routes } from './app-routing.module';
-import { from } from 'rxjs';
-import { PokemonChooserModule } from './shared/pokemon-chooser/pokemon-chooser.module';
-//test
-//import { PokemonChooserComponent } from './shared/pokemon-chooser/pokemon-chooser.component';
+
+import { ToBattleService } from './services/to-battle.service';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -33,10 +32,9 @@ import { PokemonChooserModule } from './shared/pokemon-chooser/pokemon-chooser.m
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     BrowserAnimationsModule,
-    AngularFirestoreModule,
-    //PokemonChooserModule
+    AngularFirestoreModule
   ],
-  providers: [AuthService],
+  providers: [AuthService,ToBattleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

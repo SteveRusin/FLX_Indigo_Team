@@ -27,4 +27,5 @@ export interface SpecAttack {
     specAttack?: SpecAttack;
     type?: string;
     weakness?: string;
+    state?: string;
   }
