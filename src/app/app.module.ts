@@ -20,7 +20,7 @@ import { ToBattleService } from './services/to-battle.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
