@@ -1,3 +1,8 @@
+export interface Pokemons {
+  userPokemon: Pokemon;
+  opponentPokemon: Pokemon;
+}
+
 export interface SpecAttack {
   move?: number;
   type: string;

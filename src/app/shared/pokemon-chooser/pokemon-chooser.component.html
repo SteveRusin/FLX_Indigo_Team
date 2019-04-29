@@ -6,7 +6,7 @@
   <mat-step label="Choose Pokemon" #stepOne completed="false">
     <div class="pokemon-list">
       <app-pokemon-card
-        *ngFor="let pokemon of userPokemons" [pokemon]="pokemon"
+        *ngFor="let pokemon of userPokemons$ | async" [pokemon]="pokemon"
         (changedPokemon)="choosePokemon($event, stepOne, stepper)">
       </app-pokemon-card>
     </div>
@@ -15,7 +15,7 @@
   <mat-step label="Choose Opponent" #stepTwo completed="false">
     <div class="pokemon-list">
       <app-pokemon-card
-        *ngFor="let pokemon of pokemonsList" [pokemon]="pokemon"
+        *ngFor="let pokemon of pokemonsList$ | async" [pokemon]="pokemon"
         (changedPokemon)="choosePokemon($event, stepTwo, stepper)">
       </app-pokemon-card>
     </div>
