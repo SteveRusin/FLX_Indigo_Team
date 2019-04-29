@@ -5,7 +5,6 @@ import {
   style,
   animate,
   group,
-  animateChild,
   AnimationTriggerMetadata
 } from '@angular/animations';
 

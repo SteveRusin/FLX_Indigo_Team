@@ -7,6 +7,7 @@ import { slideInAnimation } from './app-routing-animation';
   styleUrls: ['./app.component.scss'],
   animations: [ slideInAnimation ],
 })
+
 export class AppComponent {
   public title:string = 'indigo-project';
 }
