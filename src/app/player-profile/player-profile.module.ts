@@ -8,6 +8,8 @@ import { profileRoutes } from './player-profile-routing.module';
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(profileRoutes)],
-  declarations: [PlayerProfileComponent]
+  declarations: [
+    PlayerProfileComponent
+  ]
 })
 export class PlayerProfileModule { }

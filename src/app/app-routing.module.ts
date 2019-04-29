@@ -1,4 +1,4 @@
-import { Routes, CanActivate  } from '@angular/router';
+import { Routes } from '@angular/router';
 import {
   AuthGuardService as AuthGuard
 } from './services/auth-guard.service';
@@ -10,7 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'profile',
-    loadChildren: './home-page/home-page.module#HomePageModule',
+    loadChildren: './player-profile/player-profile.module#PlayerProfileModule',
     canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '' }

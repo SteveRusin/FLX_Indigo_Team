@@ -10,6 +10,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ToBattleService } from './services/to-battle.service';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -30,10 +31,10 @@ import { routes } from './app-routing.module';
       initializeApp(environment.fireConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    BrowserAnimationsModule,
     AngularFirestoreModule,
+    BrowserAnimationsModule,
   ],
-  providers: [ AuthService, AuthGuardService ],
+  providers: [ AuthService, AuthGuardService, ToBattleService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

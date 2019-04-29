@@ -25,5 +25,6 @@
     <div class="pokemon-list">
       <app-pokemon-card *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-pokemon-card>
     </div>
+    <button (click)="sendPokemons()">SEND POKEMONS</button>
   </mat-step>
 </mat-horizontal-stepper>
