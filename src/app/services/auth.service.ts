@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
@@ -12,25 +11,19 @@ export class AuthService {
   public profileAvatar: string;
 
   constructor(private _firebaseAuth: AngularFireAuth,
-              private router: Router) {
-    this.user = this._firebaseAuth.authState;
-    this.user.subscribe(
-      (user: firebase.User) => {
-        if (user) {
-          this.userDetails = user;
-          this.profileAvatar = this.userDetails.photoURL;
-          console.log(this.userDetails);
-        } else {
-          this.userDetails = null;
+    private router: Router) {
+      this.user = this._firebaseAuth.authState;
+      this.user.subscribe(
+        (user: firebase.User) => {
+          if (user) {
+            this.userDetails = user;
+            this.profileAvatar = this.userDetails.photoURL;
+            console.log(this.userDetails);
+          } else {
+            this.userDetails = null;
+          }
         }
-      }
-    );
-  }
-
-  public signInWithGoogle(): Promise<firebase.auth.UserCredential> {
-    return this._firebaseAuth.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    );
+      );
   }
 
   public isLoggedIn(): boolean {
@@ -43,6 +36,12 @@ export class AuthService {
     .then(() => this.router.navigate(['/']));
   }
 
+  public signInWithGoogle(): Promise<firebase.auth.UserCredential> {
+    return this._firebaseAuth.auth.signInWithPopup(
+      new firebase.auth.GoogleAuthProvider()
+    );
+  }
+  
   public signInWithEmailAndPassword(email: string, password: string): void {
     console.log(email, password);
     firebase.auth()
