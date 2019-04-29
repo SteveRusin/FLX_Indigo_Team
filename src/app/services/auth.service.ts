@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-  private user: Observable<firebase.User>;
+  public user: Observable<firebase.User>;
   public userDetails: firebase.User = null;
   public profileAvatar: string;
 
