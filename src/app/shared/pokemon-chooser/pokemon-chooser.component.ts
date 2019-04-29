@@ -1,4 +1,7 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit,
+//test
+Output,EventEmitter
+} from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
 import { Pokemon } from './pokemon-interface';
@@ -17,7 +20,16 @@ export class PokemonChooserComponent implements OnInit {
   public pokemonsList: Pokemon[] = [];
   public userPokemons: Pokemon[] = [];
   public selectedPokemon: Pokemon[] = [];
+  public isVisible: boolean = true;
+  @Output() public selectedPokemonExport: EventEmitter<any> = new EventEmitter();
 
+  public passPokemons(): any {
+    this.selectedPokemonExport.emit(this.selectedPokemon);
+    if(this.selectedPokemon.length === 2) {
+      this.isVisible = false;
+    }
+
+  }
   public choosePokemon(pokemon: Pokemon, step: CdkStep, stepper: MatStepper): void {
     if(stepper.selectedIndex === 0) {
       this.selectedPokemon[0] = pokemon;

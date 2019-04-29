@@ -1,19 +1,6 @@
-<mat-dialog-content>
-  <h1 mat-dialog-title>
-    Login
-  </h1>
+<div class="dialog-wrap">
 
-  <mat-form-field>
-    <input placeholder="email" matInput [(ngModel)]="data.email">
-  </mat-form-field><br>
-  <mat-form-field>
-    <input placeholder="password" matInput [(ngModel)]="data.password">
-  </mat-form-field>
+  <dialog-login-form *ngIf="authorisationForm()"></dialog-login-form>
+  <dialog-authorization-form *ngIf="authorisationForm()"></dialog-authorization-form>
 
-</mat-dialog-content>
-
-<mat-dialog-actions>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data">Login</button>
-  <button mat-raised-button color="primary" (click)="signInWithGoogle()">Login with Google</button>
-  <button mat-raised-button color="warn" (click)="onNoClick()">Close</button>
-</mat-dialog-actions>
+</div>

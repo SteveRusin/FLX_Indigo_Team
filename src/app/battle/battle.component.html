@@ -1,4 +1,5 @@
-<div class="battle-field">
+<app-pokemon-chooser (selectedPokemonExport)="getSelectedPokemons($event)" ></app-pokemon-chooser>
+<div  *ngIf="isVisibleFight" class="battle-field">
     <app-battle-info [health]="health" [pokemonA]="pokemonA" [pokemonB]="pokemonB"></app-battle-info>
     <h1>{{title}}</h1>
 
@@ -15,4 +16,3 @@
         </div>
     </div>
 </div>
-<!-- <app-pokemon-chooser></app-pokemon-chooser> -->

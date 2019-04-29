@@ -13,6 +13,7 @@ export class BattleComponent implements OnInit {
   public title: string = '';
   public leftCornerDefence: number = 0;
   public rightCornerDefence: number = 0;
+  public isVisibleFight: boolean = false;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
@@ -28,44 +29,29 @@ export class BattleComponent implements OnInit {
 
   constructor(public battleService: BattleService, public elementRef: ElementRef, public renderer: Renderer2) {
   }
+  public getSelectedPokemons($event: any): void {
+    this.pokemonA = $event[0];
+    this.pokemonB = $event[1];
+    this.health.aHealth = $event[0].health;
+    this.health.bHealth = $event[1].health;
+    this.isVisibleFight = true;
+  }
   public pokemonA: Pokemon = {
-    name: 'picachu',
-    ability: {
-      static: 150
-    },
-    health: 1500,
-    specAttack: {
-      damage: 650,
-      moves: 6
-    },
-    type: 'electric',
-    weakness: 'grass',
   };
-
-  public pokemonB: Pokemon = {
-    name: 'bulbosaur',
-    ability: {
-      chlorophyll: 100
-    },
-    health: 1200,
-    specAttack: {
-      damage: 600,
-      moves: 6
-    },
-    type: 'poison',
-    weakness: 'fire'
-  };
-  //test
+  public pokemonB: Pokemon = {};
   public health: any = {
     aHealth: this.pokemonA.health,
     bHealth: this.pokemonB.health
   };
 
   public currentBasePunch(): void {
+    console.log(this.pokemonA.health, this.pokemonB.health);
     this.pokemonB.health = this.battleService.basePunch(this.pokemonA, this.pokemonB) + this.rightCornerDefence;
     this.rightCornerDefence = 0;
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
+    console.log(this.pokemonA.health);
     this.setCurrentDisable();
+
   }
   public currentSpecAttack(): void {
     this.pokemonB.health = this.battleService.specAttack(this.pokemonA, this.pokemonB);
@@ -88,20 +74,19 @@ export class BattleComponent implements OnInit {
   }
   public currentDefence(): void {
     this.leftCornerDefence = this.battleService.setDefence(this.pokemonA, this.pokemonB);
-    //this.setCurrentDisable();
+    ////this.setCurrentDisable();
   }
   public opponentDefence(): void {
     this.rightCornerDefence = this.battleService.setDefence(this.pokemonB, this.pokemonA);
-    //this.setOpponentDisable();
+    ////this.setOpponentDisable();
   }
 
   public setProgressLine(currentHealth: number, opponentHealth: number): void {
     const current: number = Math.round(currentHealth * 100 / this.health.aHealth);
     const opponent: number = Math.round(opponentHealth * 100 / this.health.bHealth);
-    const currentLine: any = this.battleInfo.leftElement();
-    const opponentLine: any = this.battleInfo.rightElement();
-    currentLine.setAttribute('value', current);
-    opponentLine.setAttribute('value', opponent);
+    console.log(current,opponent);
+    this.battleInfo.leftElement(current);
+    this.battleInfo.rightElement(opponent);
   }
 
   public setCurrentDisable(): void {

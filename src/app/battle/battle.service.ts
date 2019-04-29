@@ -18,8 +18,9 @@ export class BattleService {
   public basePunch(a: Pokemon, b: Pokemon): number {
 
     let currentAbility: number;
-    if(this.counterArr.indexOf(a.name)!==-1) {
-      this.counterArr.push(a.name);
+    if(this.counterArr.indexOf(a.id)!==-1) {
+      this.counterArr.push(a.id);
+
     }
 
     for (const key in a.ability) {
@@ -33,29 +34,37 @@ export class BattleService {
   }
 
   public specAttack(a: Pokemon, b: Pokemon): number {
-    let isName: boolean = true;
-    let amountOfNames: number = 0;
+    let isId: boolean = true;
+    let amountOfId: number = 0;
 
-    for (const name of this.counterArr) {
-      if (name === a.name) {
-        isName = false;
-        amountOfNames++;
+    for (const id of this.counterArr) {
+      if (id === a.id) {
+        isId = false;
+        amountOfId++;
 
       }
     }
-    if(amountOfNames<a.specAttack.moves) {
-      amountOfNames = 0;
+    if(amountOfId<a.specAttack.moves) {
+      amountOfId = 0;
     }
-    if (isName || amountOfNames > a.specAttack.moves) {
-      b.health -= a.specAttack.damage;
+    if (isId || amountOfId > a.specAttack.moves) {
+      if(a.specAttack.hasOwnProperty('damage')) {
+        b.health -= a.specAttack.damage;
+      } else if(a.specAttack.hasOwnProperty('recovery')) {
+        a.health+= 500;
+      } else if(a.specAttack.hasOwnProperty('defence')) {
+        a.health+= 500;
+      }
+
       this.counterArr = this.counterArr.filter((el: string) => {
 
-          return el!==a.name;
+          return el!==a.id;
 
       });
-      this.counterArr.push(a.name);
-      amountOfNames = 0;
+      this.counterArr.push(a.id);
+      amountOfId = 0;
     }
+    console.log(`superpunch is ${b.health}`);
 
     return b.health;
   }

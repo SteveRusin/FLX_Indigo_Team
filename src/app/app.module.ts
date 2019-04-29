@@ -17,12 +17,11 @@ import { environment } from '../environments/environment';
 import { routes } from './app-routing.module';
 import { from } from 'rxjs';
 import { PokemonChooserModule } from './shared/pokemon-chooser/pokemon-chooser.module';
-
+//test
+//import { PokemonChooserComponent } from './shared/pokemon-chooser/pokemon-chooser.component';
 @NgModule({
   declarations: [
-    AppComponent,
-    // BattleComponent,
-    // BattleInfoComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +34,7 @@ import { PokemonChooserModule } from './shared/pokemon-chooser/pokemon-chooser.m
     AngularFireAuthModule,
     BrowserAnimationsModule,
     AngularFirestoreModule,
-    PokemonChooserModule
+    //PokemonChooserModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent]

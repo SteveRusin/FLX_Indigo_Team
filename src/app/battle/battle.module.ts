@@ -5,11 +5,10 @@ import { RouterModule } from '@angular/router';
 import { BattleComponent } from './battle.component';
 import { BattleInfoComponent } from './battle.info/battle.info.component';
 import { gameRoutes } from './battle-routing.module';
-
-//import { PokemonChooserComponent } from '../shared/pokemon-chooser/pokemon-chooser.component';
+import { PokemonChooserModule } from '../shared/pokemon-chooser/pokemon-chooser.module';
 
 @NgModule({
-  imports: [CommonModule, RouterModule.forChild(gameRoutes)],
+  imports: [CommonModule, RouterModule.forChild(gameRoutes),PokemonChooserModule],
   declarations: [BattleComponent,BattleInfoComponent]
 })
 export class BattleModule {}

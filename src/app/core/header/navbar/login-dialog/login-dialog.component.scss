@@ -1,6 +1,29 @@
-.mat-dialog-content {
-  overflow: visible;
-}
-.mat-form-field {
-  width: 100%;
+navbar-login-dialog {
+  .dialog-wrap {
+    overflow: visible;
+    width: 25em;
+  }
+
+  .line {
+    width: 45%;
+    height: 0;
+    border: 1px solid #C4C4C4;
+    margin: 3px;
+    display:inline-block;
+  }
+  .or-line {
+    margin: 2em;
+    text-align: center;
+    p {
+      padding: 1em 0;
+    }
+  }
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-container > * {
+    padding: 5px 20px;
+  }
 }
