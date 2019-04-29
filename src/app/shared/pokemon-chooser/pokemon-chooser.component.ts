@@ -39,8 +39,8 @@ export class PokemonChooserComponent implements OnInit {
   }
 
   public sendPokemons(): void {
-    //const [userPokemon, opponentPokemon]: Pokemon[] = this.selectedPokemon;
-    this.toBattle.sendPokemons(this.selectedPokemon);
+    const [userPokemon, opponentPokemon]: Pokemon[] = this.selectedPokemon;
+    this.toBattle.sendPokemons({ userPokemon, opponentPokemon });
   }
 
   public ngOnInit(): void {
