@@ -6,12 +6,14 @@ import {
 export const routes: Routes = [
   {
     path: '',
-    loadChildren: './home-page/home-page.module#HomePageModule'
+    loadChildren: './home-page/home-page.module#HomePageModule',
+    data: {animation: 'Home'}
   },
   {
     path: 'profile',
     loadChildren: './player-profile/player-profile.module#PlayerProfileModule',
+    data: { animation: 'Profile' },
     canActivate: [AuthGuard]
   },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: '', data: {animation: 'Home'} }
 ];
