@@ -1,30 +1,39 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-  private user: Observable<firebase.User>;
+  public user: Observable<firebase.User>;
   public userDetails: firebase.User = null;
   public profileAvatar: string;
 
   constructor(private _firebaseAuth: AngularFireAuth,
-              private router: Router) {
-    this.user = this._firebaseAuth.authState;
-    this.user.subscribe(
-      (user: firebase.User) => {
-        if (user) {
-          this.userDetails = user;
-          this.profileAvatar = this.userDetails.photoURL;
-          console.log(this.userDetails);
-        } else {
-          this.userDetails = null;
+    private router: Router) {
+      this.user = this._firebaseAuth.authState;
+      this.user.subscribe(
+        (user: firebase.User) => {
+          if (user) {
+            this.userDetails = user;
+            this.profileAvatar = this.userDetails.photoURL;
+            console.log(this.userDetails);
+          } else {
+            this.userDetails = null;
+          }
         }
-      }
-    );
+      );
+  }
+
+  public isLoggedIn(): boolean {
+    return this.userDetails !== null;
+  }
+
+  public logout(): void {
+    this._firebaseAuth.auth.signOut()
+    .then(() => this.userDetails = null)
+    .then(() => this.router.navigate(['/']));
   }
 
   public signInWithGoogle(): Promise<firebase.auth.UserCredential> {
@@ -32,17 +41,7 @@ export class AuthService {
       new firebase.auth.GoogleAuthProvider()
     );
   }
-
-  public isLoggedIn(): boolean {
-    return this.userDetails !== null;
-  }
   
-  public logout(): void {
-    this._firebaseAuth.auth.signOut()
-    .then(() => this.userDetails = null)
-    .then(() => this.router.navigate(['/']));
-  }
-
   public signInWithEmailAndPassword(email: string, password: string): void {
     console.log(email, password);
     firebase.auth()
