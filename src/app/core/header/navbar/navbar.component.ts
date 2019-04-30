@@ -44,7 +44,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     });
 
     this.dialogWithForm.afterClosed()
-    .pipe(takeUntil(this.destroy$))
+    .pipe(
+      takeUntil(this.destroy$)
+      )
     .subscribe((result:DialogData) => {
       if (result) {
         this.email = result.email;
