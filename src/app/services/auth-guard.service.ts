@@ -21,7 +21,9 @@ export class AuthGuardService implements CanActivate {
       state: RouterStateSnapshot
     ): boolean | Observable<boolean> | Promise<boolean> {
       return this.auth.user
-        .pipe(take(1), map((user:firebase.User):boolean => {
+        .pipe(
+          take(1),
+          map((user:firebase.User):boolean => {
           if (user === null) {
             this.router.navigate(['']);
           }
