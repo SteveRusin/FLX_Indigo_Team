@@ -14,9 +14,25 @@ mat-card-subtitle {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  width: 50em;
-  height: 80vh;
-  margin-bottom: 2em;
+
+  @include for-phone-only {
+    width: 40em;
+  }
+  @include for-tablet-portrait-up {
+    width: 50em;
+  }
+  @include for-tablet-landscape-up {
+    width: 50em;
+    height: 90vh;
+  }
+  @include for-desktop-up {
+    width: 50em;
+    height: 90vh;
+  }
+  @include for-big-desktop-up {
+    width: 55em;
+    height: 80vh;
+  }
 
   .card {
     @include cards(var(--yellow));
@@ -31,11 +47,34 @@ mat-card-subtitle {
 
   .img-blbsaur {
     position: absolute;
-    height: 21em;
-    width: 17em;
-    top: 9em;
-    left: -12em;
     z-index: -1;
+
+    @include for-phone-only {
+      height: 0;
+      width: 0;
+    }
+    @include for-tablet-portrait-up {
+      height: 0;
+      width: 0;
+    }
+    @include for-tablet-landscape-up {
+      height: 16em;
+      width: 13em;
+      top: 14em;
+      left: -8em;
+    }
+    @include for-desktop-up {
+      height: 21em;
+      width: 17em;
+      top: 9em;
+      left: -12em;
+    }
+    @include for-big-desktop-up {
+      height: 21em;
+      width: 17em;
+      top: 12em;
+      left: -12em;
+    }
   }
 }
 
@@ -48,6 +87,13 @@ mat-card-subtitle {
   -webkit-transition-timing-function: ease-out;
   -webkit-transition-duration: 500ms;
 
+  @include for-tablet-portrait-up {
+    margin: 0;
+  }
+  @include for-tablet-landscape-up {
+    margin: 0 1.5em;
+  }
+
   .flippable-card {
     position: relative;
     margin-right: 1em;
@@ -59,11 +105,32 @@ mat-card-subtitle {
     mat-card {
       display: block;
       position: absolute;
-      width: 20em;
-      height: 12em;
       cursor: pointer;
       backface-visibility: hidden;
       transition-timing-function: ease-out;
+
+      @include for-phone-only {
+        width: 19em;
+        height: 10em;
+        margin: 1em 0 1em 0;
+      }
+      @include for-tablet-portrait-up {
+        width: 17em;
+        height: 10em;
+        margin: 1em 0 0 0;
+      }
+      @include for-tablet-landscape-up {
+        width: 20em;
+        height: 12em;
+      }
+      @include for-desktop-up {
+        width: 20em;
+        height: 12em;
+      }
+      @include for-big-desktop-up {
+        width: 20em;
+        height: 15em;
+      }
     }
 
     & .back {

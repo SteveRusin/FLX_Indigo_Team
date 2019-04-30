@@ -1,5 +1,5 @@
-
-@import "../variables.scss";
+@import '../variables.scss';
+@import './home-page-cards/mixins.scss';
 
 .main {
   display: flex;
@@ -10,55 +10,72 @@
 
 .main-page-desc {
   position: absolute;
-  width: 30em;
+  display: flex;
+  flex-direction: column;
   top: 4em;
-  left: 40em;
+
+  @include for-phone-only {
+    left: 5em;
+    width: 16em;
+  }
+  @include for-tablet-portrait-up {
+    left: 15em;
+    width: 16em;
+  }
+  @include for-tablet-landscape-up {
+    left: 30em;
+    width: 30em;
+  }
+  @include for-desktop-up {
+    left: 40em;
+    width: 30em;
+  }
+  @include for-big-desktop-up {
+    left: 45em;
+    width: 30em;
+  }
 
   p {
     margin: 0;
     padding: 0;
-    color: white;
+    color: var(--white);
   }
 
   h2 {
     margin: 0;
     padding: 0;
-    color: white;
+    color: var(--white);
   }
 }
 
 .main-background {
   position: relative;
   align-items: flex-end;
-  height: 90vh;
+  height: 100vh;
   width: 100vw;
-  margin-bottom: 3em;
-  background-image: linear-gradient(to bottom, var(--blue) 10%, var(--indigo) 90%);
-
-  &::after {
-    content: "";
-    display: block;
-    position: relative;
-    margin-top: 9vh;
-    height: 5em;
-    background-image: linear-gradient(to bottom, var(--indigo), var(--white));
-    z-index: -1;
-  }
-
-  .img-pikachu {
-    position: absolute;
-    height: 27em;
-    width: 30em;
-    bottom: 3em;
-    right: 40em;
-  }
+  background-image: linear-gradient(to bottom, var(--blue) 10%, var(--indigo) 90%, var(--white));
 
   .wrapper-btn {
     position: absolute;
     display: flex;
     align-items: center;
-    left: 40em;
-    bottom: 0.1em;
+    top: 15em;
+
+    @include for-phone-only {
+      left: 5em;
+    }
+    @include for-tablet-portrait-up {
+      left: 15em;
+    }
+    @include for-tablet-landscape-up {
+      left: 30em;
+    }
+    @include for-desktop-up {
+      left: 40em;
+    }
+    @include for-big-desktop-up {
+      left: 45em;
+    }
   }
 
   .btn-go {
@@ -79,7 +96,19 @@
   display: flex;
   justify-content: space-between;
   width: 50em;
-  margin-top: 1em;
+
+  @include for-phone-only {
+    font-size: 0.5em;
+  }
+  @include for-tablet-portrait-up {
+    font-size: 0.5em;
+  }
+  @include for-tablet-landscape-up {
+    font-size: 0.7em;
+  }
+  @include for-desktop-up {
+    font-size: 1em;
+  }
 
   .faq_header {
     margin: 1em 1em 0 1em;
@@ -103,23 +132,50 @@
   background: var(--yellow);
 
   p {
-    padding: 0.5em 0 0 15em;
     margin: 0;
     font-size: 0.7em;
+
+    @include for-phone-only {
+      padding: 0;
+    }
+    @include for-tablet-portrait-up {
+      padding: 0;
+    }
+    @include for-tablet-landscape-up {
+      padding: 0.5em 0 0 15em;
+    }
+    @include for-desktop-up {
+      padding: 0.5em 0 0 15em;
+    }
   }
 }
 
 // Pokemon
 .container {
-  position: relative;
-  width: 320px;
-  height: 460px;
-  border-radius: 50%;
-  left: 12em;
+  // @include for-phone-only {
+  //   display: none;
+  // }
+  // @include for-tablet-portrait-up {
+  //   display: none;
+  // }
+  @include for-tablet-landscape-up {
+    position: relative;
+    border-radius: 50%;
+    left: 12em;
+    width: 320px;
+    height: 460px;
+  }
+  @include for-desktop-up {
+    position: relative;
+    border-radius: 50%;
+    left: 12em;
+    width: 320px;
+    height: 460px;
+  }
 
   .ear {
     position: absolute;
-    background: none repeat scroll 0 0 #fed823;
+    background: none repeat scroll 0 0 var(--yellow);
     border: 3px solid #333;
     overflow: hidden;
   }
@@ -143,7 +199,7 @@
   }
 
   .ear-left:before {
-    background-color: #000000;
+    background-color: var(--bordercolor);
     content: "";
     height: 40px;
     left: -10px;
@@ -182,7 +238,7 @@
   }
 
   .ear-right:before {
-    background-color: #000000;
+    background-color: var(--bordercolor);
     content: "";
     height: 60px;
     position: absolute;
@@ -203,7 +259,7 @@
     width: 30px;
     height: 145px;
     left: -20px;
-    background: #fed823;
+    background: var(--yellow);
     border-bottom-left-radius: 80px 70%;
     border-top-left-radius: 100%;
     border-top-right-radius: 100%;
@@ -251,7 +307,7 @@
     .fillear {
       position: absolute;
       bottom: 0px;
-      background: #fed823;
+      background: var(--yellow);
       width: 40px;
       height: 110px;
       border-radius: 0 80% 0 0;
@@ -276,7 +332,7 @@
       position: absolute;
       width: 160px;
       height: 160px;
-      background: #fed823;
+      background: var(--yellow);
       right: 5px;
       top: 5px;
       border-top-left-radius: 130px 120px;
@@ -292,7 +348,7 @@
         display: block;
         width: 30px;
         height: 70px;
-        background: #fed823; //fed823
+        background: var(--yellow);
         border-left: 4px solid var(--bordercolor);
         left: -10px;
         top: 84px;
@@ -422,7 +478,7 @@
     width: 160px;
     height: 150px;
     top: 165px;
-    background: #fed823;
+    background: var(--yellow);
     left: 30px;
     border-top-right-radius: 70px 140px;
     border-bottom-right-radius: 50px;
@@ -438,7 +494,7 @@
       width: 150px;
       height: 40px;
       border-right: 3px solid var(--bordercolor);
-      background: #fed823;
+      background: var(--yellow);
       right: 15px;
       -webkit-transform: rotateZ(-8deg);
       transform: rotateZ(-8deg);
@@ -453,7 +509,7 @@
       width: 70px;
       height: 100px;
       border-radius: 90% 30% 0 80%;
-      background: #fed823;
+      background: var(--yellow);
       border-bottom: 3px solid var(--bordercolor);
       border-left: 3px solid var(--bordercolor);
     }
@@ -499,7 +555,7 @@
       border-radius: 70% 20% 70% 60%;
       border-left: 3px solid var(--bordercolor);
       border-bottom: 3px solid var(--bordercolor);
-      background: #fed823;
+      background: var(--yellow);
       z-index: 5;
     }
 
@@ -514,7 +570,7 @@
       border-right: 3px solid var(--bordercolor);
       border-bottom: 2px solid var(--bordercolor);
       z-index: 25;
-      background: #fed823;
+      background: var(--yellow);
     }
   }
 
@@ -523,7 +579,7 @@
     bottom: 0;
     width: 70px;
     height: 30px;
-    background: #fed823;
+    background: var(--yellow);
     border-radius: 75%;
     -webkit-transform: rotateZ(-18deg);
     transform: rotateZ(-18deg);
@@ -563,7 +619,7 @@
     width: 70px;
     height: 27px;
     right: -12px;
-    background: #fed823;
+    background: var(--yellow);
     border-radius: 85%;
     -webkit-transform: rotateZ(17deg);
     transform: rotateZ(17deg);
@@ -639,7 +695,7 @@
       display: block;
       width: 0;
       height: 0;
-      border-left: 9px solid #fed823;
+      border-left: 9px solid var(--yellow);
       border-right: 9px solid rgba(0, 0, 0, 0);
       border-bottom: 5px solid rgba(0, 0, 0, 0);
       border-top: 5px solid rgba(0, 0, 0, 0);
@@ -653,7 +709,7 @@
       display: block;
       width: 0;
       height: 0;
-      border-left: 9px solid #fed823;
+      border-left: 9px solid var(--yellow);
       border-right: 9px solid rgba(0, 0, 0, 0);
       border-bottom: 5px solid rgba(0, 0, 0, 0);
       border-top: 5px solid rgba(0, 0, 0, 0);
@@ -668,7 +724,7 @@
     width: 70px;
     height: 25px;
     border-top: 2px solid var(--bordercolor);
-    background: #fed823;
+    background: var(--yellow);
     -webkit-transform: rotateZ(-45deg);
     transform: rotateZ(-45deg);
   }
@@ -679,7 +735,7 @@
     width: 80px;
     height: 35px;
     border-top: 2px solid var(--bordercolor);
-    background: #fed823;
+    background: var(--yellow);
     -webkit-transform: rotateZ(45deg);
     transform: rotateZ(45deg);
     left: -10px;
@@ -692,7 +748,7 @@
     height: 85px;
     border-top: 3px solid var(--bordercolor);
     border-left: 2px solid var(--bordercolor);
-    background: #fed823;
+    background: var(--yellow);
     -webkit-transform: rotateZ(-7deg);
     transform: rotateZ(-7deg);
     left: -16px;
