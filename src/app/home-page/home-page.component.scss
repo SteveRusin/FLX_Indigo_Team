@@ -31,6 +31,7 @@
     width: 30em;
   }
   @include for-big-desktop-up {
+    top: 8em;
     left: 45em;
     width: 30em;
   }
@@ -74,6 +75,7 @@
       left: 40em;
     }
     @include for-big-desktop-up {
+      top: 18em;
       left: 45em;
     }
   }
@@ -152,23 +154,27 @@
 
 // Pokemon
 .container {
-  // @include for-phone-only {
-  //   display: none;
-  // }
-  // @include for-tablet-portrait-up {
-  //   display: none;
-  // }
+  position: relative;
+  border-radius: 50%;
+
+  @include for-phone-only {
+    left: 12em;
+    width: 0;
+    height: 0;
+  }
+  @include for-tablet-portrait-up {
+    left: 12em;
+    width: 0;
+    height: 0;
+  }
   @include for-tablet-landscape-up {
-    position: relative;
-    border-radius: 50%;
     left: 12em;
     width: 320px;
     height: 460px;
   }
-  @include for-desktop-up {
-    position: relative;
-    border-radius: 50%;
-    left: 12em;
+  @include for-big-desktop-up {
+    top: 5em;
+    left: 15em;
     width: 320px;
     height: 460px;
   }
@@ -176,15 +182,35 @@
   .ear {
     position: absolute;
     background: none repeat scroll 0 0 var(--yellow);
-    border: 3px solid #333;
     overflow: hidden;
+
+    @include for-phone-only {
+      border: 0 solid #333;
+    }
+    @include for-tablet-portrait-up {
+      border: 0 solid #333;
+    }
+    @include for-tablet-landscape-up {
+      border: 3px solid #333;
+    }
   }
 
   .ear-left {
     left: 20px;
+    border-radius: 5px 125% 0px 125%;
+
+  @include for-phone-only {
+    width: 0;
+    height: 0;
+  }
+  @include for-tablet-portrait-up {
+    width: 0;
+    height: 0;
+  }
+  @include for-tablet-landscape-up {
     width: 50px;
     height: 140px;
-    border-radius: 5px 125% 0px 125%;
+  }
 
     -webkit-transform: rotate(-26deg) skewX(25deg) skewY(0deg);
     -moz-transform: rotate(-26deg) skewX(25deg) skewY(0deg);
@@ -216,13 +242,24 @@
   }
 
   .ear-right {
-    width: 130px;
-    height: 70px;
     right: 27px;
     top: 180px;
     border-radius: 10px 125% 10px 125%;
     -webkit-box-shadow: 11px -9px 0 2px rgba(0, 0, 0, 0.2) inset;
     box-shadow: 11px -9px 0 2px rgba(0, 0, 0, 0.2) inset;
+
+    @include for-phone-only {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-portrait-up {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-landscape-up {
+      width: 130px;
+      height: 70px;
+    }
 
     -webkit-transform: rotate(-90deg) skewX(27deg) skewY(0deg);
     -moz-transform: rotate(-90deg) skewX(27deg) skewY(0deg);
@@ -577,13 +614,16 @@
   .left-foot {
     position: absolute;
     bottom: 0;
-    width: 70px;
     height: 30px;
     background: var(--yellow);
     border-radius: 75%;
     -webkit-transform: rotateZ(-18deg);
     transform: rotateZ(-18deg);
     border: 3px solid var(--bordercolor);
+
+    @include for-tablet-landscape-up {
+      width: 70px;
+    }
 
     &:before {
       content: "";
@@ -657,41 +697,73 @@
 
 .tail {
   position: absolute;
-  width: 150px;
-  height: 250px;
   right: 0;
   top: 140px;
   transform-origin: 0 bottom;
   animation: tailmove 3s ease infinite;
   will-change: transform;
 
+  @include for-phone-only {
+    width: 0;
+    height: 0;
+  }
+  @include for-tablet-portrait-up {
+    width: 0;
+    height: 0;
+  }
+  @include for-tablet-landscape-up {
+    width: 150px;
+    height: 250px;
+  }
+
   .part1 {
     position: absolute;
     bottom: 18px;
-    width: 60px;
-    height: 15px;
     border-bottom: 2px solid var(--bordercolor);
     border-top: 2px solid var(--bordercolor);
     background: #983c0d;
     -webkit-transform: rotateZ(-50deg);
     transform: rotateZ(-50deg);
+
+    @include for-phone-only {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-portrait-up {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-landscape-up {
+      width: 60px;
+      height: 15px;
+    }
   }
 
   .part2 {
     position: absolute;
     bottom: 49px;
-    width: 50px;
-    height: 18px;
     left: 9px;
     border-top: 2px solid var(--bordercolor);
     background: #983c0d;
     -webkit-transform: rotateZ(40deg);
     transform: rotateZ(40deg);
-    border-right: 2px solid var(--bordercolor);
+
+    @include for-phone-only {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-portrait-up {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-landscape-up {
+      width: 50px;
+      height: 18px;
+      border-right: 2px solid var(--bordercolor);
+    }
 
     &:before {
       position: absolute;
-      content: "";
       display: block;
       width: 0;
       height: 0;
@@ -701,11 +773,14 @@
       border-top: 5px solid rgba(0, 0, 0, 0);
       left: 15px;
       top: -1px;
+
+      @include for-tablet-landscape-up {
+        content: "";
+      }
     }
 
     &:after {
       position: absolute;
-      content: "";
       display: block;
       width: 0;
       height: 0;
@@ -715,30 +790,56 @@
       border-top: 5px solid rgba(0, 0, 0, 0);
       left: 14px;
       top: 8px;
+
+      @include for-tablet-landscape-up {
+        content: "";
+      }
     }
   }
 
   .part3 {
     position: absolute;
     bottom: 78px;
-    width: 70px;
-    height: 25px;
     border-top: 2px solid var(--bordercolor);
     background: var(--yellow);
     -webkit-transform: rotateZ(-45deg);
     transform: rotateZ(-45deg);
+
+    @include for-phone-only {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-portrait-up {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-landscape-up {
+      width: 70px;
+      height: 25px;
+    }
   }
 
   .part4 {
     position: absolute;
     bottom: 105px;
-    width: 80px;
-    height: 35px;
     border-top: 2px solid var(--bordercolor);
     background: var(--yellow);
     -webkit-transform: rotateZ(45deg);
     transform: rotateZ(45deg);
     left: -10px;
+
+    @include for-phone-only {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-portrait-up {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-landscape-up {
+      width: 80px;
+      height: 35px;
+    }
   }
 
   .part5 {
@@ -755,6 +856,19 @@
     border-top-left-radius: 100%30px;
     border-bottom-right-radius: 20%10px;
     border-right: 2px solid var(--bordercolor);
+
+    @include for-phone-only {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-portrait-up {
+      width: 0;
+      height: 0;
+    }
+    @include for-tablet-landscape-up {
+      width: 150px;
+      height: 85px;
+    }
   }
 }
 
