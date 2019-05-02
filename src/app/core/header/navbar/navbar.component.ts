@@ -7,6 +7,7 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { DialogData } from './login-dialog/DialogData';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginDialogService } from './login-dialog/login-dialog.service';
+import { ProfileInfoService } from 'src/app/services/profile-info.service';
 
 @Component({
   selector: 'header-navbar',
@@ -23,7 +24,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   constructor(public dialog: MatDialog,
     public authService: AuthService,
-    public loginDialogService: LoginDialogService) { }
+    public loginDialogService: LoginDialogService,
+    public profileInfoService: ProfileInfoService) {
+      this.profileAvatar = profileInfoService.avatar;
+     }
 
   public isLogged(): boolean {
     return this.authService.isLoggedIn();

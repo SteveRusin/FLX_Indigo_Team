@@ -1,0 +1,12 @@
+.player-content-wrap {
+  width: 80%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 3px 3px 8px #000;
+}
+.profile-info {
+  width: 100%;
+}

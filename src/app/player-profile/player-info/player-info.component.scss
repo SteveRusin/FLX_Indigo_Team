@@ -1,0 +1,37 @@
+.info-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 35px;
+}
+
+.profile-avatar-wrap {
+  width: 100%;
+  max-width: 400px;
+  padding: 1em;
+
+  .profile-avatar {
+    width: 100%;
+  }
+}
+
+.player-info {
+  width: 100%;
+
+  .nickname {
+    margin: 1em;
+    span {
+      font-weight: 500;
+      font-size: 1.5em;
+      border-bottom: 1px solid var(--yellow);
+    }
+  }
+
+  .battles-card {
+    width: 50%;
+  
+    mat-card-header {
+      display: block;
+      text-align: center;
+    }
+  }
+}

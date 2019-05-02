@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class AuthService {
   public user: Observable<firebase.User>;
   public userDetails: firebase.User = null;
-  public profileAvatar: string;
+  public db: any = firebase.firestore();
+  public uid: string;
 
   constructor(private _firebaseAuth: AngularFireAuth,
     private router: Router) {
@@ -17,7 +18,7 @@ export class AuthService {
         (user: firebase.User) => {
           if (user) {
             this.userDetails = user;
-            this.profileAvatar = this.userDetails.photoURL;
+            this.uid = this.userDetails.uid;
             console.log(this.userDetails);
           } else {
             this.userDetails = null;
@@ -65,6 +66,7 @@ export class AuthService {
         player.user.updateProfile({
           displayName: nickname
         });
+        this.writePlayerData(player.user.uid, nickname, email);
       })
       .catch((error: any) => {
         const errorCode: string = error.code;
@@ -75,6 +77,36 @@ export class AuthService {
           alert(errorMessage);
         }
         console.log(error);
+      });
+  }
+
+  public writePlayerData(playerId: string, name: string, email: string): void {
+    this.db.collection('players')
+      .doc(playerId)
+      .set({
+        name: name,
+        email: email,
+        avatar: 'https://cdn0.iconfinder.com/data/icons/avatar-profile/452/pikachu_pokemon_profile_avatar_people-512.png'
+      })
+      .then(() => {
+        console.log('Document successfully written!');
+      })
+      .catch((error: string): void => {
+          console.error('Error writing document: ', error);
+      });
+
+    this.db.collection('players')
+      .doc(playerId)
+      .collection('pokemons')
+      .doc('chikorita')
+      .set({
+        name: 'chikorita'
+      })
+      .then(() => {
+        console.log('Document successfully written!');
+      })
+      .catch((error: string): void => {
+          console.error('Error writing document: ', error);
       });
   }
 }
