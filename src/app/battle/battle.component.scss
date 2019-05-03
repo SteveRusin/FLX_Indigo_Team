@@ -1,6 +1,9 @@
 .battle-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
     margin: 0 auto;
-    background: url('../../assets/battle-fields/Pokémon_Stadium_2.png') border-box;
+    background: url('../../assets/battle-fields/arena.jpg') border-box;
     background-size: cover;
     width: 80vw;
     height: 90vh;
@@ -14,9 +17,27 @@
     flex-direction: row;
     justify-content: space-between;
     position: relative;
-    top: 70vh;
+    height: 10vh;
 
 }
 .hide-buttons {
     display: none
+}
+
+.players {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.pokemonA {
+    height: 12vh;
+    width: auto;
+    margin: 14em 0 0 25em;
+}
+
+.pokemonB {
+    height: 10vh;
+    width: auto;
+    margin: 0 12em 28em 0;
 }

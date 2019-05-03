@@ -2,6 +2,11 @@
 <div *ngIf="isVisibleFight" class="battle-field">
     <app-battle-info [health]="health" [pokemonA]="pokemonA" [pokemonB]="pokemonB"></app-battle-info>
     <h1>{{title}}</h1>
+    
+    <div class="players">
+        <img #imgPokemonA class="pokemonA" />
+        <img #imgPokemonB class="pokemonB" />
+    </div>
 
     <div class="battle-btns" *ngIf="this.battleService.isAlive(this.pokemonA) && this.battleService.isAlive(this.pokemonB)">
         <div class="left-corner">

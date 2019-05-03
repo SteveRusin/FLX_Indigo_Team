@@ -1,9 +1,12 @@
-import { Component, OnInit, ElementRef, ViewChild, Renderer2, OnDestroy,Output,EventEmitter } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { BattleService } from './battle.service';
 import { Pokemon } from '../models/pokemon.interface';
 import { BattleInfoComponent } from '../battle/battle.info/battle.info.component';
 import { ToBattleService } from '../services/to-battle.service';
 import { Subscription } from 'rxjs';
+
+import { BattleAnimationsService } from '../services/battle.animations.service';
+import { getPlayers } from '@angular/core/src/render3/players';
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
@@ -29,7 +32,10 @@ export class BattleComponent implements OnInit, OnDestroy {
   @ViewChild('defenceButtonOpponent') public defenceButtonOpponent: ElementRef;
   @ViewChild('opponentPunch') public opponentPunch: ElementRef;
 
-  constructor(public battleService: BattleService, public elementRef: ElementRef, public renderer: Renderer2, private toBattle: ToBattleService) {
+  @ViewChild('imgPokemonA') public imgPokemonA: ElementRef;
+  @ViewChild('imgPokemonB') public imgPokemonB: ElementRef;
+
+  constructor(public battleService: BattleService, public elementRef: ElementRef, public renderer: Renderer2, private toBattle: ToBattleService, public battleAnimationsService: BattleAnimationsService) {
     this.subscription = this.toBattle.getPokemons()
       .subscribe((pokemons: Pokemon[]) => {
         this.pokemons = pokemons;
@@ -49,6 +55,15 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.pokemonA.state = 'current';
     this.pokemonB.state = 'opponent';
     this.isVisibleFight = true;
+
+    setTimeout(() => {
+      this.getPokemons();
+    }, 1000);
+  }
+
+  public getPokemons(): void {
+    this.renderer.setAttribute(this.imgPokemonA.nativeElement, 'src', this.battleAnimationsService.getPokemonImg(this.pokemonA.name));
+    this.renderer.setAttribute(this.imgPokemonB.nativeElement, 'src', this.battleAnimationsService.getPokemonImg(this.pokemonB.name));
   }
 
   public currentBasePunch(): void {
