@@ -42,16 +42,15 @@ mat-card-subtitle {
 .card-container {
   position: relative;
   margin: 0 1.5em;
-  perspective: 500px;
-  -webkit-perspective: 500px;
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
   -webkit-transform: scale(1, 1);
   -webkit-transition-timing-function: ease-out;
   -webkit-transition-duration: 500ms;
 
   .flippable-card {
     position: relative;
-    margin-right: 1em;
-    width: 18em;
+    width: 20em;
     height: 12em;
     transform-style: preserve-3d;
     transition: transform 1s;
@@ -59,8 +58,8 @@ mat-card-subtitle {
     mat-card {
       display: block;
       position: absolute;
-      width: 20em;
-      height: 12em;
+      width: 100%;
+      height: 100%;
       cursor: pointer;
       backface-visibility: hidden;
       transition-timing-function: ease-out;
@@ -71,7 +70,7 @@ mat-card-subtitle {
     }
 
     &:hover {
-      transform: rotateY(180deg) translateX(-21%);
+      transform: rotateY(180deg) translateX(-11%);
     }
   }
 }

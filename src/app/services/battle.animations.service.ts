@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,12 +13,13 @@ export class BattleAnimationsService {
   public getPokemonImg(pokeName: string): string {
     if (this.counter === 0) {
       this.changeState();
+
       return `http://pokestadium.com/sprites/xy/${this.isBack
-        ? "back/" + pokeName
+        ? 'back/' + pokeName
         : pokeName}.gif`;
     } else {
       return `http://pokestadium.com/sprites/xy/${this.isBack
-        ? "back/" + pokeName
+        ? 'back/' + pokeName
         : pokeName}.gif`;
     }
   }
@@ -30,27 +30,29 @@ export class BattleAnimationsService {
 
   public attacked(pokeType: string): void {
     switch (pokeType) {
-      case 'normal': break;
-      case 'fire': break;
-      case 'water': break;
-      case 'electric': break;
-      case 'grass': break;
-      case 'ice': break;
-      case 'fighting': break;
-      case 'poison': break;
-      case 'flying': break;
-      case 'ground': break;
-      case 'psychic': break;
-      case 'bug': break;
-      case 'rock': break;
-      case 'ghost': break;
-      case 'dragon': break;
-      case 'dark': break;
-      case 'steel': break;
-      case 'fairy': break;
-      default: break;
+      case 'normal': this.attackType('normal'); break;
+      case 'fire': this.attackType('fire'); break;
+      case 'water': this.attackType('water'); break;
+      case 'electric': this.attackType('electric'); break;
+      case 'grass': this.attackType('grass'); break;
+      case 'ice': this.attackType('ice'); break;
+      case 'fighting': this.attackType('fighting'); break;
+      case 'poison': this.attackType('poison'); break;
+      case 'flying': this.attackType('flying'); break;
+      case 'ground': this.attackType('ground'); break;
+      case 'psychic': this.attackType('psychic'); break;
+      case 'bug': this.attackType('bug'); break;
+      case 'rock': this.attackType('rock'); break;
+      case 'ghost': this.attackType('ghost'); break;
+      case 'dragon': this.attackType('dragon'); break;
+      case 'dark': this.attackType('dark'); break;
+      case 'steel': this.attackType('steel'); break;
+      case 'fairy': this.attackType('fairy'); break;
+      default: this.attackType('no'); break;
     }
   }
 
-
+  public attackType(type: string): void {
+    console.log(type);
+  }
 }

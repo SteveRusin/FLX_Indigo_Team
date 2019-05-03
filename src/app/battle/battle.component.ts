@@ -6,7 +6,6 @@ import { ToBattleService } from '../services/to-battle.service';
 import { Subscription } from 'rxjs';
 
 import { BattleAnimationsService } from '../services/battle.animations.service';
-import { getPlayers } from '@angular/core/src/render3/players';
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
@@ -20,6 +19,9 @@ export class BattleComponent implements OnInit, OnDestroy {
   public isVisibleFight: boolean = false;
   public pokemons: any = {};
   public subscription: Subscription;
+
+  public aAttack: string;
+  public bAttack: string;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
@@ -72,6 +74,8 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
     this.setCurrentDisable();
 
+    this.battleAnimationsService.attacked(this.pokemonA.type);
+    this.aAttack = this.pokemonA.type;
   }
   public currentSpecAttack(): void {
     this.pokemonB.health = this.battleService.specAttack(this.pokemonA, this.pokemonB);
