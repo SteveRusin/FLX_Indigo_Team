@@ -58,11 +58,13 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.pokemonB.state = 'opponent';
     this.isVisibleFight = true;
 
+    // USE ANIMATIONS SERVICE
     setTimeout(() => {
       this.getPokemons();
     }, 1000);
   }
 
+    // USE ANIMATIONS SERVICE
   public getPokemons(): void {
     this.renderer.setAttribute(this.imgPokemonA.nativeElement, 'src', this.battleAnimationsService.getPokemonImg(this.pokemonA.name));
     this.renderer.setAttribute(this.imgPokemonB.nativeElement, 'src', this.battleAnimationsService.getPokemonImg(this.pokemonB.name));
@@ -74,6 +76,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
     this.setCurrentDisable();
 
+    // USE ANIMATIONS SERVICE
     this.battleAnimationsService.attacked(this.pokemonA.type);
     this.aAttack = this.pokemonA.type;
   }

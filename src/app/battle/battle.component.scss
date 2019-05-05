@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: space-around;
     margin: 0 auto;
-    background: url('../../assets/battle-fields/arena.jpg') border-box;
+    background: url('../../assets/battle-fields/arena.png') border-box;
     background-size: cover;
     width: 80vw;
     height: 90vh;
@@ -33,11 +33,11 @@
 .pokemonA {
     height: 12vh;
     width: auto;
-    margin: 8em 0 0 15em;
+    margin: 8em 0 0 12em;
 }
 
 .pokemonB {
     height: 10vh;
     width: auto;
-    margin: 0 10em 18em 0;
+    margin: 0 8em 0 0;
 }
