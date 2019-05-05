@@ -1,43 +1,496 @@
 .battle-field {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 0 auto;
-    background: url('../../assets/battle-fields/arena.png') border-box;
-    background-size: cover;
-    width: 80vw;
-    height: 90vh;
-    h1 {
-        color: snow;
-        text-align: center;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  background: url("../../assets/battle-fields/arena.png") border-box;
+  background-size: cover;
+  width: 80vw;
+  height: 90vh;
+  h1 {
+    color: snow;
+    text-align: center;
+  }
 }
 .battle-btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
-    height: 5vh;
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  height: 5vh;
 }
 .hide-buttons {
-    display: none
+  display: none;
 }
 
 .players {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 .pokemonA {
-    height: 12vh;
-    width: auto;
-    margin: 8em 0 0 12em;
+  height: 12vh;
+  width: auto;
+  margin: 8em 0 0 10em;
 }
 
 .pokemonB {
-    height: 10vh;
-    width: auto;
-    margin: 0 8em 0 0;
+  height: 10vh;
+  width: auto;
+  margin: 0 8em 0 0;
+}
+
+.normal {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(56, 56, 56), rgb(218, 218, 218));
+  border-radius: 2em 2em 0px 2em;
+  transform: rotate(115deg);
+  animation: 0.1s norm infinite;
+  position: absolute;
+
+  @keyframes norm {
+    0% {
+      height: 2em;
+      width: 2em;
+    }
+    50% {
+      height: 1.5em;
+      width: 1.5em;
+    }
+    100% {
+      height: 2em;
+      width: 2em;
+    }
+  }
+}
+
+.fire {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, red, orange);
+  border-radius: 2em 2em 0px 2em;
+  transform: rotate(115deg);
+  animation: 0.1s fire infinite;
+  position: absolute;
+
+  @keyframes fire {
+    0% {
+      height: 2em;
+      width: 2em;
+    }
+    50% {
+      height: 1.5em;
+      width: 1.5em;
+    }
+    100% {
+      height: 2em;
+      width: 2em;
+    }
+  }
+}
+
+.water {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(170, 252, 255), rgb(0, 26, 255));
+  border-radius: 2em 2em 0px 2em;
+  transform: rotate(115deg);
+  animation: 0.2s wate infinite;
+  position: absolute;
+
+  @keyframes wate {
+    0% {
+      height: 2em;
+      width: 2em;
+    }
+    50% {
+      height: 1.5em;
+      width: 1.5em;
+    }
+    100% {
+      height: 2em;
+      width: 2em;
+    }
+  }
+}
+
+.electric {
+  width: 1em;
+  height: 2em;
+  border: 0.5em solid transparent;
+  border-bottom: 3em solid #323335;
+  position: absolute;
+  transform: rotate(55deg);
+  animation: 0.1s electr infinite;
+
+  &:before {
+    content: "";
+    position: absolute;
+    border: 0.5em solid transparent;
+    border-top: 3em solid #323335;
+    margin-top: 2.5em;
+    animation: 0.1s electry infinite;
+  }
+
+  @keyframes electr {
+    0% {
+      border-bottom: 3em solid #323335;
+    }
+    50% {
+      border-bottom: 3em solid #a1a1a1;
+    }
+    100% {
+      border-bottom: 3em solid #323335;
+    }
+  }
+  @keyframes electry {
+    0% {
+      border-top: 3em solid #323335;
+    }
+    50% {
+      border-top: 3em solid #a1a1a1;
+    }
+    100% {
+      border-top: 3em solid #323335;
+    }
+  }
+}
+
+.grass {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(43, 255, 0), rgb(131, 253, 127));
+  border-radius: 0 2em 0 2em;
+  transform: rotate(115deg);
+  animation: 2s gras infinite;
+  position: absolute;
+
+  @keyframes gras {
+    0% {
+      transform: rotate(115deg);
+    }
+    50% {
+      transform: rotate(-65deg);
+    }
+    100% {
+      transform: rotate(115deg);
+    }
+  }
+}
+
+.ice {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(84, 72, 255), rgb(0, 26, 255));
+  transform: rotate(115deg);
+  animation: 0.3s ice infinite;
+  position: absolute;
+
+  @keyframes ice {
+    0% {
+      transform: rotate(72deg);
+    }
+    25% {
+      transform: rotate(144deg);
+    }
+    50% {
+      transform: rotate(216deg);
+    }
+    75% {
+      transform: rotate(288deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.fighting {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(255, 217, 0), rgb(253, 224, 59));
+  transform: rotate(115deg);
+  animation: 0.3s fight infinite;
+  position: absolute;
+
+  @keyframes fight {
+    0% {
+      height: 2em;
+      width: 2em;
+      transform: rotate(72deg);
+    }
+    50% {
+      height: 0.5em;
+      width: 0.5em;
+      transform: rotate(216deg);
+    }
+    100% {
+      height: 2em;
+      width: 2em;
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.poison {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(13, 73, 1), rgb(77, 110, 76));
+  border-radius: 2em;
+  filter: blur(0.5em);
+  transform: rotate(115deg);
+  animation: 1s pois infinite;
+  position: absolute;
+
+  @keyframes pois {
+    0% {
+      width: 6em;
+      height: 4em;
+    }
+    50% {
+      width: 4.5em;
+      height: 6.5em;
+    }
+    100% {
+      width: 6em;
+      height: 4em;
+    }
+  }
+}
+
+.flying {
+  width: 4em;
+  height: 6em;
+  border: 2em solid transparent;
+  border-top: 6em solid rgb(162, 145, 255);
+  border-radius: 2em;
+  filter: blur(0.5em);
+  animation: 0.5s fly infinite;
+  position: absolute;
+
+  @keyframes fly {
+    0% {
+      transform: rotateY(115deg);
+    }
+    50% {
+      transform: rotateY(245deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+}
+
+.ground {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(90, 59, 0), rgb(54, 41, 6));
+  border-radius: 2em;
+  transform: rotate(115deg);
+  animation: 0.2s ground infinite;
+  position: absolute;
+
+  @keyframes ground {
+    0% {
+      transform: rotate(115deg);
+    }
+    50% {
+      transform: rotate(245deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.psychic {
+  width: 3em;
+  height: 3em;
+  background: rgb(252, 130, 130);
+  border-radius: 2em;
+  filter: blur(0.5em);
+  transform: rotate(115deg);
+  animation: 0.5s psych infinite;
+  position: absolute;
+
+  @keyframes psych {
+    0% {
+      background: rgb(252, 130, 130);
+    }
+    50% {
+      background: rgb(232, 130, 252);
+    }
+    100% {
+      background: rgb(205, 255, 238);
+    }
+  }
+}
+
+.bug {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(255, 123, 0), rgb(253, 146, 59));
+  transform: rotate(115deg);
+  animation: 0.3s bug infinite;
+  position: absolute;
+
+  @keyframes bug {
+    0% {
+      height: 2em;
+      width: 2em;
+      transform: rotate(72deg);
+    }
+    50% {
+      height: 0.5em;
+      width: 0.5em;
+      transform: rotate(216deg);
+    }
+    100% {
+      height: 2em;
+      width: 2em;
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.rock {
+  width: 3em;
+  height: 3em;
+  background: linear-gradient(-45deg, rgb(148, 148, 148), rgb(36, 36, 36));
+  border-radius: 2em;
+  transform: rotate(115deg);
+  animation: 0.2s roc infinite;
+  position: absolute;
+
+  @keyframes roc {
+    0% {
+      transform: rotate(115deg);
+    }
+    50% {
+      transform: rotate(245deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.ghost {
+  width: 3em;
+  height: 3em;
+  border: 2em solid transparent;
+  border-top: 6em solid rgb(216, 216, 216);
+  border-radius: 2em;
+  filter: blur(0.5em);
+  position: absolute;
+}
+
+.dragon {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, red, orange);
+  border-radius: 2em 2em 0px 2em;
+  transform: rotate(115deg);
+  animation: 0.1s drago infinite;
+  position: absolute;
+
+  @keyframes drago {
+    0% {
+      height: 2em;
+      width: 2em;
+    }
+    50% {
+      height: 1.5em;
+      width: 1.5em;
+    }
+    100% {
+      height: 2em;
+      width: 2em;
+    }
+  }
+}
+
+.dark {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(88, 0, 122), rgb(24, 0, 34));
+  border-radius: 1em;
+  transform: rotate(115deg);
+  filter: blur(0.2em);
+  animation: 0.3s anim infinite;
+  position: absolute;
+
+  @keyframes anim {
+    0% {
+      height: 2em;
+      width: 2em;
+      transform: rotate(72deg);
+    }
+    50% {
+      height: 3em;
+      width: 3em;
+      transform: rotate(216deg);
+    }
+    100% {
+      height: 2em;
+      width: 2em;
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.steel {
+  width: 3em;
+  height: 3em;
+  background: linear-gradient(-45deg, rgb(148, 148, 148), rgb(221, 221, 221));
+  transform: rotate(115deg);
+  animation: 0.2s stel infinite;
+  position: absolute;
+
+  @keyframes stel {
+    0% {
+      transform: rotate(115deg);
+    }
+    50% {
+      transform: rotate(245deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.fairy {
+  width: 3em;
+  height: 3em;
+  background: rgb(252, 130, 130);
+  border-radius: 2em;
+  filter: blur(0.5em);
+  transform: rotate(115deg);
+  animation: 0.5s fair infinite;
+  position: absolute;
+
+  @keyframes fair {
+    0% {
+      background: rgb(252, 130, 130);
+    }
+    50% {
+      background: rgb(252, 130, 191);
+    }
+    100% {
+      background: rgb(255, 72, 209);
+    }
+  }
+}
+
+.no {
+  width: 3em;
+  height: 3em;
+  border: 2em solid transparent;
+  border-top: 6em solid rgb(32, 32, 32);
+  border-radius: 2em;
+  filter: blur(0.5em);
+  position: absolute;
 }

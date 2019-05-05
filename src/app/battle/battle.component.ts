@@ -6,11 +6,13 @@ import { ToBattleService } from '../services/to-battle.service';
 import { Subscription } from 'rxjs';
 
 import { BattleAnimationsService } from '../services/battle.animations.service';
+import { attackAnimations } from './animations.service';
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss'],
-  providers: [BattleService]
+  providers: [BattleService],
+  animations: [ attackAnimations ]
 })
 export class BattleComponent implements OnInit, OnDestroy {
   public title: string = '';
