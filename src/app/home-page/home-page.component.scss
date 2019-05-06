@@ -59,7 +59,7 @@
   }
 
   .btn-go {
-    background: var(--indigo);
+    pointer-events: none;
     cursor: pointer;
     bottom: 5em;
     -webkit-transition-timing-function: ease-out;
@@ -68,6 +68,10 @@
 
     &:hover {
       transform: scale(1.1, 1.1);
+    }
+
+    svg g {
+      pointer-events: all;
     }
   }
 }
