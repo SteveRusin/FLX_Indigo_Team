@@ -1,26 +1,29 @@
-<div class="info-wrap">
+<div class="info-wrap" *ngIf="userPlayer$ | async as player">
   <div class="profile-avatar-wrap">
-    <img src="{{profile.avatar}}" alt="avatar" class="profile-avatar">
+    <img src="{{player.avatar}}" alt="avatar" class="profile-avatar">
   </div>
   <div class="player-info">
-    <p class="nickname"><span>{{profile.nickname}}</span></p>
+    <p class="nickname"><span>{{player.name}}</span></p>
     
     <mat-card class="battles-card">
       <mat-card-header>
         <mat-card-title>Battles</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-subtitle>all player battles: {{player.battles.all}}</mat-card-subtitle>
       </mat-card-header>
-      <!-- <mat-card-content>
-        <p>
-          The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-          A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-          bred for hunting.
-        </p>
+      <mat-card-content>
+        <div class="battles-statistic-info">
+          <p><span>Wins</span></p>
+          <p>{{player.battles.wins}}</p>
+        </div>
+        <div class="battles-statistic-info">
+          <p><span>Defeats</span></p>
+          <p>{{player.battles.defeats}}</p>
+        </div>
+        <div class="battles-statistic-info">
+          <p><span>Winrate</span></p>
+          <p>{{getWinrate(player.battles)}}%</p>
+        </div>
       </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-      </mat-card-actions> -->
     </mat-card>
   </div>
 </div>

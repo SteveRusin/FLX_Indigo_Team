@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 
@@ -10,16 +10,19 @@ export class AuthService {
   public userDetails: firebase.User = null;
   public db: any = firebase.firestore();
   public uid: string;
+  public data: any;
 
-  constructor(private _firebaseAuth: AngularFireAuth,
-    private router: Router) {
+  constructor(
+    private _firebaseAuth: AngularFireAuth,
+    private router: Router
+  ) {
       this.user = this._firebaseAuth.authState;
       this.user.subscribe(
         (user: firebase.User) => {
+          console.log(user);
           if (user) {
             this.userDetails = user;
             this.uid = this.userDetails.uid;
-            console.log(this.userDetails);
           } else {
             this.userDetails = null;
           }
@@ -31,6 +34,13 @@ export class AuthService {
     return this.userDetails !== null;
   }
 
+  public getPlayerAvatar(): string {
+    if (this.data && this.data.avatar) {
+      return this.data.avatar;
+    } else {
+      return 'https://cdn0.iconfinder.com/data/icons/avatar-profile/452/pikachu_pokemon_profile_avatar_people-512.png';
+    }
+  }
   public logout(): void {
     this._firebaseAuth.auth.signOut()
     .then(() => this.userDetails = null)
@@ -100,7 +110,12 @@ export class AuthService {
       .collection('pokemons')
       .doc('chikorita')
       .set({
-        name: 'chikorita'
+        name: 'chikorita',
+        battles: {
+          all: 0,
+          wins: 0,
+          defeats: 0
+        }
       })
       .then(() => {
         console.log('Document successfully written!');

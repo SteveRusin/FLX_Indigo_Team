@@ -2,8 +2,8 @@
   <a mat-button routerLink="">Home</a>
   <a mat-button routerLink="/game">Game</a>
 
-  <a mat-button *ngIf="authService.isLoggedIn()" routerLink="/profile">
-    <img src="{{profileAvatar}}" alt="avatar" class="profile-avatar">
+  <a mat-button *ngIf="isLogged()" routerLink="/profile">
+    <img src="{{getPlayerAvatar()}}" alt="avatar" class="profile-avatar">
   </a>
 
   <a mat-button *ngIf="!isLogged()" (click)="dialogForm()">Login</a>
