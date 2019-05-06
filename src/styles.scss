@@ -7,14 +7,16 @@
 }
 
 body {
+  width: 100vw;
   margin: 0;
   padding: 0;
+  overflow-x: hidden; 
   scrollbar-track-color: #000;
 }
 
 body::-webkit-scrollbar {
   width: 0.7em;
-  background: inherit;
+  background: rgba(255, 0, 0, 0);
 }
 
 body::-webkit-scrollbar-thumb {
@@ -23,7 +25,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 body::-webkit-scrollbar-track {
-  background: inherit;
+  background: rgba(255, 0, 0, 0);
 }
 
 body::-webkit-scrollbar-thumb:hover {
@@ -37,13 +39,6 @@ mat-dialog-container.mat-dialog-container {
 mat-dialog-container.mat-toolbar-single-row {
   margin-bottom: 0.5em;
 }
-
-// .cdk-overlay-container,
-// .cdk-global-overlay-wrapper,
-// .cdk-global-overlay-wrapper {
-
-//   &::-webkit-scrollbar-track,
-//   &::-webkit-scrollbar {
-//     background-color: inherit;
-//   }
-// }
+.cdk-global-scrollblock {
+  overflow: hidden;
+}
