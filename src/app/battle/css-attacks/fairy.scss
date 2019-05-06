@@ -1,0 +1,22 @@
+.fairy {
+  width: 3em;
+  height: 3em;
+  background: rgb(252, 130, 130);
+  border-radius: 2em;
+  filter: blur(0.5em);
+  transform: rotate(115deg);
+  animation: 0.5s fair infinite;
+  position: absolute;
+
+  @keyframes fair {
+    0% {
+      background: rgb(252, 130, 130);
+    }
+    50% {
+      background: rgb(252, 130, 191);
+    }
+    100% {
+      background: rgb(255, 72, 209);
+    }
+  }
+}

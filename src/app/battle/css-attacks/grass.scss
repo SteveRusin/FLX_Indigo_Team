@@ -1,0 +1,21 @@
+.grass {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(43, 255, 0), rgb(131, 253, 127));
+  border-radius: 0 2em 0 2em;
+  transform: rotate(115deg);
+  animation: 2s gras infinite;
+  position: absolute;
+
+  @keyframes gras {
+    0% {
+      transform: rotate(115deg);
+    }
+    50% {
+      transform: rotate(-65deg);
+    }
+    100% {
+      transform: rotate(115deg);
+    }
+  }
+}

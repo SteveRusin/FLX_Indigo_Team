@@ -1,0 +1,42 @@
+.electric {
+  width: 1em;
+  height: 2em;
+  border: 0.5em solid transparent;
+  border-bottom: 3em solid #323335;
+  position: absolute;
+  transform: rotate(55deg);
+  animation: 0.1s electr infinite;
+
+  &:before {
+    content: "";
+    position: absolute;
+    border: 0.5em solid transparent;
+    border-top: 3em solid #323335;
+    margin-top: 2.5em;
+    animation: 0.1s electry infinite;
+  }
+
+  @keyframes electr {
+    0% {
+      border-bottom: 3em solid #323335;
+    }
+    50% {
+      border-bottom: 3em solid #a1a1a1;
+    }
+    100% {
+      border-bottom: 3em solid #323335;
+    }
+  }
+
+  @keyframes electry {
+    0% {
+      border-top: 3em solid #323335;
+    }
+    50% {
+      border-top: 3em solid #a1a1a1;
+    }
+    100% {
+      border-top: 3em solid #323335;
+    }
+  }
+}

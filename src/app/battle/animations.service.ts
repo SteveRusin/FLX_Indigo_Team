@@ -1,29 +1,40 @@
 import {
   transition,
   trigger,
-  query,
   style,
   animate,
-  group,
-  AnimationTriggerMetadata
+  AnimationTriggerMetadata,
+  state,
 } from '@angular/animations';
 
-export const attackAnimations: AnimationTriggerMetadata = trigger('attackAnimation', [
-  // transition('Home => *', [
-  //   query(':enter, :leave',
-  //     style({ position: 'fixed', width: '100%' }),
-  //     { optional: true }),
-  //   group([
-  //     query(':enter', [
-  //       style({ transform: 'translateX(100%)' }),
-  //       animate('0.5s ease-in-out',
-  //         style({ transform: 'translateX(0%)' }))
-  //     ], { optional: true }),
-  //     query(':leave', [
-  //       style({ transform: 'translateX(0%)' }),
-  //       animate('0.5s ease-in-out',
-  //         style({ transform: 'translateX(-100%)' }))
-  //     ], { optional: true }),
-  //   ])
-  // ]),
+export const attackAnimationsA: AnimationTriggerMetadata = trigger('attackAnimationA', [
+  state('initial', style({
+    transform: 'translateX(15em)'
+  })),
+  state('final', style({
+    transform: 'translateX(55em) translateY(-5em)',
+    opacity: 0
+  })),
+  transition('initial=>final', animate('0.3s ease-in'))
+]);
+
+export const attackAnimationsB: AnimationTriggerMetadata = trigger('attackAnimationB', [
+  state('initial', style({
+    transform: 'translateX(55em)'
+  })),
+  state('final', style({
+    transform: 'translateX(5em) translateY(5em)',
+    opacity: 0
+  })),
+  transition('initial=>final', animate('0.3s ease-in'))
+]);
+
+export const defenseAnimation: AnimationTriggerMetadata = trigger('defenseAnimation', [
+  state('initial', style({
+    opacity: 1
+  })),
+  state('final', style({
+    opacity: 0
+  })),
+  transition('initial=>final', animate('0.3s ease-in'))
 ]);

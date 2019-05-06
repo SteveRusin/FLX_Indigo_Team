@@ -4,8 +4,14 @@
     <h1>{{title}}</h1>
 
     <div class="players">
-        <img #imgPokemonA class="pokemonA" /><span [className]='aAttack'></span>
-        <img #imgPokemonB class="pokemonB" /><span [className]='bAttack'></span>
+        <img #imgPokemonA class="pokemonA" [@defenseAnimation]=defenseA/>
+        <img #imgPokemonB class="pokemonB" [@defenseAnimation]=defenseB/>
+    </div>
+    <div [@attackAnimationA]=currentStateA class="playerAttackA">
+        <span [className]='aAttack'></span>
+    </div>
+    <div [@attackAnimationB]=currentStateB class="playerAttackB">
+        <span [className]='bAttack'></span>
     </div>
 
     <div class="battle-btns" *ngIf="this.battleService.isAlive(this.pokemonA) && this.battleService.isAlive(this.pokemonB)">
