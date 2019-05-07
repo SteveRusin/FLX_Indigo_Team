@@ -1,5 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import {
+  Component,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
+import {
+  MatDialog,
+  MatDialogRef
+} from '@angular/material';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -15,18 +22,23 @@ import { LoginDialogService } from './login-dialog/login-dialog.service';
 })
 
 export class NavbarComponent implements OnInit, OnDestroy {
+  private destroy$: Subject<any> = new Subject();
   public dialogWithForm: MatDialogRef<LoginDialogComponent, DialogData>;
   public email: string;
   public password: string;
-  public profileAvatar: string;
-  private destroy$: Subject<any> = new Subject();
 
-  constructor(public dialog: MatDialog,
+  constructor(
+    public dialog: MatDialog,
     public authService: AuthService,
-    public loginDialogService: LoginDialogService) { }
+    public loginDialogService: LoginDialogService
+  ) { }
 
   public isLogged(): boolean {
     return this.authService.isLoggedIn();
+  }
+
+  public getPlayerAvatar(): any {
+    return this.authService.getPlayerAvatar();
   }
 
   public ngOnInit(): void {

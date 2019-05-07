@@ -43,9 +43,4 @@ export class AuthorizationFormComponent {
                                       this.authorizationForm.value.nickname);
     this.dialogRef.close();
   }
-
-  public authorizationWithGoogle(): void {
-    this.authService.signInWithGoogle();
-    this.dialogRef.close();
-  }
 }
