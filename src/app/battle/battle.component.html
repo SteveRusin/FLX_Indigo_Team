@@ -4,8 +4,8 @@
     <h1>{{title}}</h1>
 
     <div class="players">
-        <img #imgPokemonA class="pokemonA" [@defenseAnimation]=defenseA/>
-        <img #imgPokemonB class="pokemonB" [@defenseAnimation]=defenseB/>
+        <img #imgPokemonA class="pokemonA" [@defenseAnimation]=defenseA [@attackAnimation]=currentStateA/>
+        <img #imgPokemonB class="pokemonB" [@defenseAnimation]=defenseB [@attackAnimation]=currentStateB/>
     </div>
     <div [@attackAnimationA]=currentStateA class="playerAttackA">
         <span [className]='aAttack'></span>

@@ -30,15 +30,12 @@ export class BattleAnimationsService {
   }
 
   public attacked(pokeType: string): void {
-    this.attackType(pokemonType['fire']);
-    let arr: string[] = Object.values(pokemonType);
-    console.log(arr);
-    console.log(pokeType);
-    for (let type of pokeType) {
+    const arr: string[] = Object.values(pokemonType);
+    for (const type of arr) {
       if (pokeType === type) {
-        console.log(type);
+        return this.attackType(pokeType);
       } else {
-        console.log('nothing');
+        continue;
       }
     }
   }

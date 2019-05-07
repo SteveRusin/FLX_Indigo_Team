@@ -7,14 +7,14 @@ import { Subscription } from 'rxjs';
 
 // USE ANIMATIONS SERVICE
 import { BattleAnimationsService } from '../services/battle.animations.service';
-import { attackAnimationsA, attackAnimationsB, defenseAnimation } from './animations.service';
+import { attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation } from './animations.service';
 
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss'],
   providers: [BattleService],
-  animations: [ attackAnimationsA, attackAnimationsB, defenseAnimation ]
+  animations: [ attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation ]
 })
 export class BattleComponent implements OnInit, OnDestroy {
   public title: string = '';
@@ -26,6 +26,12 @@ export class BattleComponent implements OnInit, OnDestroy {
 
   public aAttack: string;
   public bAttack: string;
+
+  public currentStateA: string = 'initial';
+  public currentStateB: string = 'initial';
+  public defenseA: string = 'initial';
+  public defenseB: string = 'initial';
+  private counter: number = 0;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
@@ -68,12 +74,6 @@ export class BattleComponent implements OnInit, OnDestroy {
     }, 0);
   }
 
-  public currentStateA: string = 'initial';
-  public currentStateB: string = 'initial';
-  public defenseA: boolean = false;
-  public defenseB: boolean = false;
-  private counter: number = 0;
-
   public changeStateA(): void {
     this.currentStateA = this.currentStateA === 'initial' ? 'final' : 'initial';
   }
@@ -83,11 +83,11 @@ export class BattleComponent implements OnInit, OnDestroy {
   }
 
   public changeDefenseA(): void {
-    this.defenseA = this.defenseA === true ? false : true;
+    this.defenseA = this.defenseA === 'initial' ? 'final' : 'initial';
   }
 
   public changeDefenseB(): void {
-    this.defenseB = this.defenseB === true ? false : true;
+    this.defenseB = this.defenseB === 'initial' ? 'final' : 'initial';
   }
 
     // USE ANIMATIONS SERVICE
