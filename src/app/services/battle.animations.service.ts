@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { pokemonType } from '../battle/pokeType.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -29,26 +30,16 @@ export class BattleAnimationsService {
   }
 
   public attacked(pokeType: string): void {
-    switch (pokeType) {
-      case 'normal': this.attackType('normal'); break;
-      case 'fire': this.attackType('fire'); break;
-      case 'water': this.attackType('water'); break;
-      case 'electric': this.attackType('electric'); break;
-      case 'grass': this.attackType('grass'); break;
-      case 'ice': this.attackType('ice'); break;
-      case 'fighting': this.attackType('fighting'); break;
-      case 'poison': this.attackType('poison'); break;
-      case 'flying': this.attackType('flying'); break;
-      case 'ground': this.attackType('ground'); break;
-      case 'psychic': this.attackType('psychic'); break;
-      case 'bug': this.attackType('bug'); break;
-      case 'rock': this.attackType('rock'); break;
-      case 'ghost': this.attackType('ghost'); break;
-      case 'dragon': this.attackType('dragon'); break;
-      case 'dark': this.attackType('dark'); break;
-      case 'steel': this.attackType('steel'); break;
-      case 'fairy': this.attackType('fairy'); break;
-      default: this.attackType('no'); break;
+    this.attackType(pokemonType['fire']);
+    let arr: string[] = Object.values(pokemonType);
+    console.log(arr);
+    console.log(pokeType);
+    for (let type of pokeType) {
+      if (pokeType === type) {
+        console.log(type);
+      } else {
+        console.log('nothing');
+      }
     }
   }
 

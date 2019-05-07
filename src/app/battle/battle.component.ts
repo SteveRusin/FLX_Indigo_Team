@@ -65,7 +65,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     // USE ANIMATIONS SERVICE
     setTimeout(() => {
       this.getPokemons();
-    }, 1000);
+    }, 0);
   }
 
   public currentStateA: string = 'initial';
