@@ -9,16 +9,16 @@ import {
 
 export const attackAnimationsA: AnimationTriggerMetadata = trigger('attackAnimationA', [
   state('initial', style({
-    transform: 'translateX(15em)',
+    transform: 'translateX(18em) translateY(8em)',
     opacity: 0,
   })),
   state('final', style({
-    transform: 'translateX(55em) translateY(-5em)',
+    transform: 'translateX(53em) translateY(-2em)',
     opacity: 0,
   })),
   transition('initial=>final', animate('0.6s ease-out',
     style({
-      transform: 'translateX(55em) translateY(-5em)',
+      transform: 'translateX(53em) translateY(-2em)',
       opacity: 1,
     })
   ))
@@ -26,16 +26,16 @@ export const attackAnimationsA: AnimationTriggerMetadata = trigger('attackAnimat
 
 export const attackAnimationsB: AnimationTriggerMetadata = trigger('attackAnimationB', [
   state('initial', style({
-    transform: 'translateX(55em)',
+    transform: 'translateX(55em) translateY(-2em)',
     opacity: 0,
   })),
   state('final', style({
-    transform: 'translateX(15em) translateY(5em)',
+    transform: 'translateX(22em) translateY(6em)',
     opacity: 0,
   })),
   transition('initial=>final', animate('0.6s ease-out',
     style({
-      transform: 'translateX(15em) translateY(5em)',
+      transform: 'translateX(22em) translateY(6em)',
       opacity: 1,
     })
   ))
@@ -50,7 +50,7 @@ export const attackAnimation: AnimationTriggerMetadata = trigger('attackAnimatio
   })),
   transition('initial<=>final', animate('0.5s ease-out',
     style({
-      filter: 'saturate(2)',
+      filter: 'saturate(3)',
     })
   ))
 ]);
@@ -66,6 +66,21 @@ export const defenseAnimation: AnimationTriggerMetadata = trigger('defenseAnimat
     style({
       filter: 'brightness(2)',
       transform: 'scale(1.2)',
+    })
+  ))
+]);
+
+export const popupAnimation: AnimationTriggerMetadata = trigger('popup', [
+  state('initial', style({
+    opacity: 0,
+  })),
+  state('final', style({
+    opacity: 0,
+  })),
+  transition('initial<=>final', animate('1s ease-out',
+    style({
+      transform: 'translateY(5em)',
+      opacity: 0.8,
     })
   ))
 ]);

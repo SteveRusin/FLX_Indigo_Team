@@ -17,6 +17,7 @@
 @import './css-attacks/steel.scss';
 @import './css-attacks/undef.scss';
 @import './css-attacks/water.scss';
+@import '../variables.scss';
 
 .battle-field {
   display: flex;
@@ -68,4 +69,12 @@
 
 .playerAttackB {
   position: absolute;
+}
+
+mat-card {
+  position: absolute;
+  width: 8em;
+  text-align: center;
+  color: var(--white);
+  background: var(--indigo);
 }
