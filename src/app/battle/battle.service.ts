@@ -34,9 +34,9 @@ export class BattleService {
       this.counterArr.push(a.state);
       if (a.specAttack.type === 'damage') {
         return b.health - this.generateRandom(a.specAttack.points);
-      } else if (a.specAttack.type ==='recovery') {
+      } else if (a.specAttack.type === 'recovery') {
         return a.health + this.generateRandom(a.specAttack.points);
-      } else if (a.specAttack.type ==='defence') {
+      } else if (a.specAttack.type === 'defence') {
         return a.health + this.generateRandom(a.specAttack.points);
       }
     }
@@ -56,7 +56,6 @@ export class BattleService {
       if (state === pokemon.state) {
         isState = false;
         amountOfStates++;
-
       }
     }
     if (amountOfStates > pokemon.specAttack.moves || isState) {
@@ -64,10 +63,9 @@ export class BattleService {
     }
 
     return false;
-
   }
   public generateRandom(arg: number): number {
-    return Math.floor(Math.random() * ((arg/100*125) - (arg/100*75)  + 1)) + arg/100*75;
+    return Math.floor(Math.random() * ((arg / 100 * 125) - (arg / 100 * 75) + 1)) + arg / 100 * 75;
   }
 
   public getValOfObj(obj: object): number {

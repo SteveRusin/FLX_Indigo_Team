@@ -10,7 +10,6 @@
                         <div class="top-voodoo" data-area="topVoodoo"></div>
                         <div class="middle-voodoo" data-area="middleVoodoo"></div>
                         <div class="bottom-voodoo" data-area="bottomVoodoo"></div>
-
                     </div>
                 </div>
                 <div *ngIf="isVoodoo" class="attack-wrapper">
@@ -18,19 +17,15 @@
                         <div class="top-voodoo" data-area="topVoodoo"></div>
                         <div class="middle-voodoo" data-area="middleVoodoo"></div>
                         <div class="bottom-voodoo" data-area="bottomVoodoo"></div>
-
                     </div>
                 </div>
                 <div *ngIf="!isPunchSection">
                     <button (click)="currentBasePunch()">punch</button>
                     <button (click)="currentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonA)">super
                         punch</button>
-
                 </div>
             </div>
         </div>
-
-
         <div class="right-corner">
             <div *ngIf="!isButtons">
                 <div *ngIf="isDefence" class="defence-wrapper">
