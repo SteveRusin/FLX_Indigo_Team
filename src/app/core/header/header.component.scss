@@ -1,0 +1,10 @@
+@import '../../variables.scss';
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-toolbar {
+  background: var(--blue);
+  color: var(--white);
+}

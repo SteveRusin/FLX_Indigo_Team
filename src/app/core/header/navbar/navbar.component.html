@@ -1,0 +1,11 @@
+<nav class="navbar">
+  <a mat-button routerLink="">Home</a>
+  <a mat-button routerLink="/game">Game</a>
+
+  <a mat-button *ngIf="isLogged()" routerLink="/profile">
+    <img src="{{getPlayerAvatar()}}" alt="avatar" class="profile-avatar">
+  </a>
+
+  <a mat-button *ngIf="!isLogged()" (click)="dialogForm()">Login</a>
+  <a mat-button *ngIf="isLogged()" (click)="logout()">Logout</a>
+</nav>

@@ -1,10 +1,19 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
+import {
+  AuthGuardService as AuthGuard
+} from './services/auth-guard.service';
 
-const routes: Routes = [];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+export const routes: Routes = [
+  {
+    path: '',
+    loadChildren: './home-page/home-page.module#HomePageModule',
+    data: {animation: 'Home'}
+  },
+  {
+    path: 'profile',
+    loadChildren: './player-profile/player-profile.module#PlayerProfileModule',
+    data: { animation: 'Profile' },
+    canActivate: [AuthGuard]
+  },
+  { path: '**', redirectTo: '', data: {animation: 'Home'} }
+];

@@ -1,0 +1,29 @@
+<div class="info-wrap" *ngIf="userPlayer$ | async as player">
+  <div class="profile-avatar-wrap">
+    <img src="{{player.avatar}}" alt="avatar" class="profile-avatar">
+  </div>
+  <div class="player-info">
+    <p class="nickname"><span>{{player.name}}</span></p>
+    
+    <mat-card class="battles-card">
+      <mat-card-header>
+        <mat-card-title>Battles</mat-card-title>
+        <mat-card-subtitle>all player battles: {{player.battles.all}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="battles-statistic-info">
+          <p><span>Wins</span></p>
+          <p>{{player.battles.wins}}</p>
+        </div>
+        <div class="battles-statistic-info">
+          <p><span>Defeats</span></p>
+          <p>{{player.battles.defeats}}</p>
+        </div>
+        <div class="battles-statistic-info">
+          <p><span>Winrate</span></p>
+          <p>{{getWinrate(player.battles)}}%</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
