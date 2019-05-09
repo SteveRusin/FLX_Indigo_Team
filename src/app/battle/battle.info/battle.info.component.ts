@@ -24,10 +24,12 @@ export class BattleInfoComponent implements OnInit {
     this.firstProgress.nativeElement.setAttribute('value', current);
     this.firstProgress.nativeElement.style.setProperty('background-color', `hsla(${current}, 100%, 50%, 1)`);
     this.healthA = current;
+    //console.log(this.healthA,'------------',this.healthB);
   }
   public rightElement(opponent: number): any {
     this.secondProgress.nativeElement.setAttribute('value', opponent);
     this.secondProgress.nativeElement.style.setProperty('background-color', `hsla(${opponent}, 100%, 50%, 1)`);
     this.healthB = opponent;
+    //console.log(this.healthA,'------------',this.healthB);
   }
 }

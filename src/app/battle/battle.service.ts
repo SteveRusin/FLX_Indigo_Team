@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Pokemon } from './../models/pokemon.interface';
-import { from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,72 +14,70 @@ export class BattleService {
   }
 
   public basePunch(a: Pokemon, b: Pokemon): number {
-
     let currentAbility: number;
-    if(this.counterArr.indexOf(a.state)!==-1) {
+    let result: number;
+    if (this.counterArr.indexOf(a.state) !== -1) {
       this.counterArr.push(a.state);
-
     }
+    currentAbility = this.getValOfObj(a.ability);
+    const random: number = this.generateRandom(currentAbility);
+    result = b.health - random;
 
-    for (const key in a.ability) {
-      if (a.ability.hasOwnProperty(key)) {
-        currentAbility = a.ability[key];
-      }
-    }
-    b.health -= currentAbility;
-
-    return b.health;
+    return result;
   }
 
   public specAttack(a: Pokemon, b: Pokemon): number {
+    if (this.isSpecAttack(a)) {
+      this.counterArr = this.counterArr.filter((el: string) => {
+        return el !== a.state;
+      });
+      this.counterArr.push(a.state);
+      if (a.specAttack.type === 'damage') {
+        return b.health - this.generateRandom(a.specAttack.points);
+      } else if (a.specAttack.type ==='recovery') {
+        return a.health + this.generateRandom(a.specAttack.points);
+      } else if (a.specAttack.type ==='defence') {
+        return a.health + this.generateRandom(a.specAttack.points);
+      }
+    }
+
+  }
+
+  public setDefence(a: Pokemon, b: Pokemon): boolean {
+    return a.placeOfDefence === b.placeOfPunch ? true : false;
+  }
+
+  public isSpecAttack(pokemon: Pokemon): boolean {
+
     let isState: boolean = true;
     let amountOfStates: number = 0;
 
     for (const state of this.counterArr) {
-      if (state === a.state) {
+      if (state === pokemon.state) {
         isState = false;
         amountOfStates++;
 
       }
     }
-    if(amountOfStates<a.specAttack.moves) {
-      amountOfStates = 0;
-    }
-    if (isState|| amountOfStates > a.specAttack.moves) {
-      if(a.specAttack.hasOwnProperty('damage')) {
-        b.health -= a.specAttack.damage;
-      } else if(a.specAttack.hasOwnProperty('recovery')) {
-        a.health+= 500;
-      } else if(a.specAttack.hasOwnProperty('defence')) {
-        a.health+= 500;
-      }
-
-      this.counterArr = this.counterArr.filter((el: string) => {
-
-          return el!==a.state;
-
-      });
-      this.counterArr.push(a.state);
-      amountOfStates = 0;
+    if (amountOfStates > pokemon.specAttack.moves || isState) {
+      return true;
     }
 
-    return b.health;
+    return false;
+
   }
-  public setDefence(a: Pokemon,b: Pokemon): number {
-    let currentAbility:number;
-    for (const key in b.ability) {
-      if (b.ability.hasOwnProperty(key)) {
-        currentAbility = b.ability[key];
+  public generateRandom(arg: number): number {
+    return Math.floor(Math.random() * ((arg/100*125) - (arg/100*75)  + 1)) + arg/100*75;
+  }
+
+  public getValOfObj(obj: object): number {
+    let currentValue: number;
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        currentValue = obj[key];
       }
     }
 
-    let defence: number= 10 + Math.random() * (currentAbility + 1 - 10);
-    defence= Math. floor(defence);
-
-    return  currentAbility - defence;
-  }
-
-  public getInfo(pokemon: Pokemon): Pokemon {
-    return pokemon;
+    return currentValue;
   }
 }

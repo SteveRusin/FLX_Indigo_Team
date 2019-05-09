@@ -1,13 +1,3 @@
-// export interface Pokemon {
-//     name?: string;
-//     ability?: { [key: string]: number };
-//     health?: number;
-//     specAttack?: { [key: string]: number };
-//     type?: string;
-//     weakness?: string;
-
-// }
-
 export interface SpecAttack {
     move?: number;
     type: string;
@@ -21,11 +11,13 @@ export interface SpecAttack {
   export interface Pokemon {
     id?: string;
     name?: string;
-    ability?: SpecAttack;
+    ability?: Ability;
     health?: number;
     img?: string;
     specAttack?: SpecAttack;
     type?: string;
     weakness?: string;
     state?: string;
+    placeOfPunch?: string;
+    placeOfDefence?: string;
   }
