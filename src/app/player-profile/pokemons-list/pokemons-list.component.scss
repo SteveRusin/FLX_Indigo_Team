@@ -1,0 +1,28 @@
+.pokemon-list-wrap {
+  mat-card-content {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1em;
+  }
+
+  .battles-card {
+    margin: 2em 0;
+    
+    mat-card-title {
+      border-bottom: 1px solid var(--yellow);
+    }
+
+    &:nth-child(odd) {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .ability-card {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+  .pokemon-info {
+    padding: 1em;
+  }
+}

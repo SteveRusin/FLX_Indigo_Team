@@ -28,6 +28,7 @@ import { LoginDialogComponent } from './header/navbar/login-dialog/login-dialog.
 import { LoginFormComponent } from './header/navbar/login-dialog/login-form/login-form.component';
 import { AuthorizationFormComponent } from './header/navbar/login-dialog/authorization-form/authorization-form.component';
 import { LoginDialogService } from './header/navbar/login-dialog/login-dialog.service';
+import { ProfileInfoService } from '../services/profile-info.service';
 
 @NgModule({
     declarations: [
@@ -71,7 +72,8 @@ export class CoreModule {
     return {
       ngModule: CoreModule,
       providers: [
-        LoginDialogService
+        LoginDialogService,
+        ProfileInfoService
       ],
     };
   }

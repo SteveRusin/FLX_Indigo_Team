@@ -27,7 +27,7 @@ export class BattleComponent implements OnInit, OnDestroy {
   public killDefenceEvent: any;
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
-  constructor(public battleService: BattleService, public elementRef: ElementRef, public renderer: Renderer2, private toBattle: ToBattleService) {
+  constructor(private battleService: BattleService, private elementRef: ElementRef, private renderer: Renderer2, private toBattle: ToBattleService) {
     this.subscription = this.toBattle.getPokemons()
       .subscribe((pokemons: Pokemon[]) => {
         this.pokemons = pokemons;
