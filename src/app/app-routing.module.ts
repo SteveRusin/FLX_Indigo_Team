@@ -15,5 +15,8 @@ export const routes: Routes = [
     data: { animation: 'Profile' },
     canActivate: [AuthGuard]
   },
+  {
+    path: 'game', loadChildren: './battle/battle.module#BattleModule'
+  },
   { path: '**', redirectTo: '', data: {animation: 'Home'} }
 ];

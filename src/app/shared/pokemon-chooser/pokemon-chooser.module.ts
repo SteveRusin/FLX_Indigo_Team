@@ -4,7 +4,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatIconModule } from '@angular/material/icon';
 import { PokemonChooserComponent } from './pokemon-chooser.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
-import { RouterModule } from '@angular/router';
+//import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [PokemonChooserComponent, PokemonCardComponent],
@@ -12,9 +12,9 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     MatStepperModule,
     MatIconModule,
-    RouterModule.forChild([
-    { path: '', component: PokemonChooserComponent }
-    ])
+    // RouterModule.forChild([
+    // { path: '', component: PokemonChooserComponent }
+    // ])
   ],
   exports: [PokemonChooserComponent]
 

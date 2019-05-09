@@ -1,0 +1,29 @@
+.battle-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: snow;
+}
+
+#opponent-line {
+  float: right;
+}
+
+progress {
+  background-color: transparent 0;
+  border: 0;
+  height: 18px;
+  border-radius: 9px;
+}
+
+progress::-webkit-progress-bar {
+  background: transparent 0;
+}
+progress::-webkit-progress-value {
+  background: hsla(100, 100%, 50%, 1);
+  border-radius: 9px;
+}
+progress::after {
+  display: block;
+  content: attr(id)
+}

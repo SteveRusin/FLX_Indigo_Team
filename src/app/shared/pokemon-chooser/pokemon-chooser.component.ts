@@ -1,8 +1,9 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
 import { Pokemon } from './pokemon-interface';
 import { PokemonChooserService } from '../../services/pokemon-chooser.service';
+import { BattleComponent } from '../../battle/battle.component';
 import { ToBattleService } from '../../services/to-battle.service';
 import { combineLatest, Observable } from 'rxjs';
 
@@ -14,9 +15,10 @@ import { combineLatest, Observable } from 'rxjs';
 
 export class PokemonChooserComponent implements OnInit {
 
-  constructor(private pokemonChooserService: PokemonChooserService, private toBattle: ToBattleService) {}
+  constructor(private pokemonChooserService: PokemonChooserService, private toBattle: ToBattleService,private battle: BattleComponent) {}
 
   public selectedPokemon: Pokemon[] = [];
+  public isVisible: boolean = true;
 
   public pokemonsList$: Observable<Pokemon[]>;
   public userPokemons$: Observable<Pokemon[]>;
@@ -36,6 +38,7 @@ export class PokemonChooserComponent implements OnInit {
   public sendPokemons(): void {
     const [userPokemon, opponentPokemon]: Pokemon[] = this.selectedPokemon;
     this.toBattle.sendPokemons({ userPokemon,  opponentPokemon});
+    this.battle.startFight();
   }
 
   public ngOnInit(): void {

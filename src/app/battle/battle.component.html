@@ -1,0 +1,53 @@
+<app-pokemon-chooser *ngIf="!isVisibleFight"></app-pokemon-chooser>
+<div *ngIf="isVisibleFight" class="battle-field">
+    <app-battle-info [health]="health" [pokemonA]="pokemonA" [pokemonB]="pokemonB"></app-battle-info>
+    <h1 *ngIf="!this.battleService.isAlive(this.pokemonA) || !this.battleService.isAlive(this.pokemonB)">Game Over</h1>
+    <div class="battle-btns" *ngIf="this.battleService.isAlive(this.pokemonA) && this.battleService.isAlive(this.pokemonB)">
+        <div class="left-corner">
+            <div *ngIf="isButtons">
+                <div *ngIf="!isDefence" class="defence-wrapper">
+                    <div (click)="defencePlace('current')" class="voodoo-div">
+                        <div class="top-voodoo" data-area="topVoodoo"></div>
+                        <div class="middle-voodoo" data-area="middleVoodoo"></div>
+                        <div class="bottom-voodoo" data-area="bottomVoodoo"></div>
+                    </div>
+                </div>
+                <div *ngIf="isVoodoo" class="attack-wrapper">
+                    <div (click)="punchPlace('current')" class="voodoo-div">
+                        <div class="top-voodoo" data-area="topVoodoo"></div>
+                        <div class="middle-voodoo" data-area="middleVoodoo"></div>
+                        <div class="bottom-voodoo" data-area="bottomVoodoo"></div>
+                    </div>
+                </div>
+                <div *ngIf="!isPunchSection">
+                    <button (click)="currentBasePunch()">punch</button>
+                    <button (click)="currentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonA)">super
+                        punch</button>
+                </div>
+            </div>
+        </div>
+        <div class="right-corner">
+            <div *ngIf="!isButtons">
+                <div *ngIf="isDefence" class="defence-wrapper">
+                    <div (click)="defencePlace('opponent')" class="voodoo-div">
+                        <div class="top-voodoo" data-area="topVoodoo"></div>
+                        <div class="middle-voodoo" data-area="middleVoodoo"></div>
+                        <div class="bottom-voodoo" data-area="bottomVoodoo"></div>
+                    </div>
+                </div>
+                <div *ngIf="isVoodoo" class="attack-wrapper">
+                    <div (click)="punchPlace('opponent')" class="voodoo-div">
+                        <div class="top-voodoo" data-area="topVoodoo"></div>
+                        <div class="middle-voodoo" data-area="middleVoodoo"></div>
+                        <div class="bottom-voodoo" data-area="bottomVoodoo"></div>
+                    </div>
+                </div>
+                <div *ngIf="isPunchSection">
+                    <button (click)="opponentBasePunch()">punch</button>
+                    <button (click)="opponentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonB)">super
+                        punch</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

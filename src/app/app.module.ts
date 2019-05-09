@@ -24,7 +24,7 @@ import { routes } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    SharedModule,
+    SharedModule.forRoot(),
     RouterModule.forRoot(routes),
     CoreModule.forRoot(),
     AngularFireModule.
@@ -32,7 +32,7 @@ import { routes } from './app-routing.module';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [ AuthService, AuthGuardService, ToBattleService ],
   bootstrap: [ AppComponent ]

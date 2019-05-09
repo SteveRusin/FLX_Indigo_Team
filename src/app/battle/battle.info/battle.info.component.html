@@ -1,0 +1,10 @@
+<div class="battle-info">
+    <div class="battle-info-left">
+        <progress #firstLine value="{{healthA}}" max="100"></progress>
+        <span *ngIf="pokemonA.health>0">{{healthA}}</span>
+    </div>
+    <div class="battle-info-right">
+        <span *ngIf="pokemonB.health>0">{{healthB}}</span>
+        <progress #secondLine value="{{healthB}}" max="100"></progress>
+    </div>
+</div>
