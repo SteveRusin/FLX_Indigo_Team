@@ -3,8 +3,8 @@
     <app-battle-info [health]="health" [pokemonA]="pokemonA" [pokemonB]="pokemonB"></app-battle-info>
     <h1>{{title}}</h1>
 
-    <mat-card [@popup]=attackPopupA>{{attack}}: {{attackStrength}}</mat-card>
-    <mat-card [@popup]=attackPopupB>{{attack}}: {{attackStrength}}</mat-card>
+    <!-- <mat-card [@popup]=attackPopupA>{{attack}}: {{attackStrength}}</mat-card>
+    <mat-card [@popup]=attackPopupB>{{attack}}: {{attackStrength}}</mat-card> -->
     <div class="players">
         <img #imgPokemonA class="pokemonA" [@defenseAnimation]=defenseA [@attackAnimation]=attackPopupA />
         <img #imgPokemonB class="pokemonB" [@defenseAnimation]=defenseB [@attackAnimation]=attackPopupB />

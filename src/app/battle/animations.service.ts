@@ -69,18 +69,3 @@ export const defenseAnimation: AnimationTriggerMetadata = trigger('defenseAnimat
     })
   ))
 ]);
-
-export const popupAnimation: AnimationTriggerMetadata = trigger('popup', [
-  state('initial', style({
-    opacity: 0,
-  })),
-  state('final', style({
-    opacity: 0,
-  })),
-  transition('initial<=>final', animate('1s ease-out',
-    style({
-      transform: 'translateY(5em)',
-      opacity: 0.8,
-    })
-  ))
-]);

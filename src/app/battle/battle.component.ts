@@ -7,14 +7,14 @@ import { Subscription } from 'rxjs';
 
 // USE ANIMATIONS SERVICE
 import { BattleAnimationsService } from '../services/battle.animations.service';
-import { attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation, popupAnimation } from './animations.service';
+import { attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation } from './animations.service';
 
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss'],
   providers: [BattleService],
-  animations: [ attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation, popupAnimation ]
+  animations: [ attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation ]
 })
 export class BattleComponent implements OnInit, OnDestroy {
   public title: string = '';
@@ -26,14 +26,10 @@ export class BattleComponent implements OnInit, OnDestroy {
 
   public aAttack: string;
   public bAttack: string;
-  public attack: string;
-  public attackStrength: number;
   public currentStateA: string = 'initial';
   public currentStateB: string = 'initial';
   public defenseA: string = 'initial';
   public defenseB: string = 'initial';
-  public attackPopupA: string = 'initial';
-  public attackPopupB: string = 'initial';
   private counter: number = 0;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
@@ -50,7 +46,8 @@ export class BattleComponent implements OnInit, OnDestroy {
   @ViewChild('imgPokemonA') public imgPokemonA: ElementRef;
   @ViewChild('imgPokemonB') public imgPokemonB: ElementRef;
 
-  constructor(public battleService: BattleService, public elementRef: ElementRef, public renderer: Renderer2, private toBattle: ToBattleService, public battleAnimationsService: BattleAnimationsService) {
+  constructor(public battleService: BattleService, public elementRef: ElementRef, public renderer: Renderer2,
+    private toBattle: ToBattleService, public battleAnimationsService: BattleAnimationsService) {
     this.subscription = this.toBattle.getPokemons()
       .subscribe((pokemons: Pokemon[]) => {
         this.pokemons = pokemons;
@@ -94,36 +91,9 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.defenseB = this.defenseB === 'initial' ? 'final' : 'initial';
   }
 
-  public showAttackAndPopupA(): void {
-    this.attackPopupA = this.attackPopupA === 'initial' ? 'final' : 'initial';
-  }
-
-  public showAttackAndPopupB(): void {
-    this.attackPopupB = this.attackPopupB === 'initial' ? 'final' : 'initial';
-  }
-
   public getPokemons(): void {
     this.renderer.setAttribute(this.imgPokemonA.nativeElement, 'src', this.battleAnimationsService.getPokemonImg(this.pokemonA.name));
     this.renderer.setAttribute(this.imgPokemonB.nativeElement, 'src', this.battleAnimationsService.getPokemonImg(this.pokemonB.name));
-  }
-
-  public showPopup(val: string, strength: number, a: string): void {
-    if (val === 'attack') {
-      this.attack = 'Punch';
-      this.attackStrength = strength;
-    } else if (val === 'specAttack') {
-      this.attack = 'Super punch';
-      this.attackStrength = strength;
-    } else {
-      this.attack = 'Defence';
-      this.attackStrength = strength;
-    }
-
-    if (a === 'a') {
-      this.showAttackAndPopupA();
-    } else {
-      this.showAttackAndPopupB();
-    }
   }
 
   // END ANIMATIONS SERVICE
@@ -141,12 +111,15 @@ export class BattleComponent implements OnInit, OnDestroy {
       this.changeStateB();
     }
     this.counter = 1;
-    this.showPopup('attack', -this.counter, 'a');
+    this.battleInfo.showPopup('attack', -this.counter, 'a');
   }
   public currentSpecAttack(): void {
     this.pokemonB.health = this.battleService.specAttack(this.pokemonA, this.pokemonB);
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
     this.setCurrentDisable();
+
+    // USE ANIMATIONS SERVICE
+    this.battleInfo.showPopup('specAttack', -this.counter, 'a');
   }
 
   public opponentBasePunch(): void {
@@ -160,7 +133,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.bAttack = this.pokemonB.type;
     this.changeStateB();
     this.changeStateA();
-    this.showPopup('attack', -this.counter, 'b');
+    this.battleInfo.showPopup('attack', -this.counter, 'b');
   }
 
   public opponentSpecAttack(): void {
@@ -168,6 +141,9 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.pokemonA.health = this.battleService.specAttack(this.pokemonB, this.pokemonA);
     this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
     this.setOpponentDisable();
+
+    // USE ANIMATIONS SERVICE
+    this.battleInfo.showPopup('specAttack', -this.counter, 'b');
   }
   public currentDefence(): void {
     this.leftCornerDefence = this.battleService.setDefence(this.pokemonA, this.pokemonB);
@@ -175,6 +151,7 @@ export class BattleComponent implements OnInit, OnDestroy {
 
     // USE ANIMATIONS SERVICE
     this.changeDefenseA();
+    this.battleInfo.showPopup('defence', this.counter, 'a');
   }
   public opponentDefence(): void {
     this.rightCornerDefence = this.battleService.setDefence(this.pokemonB, this.pokemonA);
@@ -182,6 +159,7 @@ export class BattleComponent implements OnInit, OnDestroy {
 
     // USE ANIMATIONS SERVICE
     this.changeDefenseB();
+    this.battleInfo.showPopup('defence', this.counter, 'b');
   }
 
   public setProgressLine(currentHealth: number, opponentHealth: number): void {

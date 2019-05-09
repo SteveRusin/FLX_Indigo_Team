@@ -6,6 +6,15 @@
   color: snow;
 }
 
+.battle-info-left {
+  display: flex;
+}
+
+.battle-info-right {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 #opponent-line {
   float: right;
 }
@@ -27,4 +36,11 @@ progress::-webkit-progress-value {
 progress::after {
   display: block;
   content: attr(id)
+}
+
+mat-card {
+  position: absolute;
+  width: 10em;
+  text-align: center;
+  color: var(--white);
 }
