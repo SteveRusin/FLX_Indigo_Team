@@ -3,9 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Pokemon } from '../shared/pokemon-chooser/pokemon-interface';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class PokemonChooserService {
   constructor(private firestore: AngularFirestore) {}

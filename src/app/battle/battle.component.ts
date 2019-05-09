@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild, Renderer2, OnDestroy, Output, EventEmitter, HostListener } from '@angular/core';
-import { BattleService } from './battle.service';
+import { BattleService } from '../services/battle.service';
 import { Pokemon } from '../models/pokemon.interface';
 import { BattleInfoComponent } from '../battle/battle.info/battle.info.component';
 import { ToBattleService } from '../services/to-battle.service';
@@ -25,6 +25,7 @@ export class BattleComponent implements OnInit, OnDestroy {
   public subscription: Subscription;
   public killEvent: any;
   public killDefenceEvent: any;
+  public punchCoefficient: number = 1;
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
   constructor(private battleService: BattleService, private elementRef: ElementRef, private renderer: Renderer2, private toBattle: ToBattleService) {
@@ -54,7 +55,7 @@ export class BattleComponent implements OnInit, OnDestroy {
   public currentBasePunch(): void {
     this.isButtons = !this.isButtons;
     this.killEvent();
-    this.opponentPokemonHealth = this.battleService.basePunch(this.pokemonA, this.pokemonB);
+    this.opponentPokemonHealth -= this.battleService.basePunch(this.pokemonA, this.pokemonB)*this.punchCoefficient;
   }
   public currentSpecAttack(): void {
     this.killEvent();
@@ -72,7 +73,7 @@ export class BattleComponent implements OnInit, OnDestroy {
   public opponentBasePunch(): void {
     this.isButtons = !this.isButtons;
     this.killEvent();
-    this.currentPokemonHealth = this.battleService.basePunch(this.pokemonB, this.pokemonA);
+    this.currentPokemonHealth -= this.battleService.basePunch(this.pokemonB, this.pokemonA)*this.punchCoefficient;
   }
 
   public opponentSpecAttack(): void {
@@ -140,6 +141,9 @@ export class BattleComponent implements OnInit, OnDestroy {
         this.pokemonB.placeOfPunch = punchArea;
       }
     });
+    if(this.counter>10) {
+      this.punchCoefficient = 2;
+    }
   }
   public defencePlace(whoPunch: string): void {
     let defenceArea: string;

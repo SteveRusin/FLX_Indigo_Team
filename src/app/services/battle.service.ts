@@ -15,15 +15,15 @@ export class BattleService {
 
   public basePunch(a: Pokemon, b: Pokemon): number {
     let currentAbility: number;
-    let result: number;
+    //let result: number;
     if (this.counterArr.indexOf(a.state) !== -1) {
       this.counterArr.push(a.state);
     }
     currentAbility = this.getValOfObj(a.ability);
     const random: number = this.generateRandom(currentAbility);
-    result = b.health - random;
+    // result = b.health - random;
 
-    return result;
+    return random;
   }
 
   public specAttack(a: Pokemon, b: Pokemon): number {

@@ -24,7 +24,7 @@ import { routes } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    SharedModule,
+    SharedModule.forRoot(),
     RouterModule.forRoot(routes),
     CoreModule.forRoot(),
     AngularFireModule.

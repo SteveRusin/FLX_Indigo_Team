@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { BattleService } from './../battle.service';
+import { BattleService } from '../../services/battle.service';
 @Component({
   selector: 'app-battle-info',
   templateUrl: './battle.info.component.html',
