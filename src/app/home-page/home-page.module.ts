@@ -13,7 +13,8 @@ import { MatAutocompleteModule,
 } from '@angular/material';
 
 @NgModule({
-  imports: [CommonModule,
+  imports: [
+    CommonModule,
     RouterModule.forChild(homeRoutes),
     MatAutocompleteModule,
     MatCardModule,

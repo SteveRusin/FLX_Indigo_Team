@@ -3,8 +3,9 @@ import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
 import { Pokemon } from './pokemon-interface';
 import { PokemonChooserService } from '../../services/pokemon-chooser.service';
-import { ToBattleService } from '../../services/to-battle.service';
 import { BattleComponent } from '../../battle/battle.component';
+import { ToBattleService } from '../../services/to-battle.service';
+import { combineLatest, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-chooser',
@@ -14,12 +15,13 @@ import { BattleComponent } from '../../battle/battle.component';
 
 export class PokemonChooserComponent implements OnInit {
 
-  constructor(private pokemonChooserService: PokemonChooserService, private toBattle: ToBattleService, private battle: BattleComponent) {}
+  constructor(private pokemonChooserService: PokemonChooserService, private toBattle: ToBattleService,private battle: BattleComponent) {}
 
-  public pokemonsList: Pokemon[] = [];
-  public userPokemons: Pokemon[] = [];
   public selectedPokemon: Pokemon[] = [];
   public isVisible: boolean = true;
+
+  public pokemonsList$: Observable<Pokemon[]>;
+  public userPokemons$: Observable<Pokemon[]>;
 
   public choosePokemon(pokemon: Pokemon, step: CdkStep, stepper: MatStepper): void {
     if(stepper.selectedIndex === 0) {
@@ -33,28 +35,23 @@ export class PokemonChooserComponent implements OnInit {
     stepper.next();
   }
 
-  public filerPokemon(userPokemons: Pokemon[]): void {
-    const id: string[] = userPokemons.map((el: any) => el.payload.doc.id);
-    this.userPokemons = this.pokemonsList.filter( (el: Pokemon) => {
-      return id.includes(el.id);
-    });
-  }
-
   public sendPokemons(): void {
     const [userPokemon, opponentPokemon]: Pokemon[] = this.selectedPokemon;
-    this.toBattle.sendPokemons({ userPokemon, opponentPokemon });
+    this.toBattle.sendPokemons({ userPokemon,  opponentPokemon});
     this.battle.startFight();
   }
 
   public ngOnInit(): void {
-    this.pokemonChooserService.getPokemons()
-    .subscribe((pokemons: Pokemon[]) => {
-      this.pokemonsList = pokemons;
-    });
+    this.userPokemons$ = combineLatest(
+      this.pokemonChooserService.getPokemons(),
+      this.pokemonChooserService.getUserPokemons(),
+      (pokemons: Pokemon[], userPokemons: Pokemon[]): Pokemon[] =>  {
+        const id: string[] = userPokemons.map((el: any) => el.payload.doc.id);
 
-    this.pokemonChooserService.getUserPokemons()
-    .subscribe((userPokemons: any) => {
-      this.filerPokemon(userPokemons);
-    });
+        return pokemons.filter((el: Pokemon) => {
+          return id.includes(el.id);
+       });
+     });
+     this.pokemonsList$ = this.pokemonChooserService.getPokemons();
   }
 }

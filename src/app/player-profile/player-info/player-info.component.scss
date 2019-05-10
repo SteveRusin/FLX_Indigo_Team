@@ -1,0 +1,59 @@
+.info-wrap {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 35px;
+}
+
+.profile-avatar-wrap {
+  width: 100%;
+  max-width: 400px;
+  padding: 1em;
+
+  .profile-avatar {
+    width: 100%;
+    min-width: 240px;
+  }
+}
+
+.player-info {
+  width: 100%;
+  
+  span {
+    font-weight: 500;
+    font-size: 1.5em;
+    border-bottom: 1px solid var(--yellow);
+  }
+
+  .nickname {
+    margin: 1em;
+  }
+
+  .battles-card {
+    background: var(--blue);
+    color: var(--white);
+
+    mat-card-header {
+      display: block;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+    mat-card-subtitle {
+      color: #ccc;
+    }
+
+    mat-card-content {
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .battles-statistic-info {
+      text-align: center;
+      padding: 0.5em;
+
+      p {
+        font-size: 1.2em;
+        margin-bottom: 0; 
+      }
+    }
+  }
+}

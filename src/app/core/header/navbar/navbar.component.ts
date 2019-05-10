@@ -1,5 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import {
+  Component,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
+import {
+  MatDialog,
+  MatDialogRef
+} from '@angular/material';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { DialogData } from './login-dialog/DialogData';
@@ -12,18 +21,24 @@ import { LoginDialogService } from './login-dialog/login-dialog.service';
   styleUrls: ['./navbar.component.scss']
 })
 
-export class NavbarComponent implements OnInit {
+export class NavbarComponent implements OnInit, OnDestroy {
+  private destroy$: Subject<any> = new Subject();
   public dialogWithForm: MatDialogRef<LoginDialogComponent, DialogData>;
   public email: string;
   public password: string;
-  public profileAvatar: string;
 
-  constructor(public dialog: MatDialog,
+  constructor(
+    public dialog: MatDialog,
     public authService: AuthService,
-    public loginDialogService: LoginDialogService) { }
+    public loginDialogService: LoginDialogService
+  ) { }
 
   public isLogged(): boolean {
     return this.authService.isLoggedIn();
+  }
+
+  public getPlayerAvatar(): any {
+    return this.authService.getPlayerAvatar();
   }
 
   public ngOnInit(): void {
@@ -41,12 +56,19 @@ export class NavbarComponent implements OnInit {
     });
 
     this.dialogWithForm.afterClosed()
+    .pipe(
+      takeUntil(this.destroy$)
+      )
     .subscribe((result:DialogData) => {
-      console.log(this.dialogWithForm);
       if (result) {
         this.email = result.email;
         this.password = result.password;
       }
     });
+  }
+
+  public ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

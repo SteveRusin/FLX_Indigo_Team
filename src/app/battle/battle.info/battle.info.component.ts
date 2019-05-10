@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
-import { BattleService } from './../battle.service';
+import { BattleService } from '../../services/battle.service';
 import { popupAnimationDamage, popupAnimationDefence } from './info-animations.service';
 @Component({
   selector: 'app-battle-info',

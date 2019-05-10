@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { AuthService } from './services/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { ToBattleService } from './services/to-battle.service';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -16,25 +18,23 @@ import { CoreModule } from './core/core.module';
 import { environment } from '../environments/environment';
 import { routes } from './app-routing.module';
 
-import { ToBattleService } from './services/to-battle.service';
-
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
-    SharedModule,
+    SharedModule.forRoot(),
     RouterModule.forRoot(routes),
     CoreModule.forRoot(),
     AngularFireModule.
       initializeApp(environment.fireConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    BrowserAnimationsModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    BrowserAnimationsModule
   ],
-  providers: [AuthService,ToBattleService],
-  bootstrap: [AppComponent]
+  providers: [ AuthService, AuthGuardService, ToBattleService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
