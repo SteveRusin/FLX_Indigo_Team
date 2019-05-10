@@ -29,18 +29,18 @@ export class BattleAnimationsService {
     return this.isBack = !this.isBack;
   }
 
-  public attacked(pokeType: string): void {
-    const arr: string[] = Object.values(pokemonType);
-    for (const type of arr) {
-      if (pokeType === type) {
-        return this.attackType(pokeType);
-      } else {
-        continue;
-      }
-    }
-  }
+  // public attacked(pokeType: string): void {
+  //   const arr: string[] = Object.values(pokemonType);
+  //   for (const type of arr) {
+  //     if (pokeType === type) {
+  //       return this.attackType(pokeType);
+  //     } else {
+  //       continue;
+  //     }
+  //   }
+  // }
 
-  public attackType(type: string): void {
-    console.log(type);
-  }
+  // public attackType(type: string): void {
+  //   console.log(type);
+  // }
 }

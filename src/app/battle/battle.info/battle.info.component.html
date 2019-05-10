@@ -1,17 +1,13 @@
 <div class="battle-info">
     <div class="battle-info-left">
-        <div>
-            <progress #firstLine value="{{healthA}}" max="100"></progress>
-            <span *ngIf="pokemonA.health>0">{{healthA}}</span>
-        </div>
+        <progress #firstLine value="{{healthA}}" max="100"></progress>
+        <span *ngIf="pokemonA.health>0">{{healthA}}</span>
         <mat-card [@popupDamage]=attackPopupA>{{attack}}: {{attackStrength}}</mat-card>
         <mat-card [@popupDefence]=defencePopupB>{{attack}}: {{attackStrength}}</mat-card>
     </div>
     <div class="battle-info-right">
-        <div>
-            <span *ngIf="pokemonB.health>0">{{healthB}}</span>
-            <progress #secondLine value="{{healthB}}" max="100"></progress>
-        </div>
+        <span *ngIf="pokemonB.health>0">{{healthB}}</span>
+        <progress #secondLine value="{{healthB}}" max="100"></progress>
         <mat-card [@popupDamage]=attackPopupB>{{attack}}: {{attackStrength}}</mat-card>
         <mat-card [@popupDefence]=defencePopupA>{{attack}}: {{attackStrength}}</mat-card>
     </div>
