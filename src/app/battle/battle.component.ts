@@ -77,6 +77,8 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.pokemonA.state = 'current';
     this.pokemonB.state = 'opponent';
     this.isVisibleFight = true;
+    this.currentPokemonHealth = this.pokemonA.health;
+    this.opponentPokemonHealth = this.pokemonB.health;
 
     // USE ANIMATIONS SERVICE
     setTimeout(() => {
@@ -95,8 +97,6 @@ export class BattleComponent implements OnInit, OnDestroy {
 
   public changeDefenseA(): void {
     this.defenseA = this.defenseA === 'initial' ? 'final' : 'initial';
-    this.currentPokemonHealth = this.pokemonA.health;
-    this.opponentPokemonHealth = this.pokemonB.health;
   }
 
   public changeDefenseB(): void {
