@@ -1,7 +1,8 @@
 <div class="info-wrap" *ngIf="userPlayer$ | async as player">
   <div class="profile-avatar-wrap">
-    <img src="{{player.avatar}}" alt="avatar" class="profile-avatar">
+    <profile-avatar></profile-avatar>
   </div>
+
   <div class="player-info">
     <p class="nickname"><span>{{player.name}}</span></p>
     

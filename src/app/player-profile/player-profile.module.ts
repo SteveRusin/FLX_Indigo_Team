@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material';
 
 import { PlayerProfileComponent } from './player-profile.component';
 import { PlayerInfoComponent } from './player-info/player-info.component';
+import { ProfileAvatarComponent } from './player-info/profile-avatar/profile-avatar.component';
 import { PokemonsListComponent } from './pokemons-list/pokemons-list.component';
 import { ProfileInfoService } from '../services/profile-info.service';
 import { profileRoutes } from './player-profile-routing.module';
@@ -18,6 +19,7 @@ import { profileRoutes } from './player-profile-routing.module';
   declarations: [
     PlayerProfileComponent,
     PlayerInfoComponent,
+    ProfileAvatarComponent,
     PokemonsListComponent
   ],
   providers: [
