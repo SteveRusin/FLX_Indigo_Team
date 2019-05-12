@@ -3,20 +3,30 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { Pokemon } from '../shared/pokemon-chooser/pokemon-interface';
 
+import { switchMap } from 'rxjs/operators';
+import { AuthService } from './auth.service';
+
 @Injectable()
 
 export class PokemonChooserService {
-  constructor(private firestore: AngularFirestore) {}
+  public userPlayer$: Observable<any>;
+
+  constructor(private firestore: AngularFirestore, public authService: AuthService) {}
 
   public getPokemons(): Observable<Pokemon[]> {
     return this.firestore.collection('pokemons')
     .valueChanges();
   }
 
-  public getUserPokemons(): Observable<Pokemon[]> {
-    return this.firestore.collection('players')
-    .doc('GmMHEYUlsV8fEUBu2ecZ')
-    .collection('pokemons')
-    .snapshotChanges();
+  public getUserPokemons(): any {
+    return this.authService.user
+      .pipe(
+        switchMap((user: any): any => {
+          return this.firestore.collection('players')
+            .doc(user.uid)
+            .collection('pokemons')
+            .snapshotChanges();
+        })
+      );
   }
 }
