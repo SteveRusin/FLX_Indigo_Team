@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
-import { Pokemon } from './pokemon-interface';
-import { BattleComponent } from '../../battle/battle.component';
-import { ToBattleService } from '../../services/to-battle.service';
 import { combineLatest, Observable } from 'rxjs';
+
+import { ToBattleService } from '../../services/to-battle.service';
 import { PokemonChooserService } from '../../services/pokemon-chooser.service';
+
+import { BattleComponent } from '../../battle/battle.component';
+import { Pokemon } from './pokemon-interface';
 
 @Component({
   selector: 'app-pokemon-chooser',
@@ -20,7 +22,11 @@ export class PokemonChooserComponent implements OnInit {
 
   public isVisible: boolean = true;
 
-  constructor(public pokemonChooserService: PokemonChooserService, private toBattle: ToBattleService, private battle: BattleComponent) {}
+  constructor(
+    public pokemonChooserService: PokemonChooserService,
+    private toBattle: ToBattleService,
+    private battle: BattleComponent
+    ){}
 
   public choosePokemon(pokemon: Pokemon, step: CdkStep, stepper: MatStepper): void {
     if(stepper.selectedIndex === 0) {
@@ -49,7 +55,7 @@ export class PokemonChooserComponent implements OnInit {
 
         return pokemons.filter((pokemon: Pokemon) => {
           return names.includes(pokemon.name);
-       });
+        });
       });
     this.pokemonsList$ = this.pokemonChooserService.getPokemons();
   }
