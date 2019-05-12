@@ -34,7 +34,7 @@
                 </div>
                 <div *ngIf="!isPunchSection">
                     <button (click)="currentBasePunch()">punch</button>
-                    <button (click)="currentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonA)">super
+                    <button class="spec" (click)="currentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonA)">super
                         punch</button>
                 </div>
             </div>
@@ -57,7 +57,7 @@
                 </div>
                 <div *ngIf="isPunchSection">
                     <button (click)="opponentBasePunch()">punch</button>
-                    <button (click)="opponentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonB)">super
+                    <button class="spec" (click)="opponentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonB)">super
                         punch</button>
                 </div>
             </div>
