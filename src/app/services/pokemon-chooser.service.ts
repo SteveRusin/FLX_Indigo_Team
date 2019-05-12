@@ -15,7 +15,7 @@ export class PokemonChooserService {
 
   public getUserPokemons(): Observable<Pokemon[]> {
     return this.firestore.collection('players')
-    .doc('GmMHEYUlsV8fEUBu2ecZ')
+    .doc('yPx5MPzW6cMZxwAnmqIFrPZJMoE2')
     .collection('pokemons')
     .snapshotChanges();
   }

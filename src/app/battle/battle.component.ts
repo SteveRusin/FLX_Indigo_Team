@@ -32,6 +32,7 @@ export class BattleComponent implements OnInit, OnDestroy {
   public killEvent: any;
   public killDefenceEvent: any;
   public punchCoefficient: number = 1;
+  private counter: number = 0;
 
   public aAttack: string;
   public bAttack: string;
@@ -39,8 +40,10 @@ export class BattleComponent implements OnInit, OnDestroy {
   public currentStateB: string = 'initial';
   public defenseA: string = 'initial';
   public defenseB: string = 'initial';
-  private counter: number = 0;
-  private dcounter: number = 0;
+  private healthCounterA: number = 100;
+  private healthCounterB: number = 100;
+  private isSpecAttackA: boolean = false;
+  private isSpecAttackB: boolean = false;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
@@ -87,12 +90,14 @@ export class BattleComponent implements OnInit, OnDestroy {
   }
 
     // USE ANIMATIONS SERVICE
-  public changeStateA(): void {
-    this.currentStateA = this.currentStateA === 'initial' ? 'final' : 'initial';
+  public changeStateA(state: string): void {
+    this.currentStateA = 'initial';
+    setTimeout(() => this.currentStateA = state);
   }
 
-  public changeStateB(): void {
-    this.currentStateB = this.currentStateB === 'initial' ? 'final' : 'initial';
+  public changeStateB(state: string): void {
+    this.currentStateB = 'initial';
+    setTimeout(() => this.currentStateB = state);
   }
 
   public changeDefenseA(): void {
@@ -106,25 +111,20 @@ export class BattleComponent implements OnInit, OnDestroy {
   public getPokemons(): void {
     this.renderer.setAttribute(this.imgPokemonA.nativeElement, 'src', this.battleAnimationsService.getPokemonImg(this.pokemonA.name));
     this.renderer.setAttribute(this.imgPokemonB.nativeElement, 'src', this.battleAnimationsService.getPokemonImg(this.pokemonB.name));
+    this.aAttack = this.pokemonA.type;
+    this.bAttack = this.pokemonB.type;
   }
 
     // END ANIMATIONS SERVICE
+
   public currentBasePunch(): void {
     this.isButtons = !this.isButtons;
+    this.isSpecAttackA = false;
     this.killEvent();
     this.opponentPokemonHealth -= this.battleService.basePunch(this.pokemonA, this.pokemonB)*this.punchCoefficient;
-
-    // USE ANIMATIONS SERVICE
-    // this.battleAnimationsService.attacked(this.pokemonA.type);
-    this.aAttack = this.pokemonA.type;
-    this.changeStateA();
-    if (this.dcounter === 1) {
-      this.changeStateB();
-    }
-    this.dcounter = 1;
-    this.battleInfo.showPopup('attack', -this.dcounter, 'a');
   }
   public currentSpecAttack(): void {
+    this.isSpecAttackA = true;
     this.killEvent();
     this.isButtons = !this.isButtons;
     if (this.pokemonA.specAttack.type === 'recovery' || this.pokemonA.specAttack.type === 'defence') {
@@ -135,25 +135,17 @@ export class BattleComponent implements OnInit, OnDestroy {
     } else {
       this.opponentPokemonHealth = this.battleService.specAttack(this.pokemonA, this.pokemonB);
     }
-
-    // USE ANIMATIONS SERVICE
-    this.battleInfo.showPopup('specAttack', -this.dcounter, 'a');
   }
 
   public opponentBasePunch(): void {
     this.isButtons = !this.isButtons;
+    this.isSpecAttackB = false;
     this.killEvent();
     this.currentPokemonHealth -= this.battleService.basePunch(this.pokemonB, this.pokemonA)*this.punchCoefficient;
-
-    // USE ANIMATIONS SERVICE
-    // this.battleAnimationsService.attacked(this.pokemonB.type);
-    this.bAttack = this.pokemonB.type;
-    this.changeStateB();
-    this.changeStateA();
-    this.battleInfo.showPopup('attack', -this.dcounter, 'b');
   }
 
   public opponentSpecAttack(): void {
+    this.isSpecAttackB = true;
     this.killEvent();
     this.isButtons = !this.isButtons;
     if (this.pokemonB.specAttack.type === 'recovery' || this.pokemonB.specAttack.type === 'defence') {
@@ -164,9 +156,6 @@ export class BattleComponent implements OnInit, OnDestroy {
     } else {
       this.currentPokemonHealth = this.battleService.specAttack(this.pokemonB, this.pokemonA);
     }
-
-    // USE ANIMATIONS SERVICE
-    this.battleInfo.showPopup('specAttack', -this.dcounter, 'b');
   }
 
   public currentDefence(): void {
@@ -174,44 +163,77 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.isVoodoo = !this.isVoodoo;
     this.isDefence = !this.isDefence;
     this.leftCornerDefence = this.battleService.setDefence(this.pokemonA, this.pokemonB);
-    //this.setCurrentDisable();
 
     if (!this.leftCornerDefence) {
       this.pokemonA.health = this.currentPokemonHealth;
       this.pokemonB.health = this.opponentPokemonHealth;
+      this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
+      // USE ANIMATIONS SERVICE
+      if ( this.isSpecAttackB && this.pokemonB.specAttack.type === 'damage') {
+        this.changeStateB('final');
+        this.battleInfo.showPopup('attack', -this.healthCounterB, 'b');
+      } else if ( this.isSpecAttackB && this.pokemonB.specAttack.type === 'recovery'
+      || this.pokemonB.specAttack.type === 'defence') {
+        this.battleInfo.showPopup('defence', this.healthCounterA, 'a');
+        this.changeDefenseB();
+      } else {
+        this.changeStateB('final');
+        this.battleInfo.showPopup('attack', -this.healthCounterB, 'b');
+      }
+    } else {
+      this.currentPokemonHealth = this.pokemonA.health;
+      this.opponentPokemonHealth = this.pokemonB.health;
+      this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
+      // USE ANIMATIONS SERVICE. Opponent defended
+      this.battleInfo.showPopup('defence', this.healthCounterB, 'b');
+      this.changeDefenseA();
     }
-    this.currentPokemonHealth = this.pokemonA.health;
-    this.opponentPokemonHealth = this.pokemonB.health;
-    this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
-
-    // USE ANIMATIONS SERVICE
-    this.changeDefenseA();
-    this.battleInfo.showPopup('defence', this.dcounter, 'a');
   }
   public opponentDefence(): void {
     this.killDefenceEvent();
     this.isVoodoo = !this.isVoodoo;
     this.isDefence = !this.isDefence;
     this.rightCornerDefence = this.battleService.setDefence(this.pokemonB, this.pokemonA);
-    //this.setOpponentDisable();
+
     if (!this.rightCornerDefence) {
       this.pokemonB.health = this.opponentPokemonHealth;
       this.pokemonA.health = this.currentPokemonHealth;
+      this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
+      // USE ANIMATIONS SERVICE
+      if ( this.isSpecAttackA && this.pokemonA.specAttack.type === 'damage') {
+        this.changeStateA('final');
+        this.battleInfo.showPopup('attack', -this.healthCounterA, 'a');
+      } else if ( this.isSpecAttackA && this.pokemonA.specAttack.type === 'recovery'
+      || this.pokemonA.specAttack.type === 'defence') {
+        this.battleInfo.showPopup('defence', this.healthCounterB, 'b');
+        this.changeDefenseA();
+      } else {
+        this.changeStateA('final');
+        this.battleInfo.showPopup('attack', -this.healthCounterA, 'a');
+      }
+    } else {
+      this.currentPokemonHealth = this.pokemonA.health;
+      this.opponentPokemonHealth = this.pokemonB.health;
+      this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
+      // USE ANIMATIONS SERVICE. Opponent defended
+      this.battleInfo.showPopup('defence', this.healthCounterA, 'a');
+      this.changeDefenseB();
     }
-    this.currentPokemonHealth = this.pokemonA.health;
-    this.opponentPokemonHealth = this.pokemonB.health;
-    this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
-
-    // USE ANIMATIONS SERVICE
-    this.changeDefenseB();
-    this.battleInfo.showPopup('defence', this.dcounter, 'b');
   }
+
+  private a: number = 100;
+  private b: number = 100;
 
   public setProgressLine(currentHealth: number, opponentHealth: number): void {
     const current: number = Math.round(currentHealth * 100 / this.health.aHealth);
     const opponent: number = Math.round(opponentHealth * 100 / this.health.bHealth);
     this.battleInfo.leftElement(current);
     this.battleInfo.rightElement(opponent);
+
+    this.healthCounterA = this.a - opponent;
+    this.healthCounterB = this.b - current;
+    this.a = opponent;
+    this.b = current;
   }
 
   public punchPlace(whoPunch: string): void {

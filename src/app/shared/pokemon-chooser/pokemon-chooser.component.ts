@@ -49,7 +49,7 @@ export class PokemonChooserComponent implements OnInit {
         const id: string[] = userPokemons.map((el: any) => el.payload.doc.id);
 
         return pokemons.filter((el: Pokemon) => {
-          return id.includes(el.id);
+          return id.includes(el.name);
        });
      });
      this.pokemonsList$ = this.pokemonChooserService.getPokemons();

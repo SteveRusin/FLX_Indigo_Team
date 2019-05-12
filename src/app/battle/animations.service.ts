@@ -13,12 +13,12 @@ export const attackAnimationsA: AnimationTriggerMetadata = trigger('attackAnimat
     opacity: 0,
   })),
   state('final', style({
-    transform: 'translateX(53em) translateY(-2em)',
+    transform: 'translateX(18em) translateY(8em)',
     opacity: 0,
   })),
   transition('initial=>final', animate('0.6s ease-out',
     style({
-      transform: 'translateX(53em) translateY(-2em)',
+      transform: 'translateX(53em) translateY(-4em)',
       opacity: 1,
     })
   ))
@@ -30,7 +30,7 @@ export const attackAnimationsB: AnimationTriggerMetadata = trigger('attackAnimat
     opacity: 0,
   })),
   state('final', style({
-    transform: 'translateX(22em) translateY(6em)',
+    transform: 'translateX(55em) translateY(-2em)',
     opacity: 0,
   })),
   transition('initial=>final', animate('0.6s ease-out',
