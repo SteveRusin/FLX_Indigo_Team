@@ -34,13 +34,6 @@ export class AuthService {
     return this.userDetails !== null;
   }
 
-  public getPlayerAvatar(): string {
-    if (this.data && this.data.avatar) {
-      return this.data.avatar;
-    } else {
-      return 'https://cdn0.iconfinder.com/data/icons/avatar-profile/452/pikachu_pokemon_profile_avatar_people-512.png';
-    }
-  }
   public logout(): void {
     this._firebaseAuth.auth.signOut()
     .then(() => this.userDetails = null)

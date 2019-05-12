@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MatCardModule } from '@angular/material';
+import { MatCardModule, MatButtonModule } from '@angular/material';
 
 import { PlayerProfileComponent } from './player-profile.component';
 import { PlayerInfoComponent } from './player-info/player-info.component';
@@ -14,7 +14,8 @@ import { profileRoutes } from './player-profile-routing.module';
   imports: [
     CommonModule,
     RouterModule.forChild(profileRoutes),
-    MatCardModule
+    MatCardModule,
+    MatButtonModule
   ],
   declarations: [
     PlayerProfileComponent,

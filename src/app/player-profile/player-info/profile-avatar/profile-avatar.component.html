@@ -3,23 +3,29 @@
     <img src="{{player.avatar}}" alt="avatar" class="profile-avatar">
   </label>
 
-  <input id="file-input" type="file" (change)="detectFiles($event)">
+  <input id="file-input" type="file" accept="image/*" (change)="detectFiles($event)">
 </div>
 
-<div *ngIf="currentUpload">
+<!-- <div *ngIf="currentUpload">
   <div class="progress">
     <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
   </div>
   Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+</div> -->
+
+<div class="change-avatar-buttons">
+  <button mat-raised-button class="primary-color"
+    (click)="triggerInput()">
+
+    Change avatar
+  </button>
+  <div *ngIf="selectedFiles">
+    <button mat-raised-button
+      class="primary-color"
+      [disabled]="!selectedFiles"
+      (click)="uploadSingle()">
+    
+      Upload
+    </button>
+  </div>
 </div>
-<!-- 
-<label>
-  <input type="file" (change)="detectFiles($event)">
-</label> -->
-
-<button
-  [disabled]="!selectedFiles"
-  (click)="uploadSingle()">
-
-  Upload
-</button>
