@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { MatStepper } from '@angular/material/stepper';
 import { CdkStep } from '@angular/cdk/stepper';
-import { Pokemon } from './pokemon-interface';
-import { PokemonChooserService } from '../../services/pokemon-chooser.service';
-import { BattleComponent } from '../../battle/battle.component';
-import { ToBattleService } from '../../services/to-battle.service';
 import { combineLatest, Observable } from 'rxjs';
+
+import { ToBattleService } from '../../services/to-battle.service';
+import { PokemonChooserService } from '../../services/pokemon-chooser.service';
+
+import { BattleComponent } from '../../battle/battle.component';
+import { Pokemon } from './pokemon-interface';
 
 @Component({
   selector: 'app-pokemon-chooser',
@@ -14,14 +16,17 @@ import { combineLatest, Observable } from 'rxjs';
 })
 
 export class PokemonChooserComponent implements OnInit {
-
-  constructor(private pokemonChooserService: PokemonChooserService, private toBattle: ToBattleService,private battle: BattleComponent) {}
-
-  public selectedPokemon: Pokemon[] = [];
-  public isVisible: boolean = true;
-
   public pokemonsList$: Observable<Pokemon[]>;
   public userPokemons$: Observable<Pokemon[]>;
+  public selectedPokemon: Pokemon[] = [];
+
+  public isVisible: boolean = true;
+
+  constructor(
+    public pokemonChooserService: PokemonChooserService,
+    private toBattle: ToBattleService,
+    private battle: BattleComponent
+    ){}
 
   public choosePokemon(pokemon: Pokemon, step: CdkStep, stepper: MatStepper): void {
     if(stepper.selectedIndex === 0) {
@@ -46,12 +51,12 @@ export class PokemonChooserComponent implements OnInit {
       this.pokemonChooserService.getPokemons(),
       this.pokemonChooserService.getUserPokemons(),
       (pokemons: Pokemon[], userPokemons: Pokemon[]): Pokemon[] =>  {
-        const id: string[] = userPokemons.map((el: any) => el.payload.doc.id);
+        const names: string[] = userPokemons.map((element: any) => element.payload.doc.id);
 
-        return pokemons.filter((el: Pokemon) => {
-          return id.includes(el.name);
-       });
-     });
-     this.pokemonsList$ = this.pokemonChooserService.getPokemons();
+        return pokemons.filter((pokemon: Pokemon) => {
+          return names.includes(pokemon.name);
+        });
+      });
+    this.pokemonsList$ = this.pokemonChooserService.getPokemons();
   }
 }

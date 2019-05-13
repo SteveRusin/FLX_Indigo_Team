@@ -7,13 +7,14 @@ import {
   MatDialog,
   MatDialogRef
 } from '@angular/material';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { DialogData } from './login-dialog/DialogData';
 import { AuthService } from 'src/app/services/auth.service';
 import { LoginDialogService } from './login-dialog/login-dialog.service';
+import { ProfileInfoService } from 'src/app/services/profile-info.service';
 
 @Component({
   selector: 'header-navbar',
@@ -26,19 +27,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public dialogWithForm: MatDialogRef<LoginDialogComponent, DialogData>;
   public email: string;
   public password: string;
+  public userPlayer$: Observable<any>;
 
   constructor(
+    public profileInfoService: ProfileInfoService,
     public dialog: MatDialog,
     public authService: AuthService,
     public loginDialogService: LoginDialogService
-  ) { }
+  ) {
+    this.userPlayer$ = profileInfoService.userPlayer$;
+  }
 
   public isLogged(): boolean {
     return this.authService.isLoggedIn();
-  }
-
-  public getPlayerAvatar(): any {
-    return this.authService.getPlayerAvatar();
   }
 
   public ngOnInit(): void {
