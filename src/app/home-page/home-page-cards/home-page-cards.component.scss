@@ -7,6 +7,7 @@ mat-icon {
 
 mat-card-subtitle {
   color: var(--white);
+  line-height: 1.5em;
 }
 
 .faq-cards {
@@ -20,6 +21,7 @@ mat-card-subtitle {
   }
   @include for-tablet-portrait-up {
     width: 50em;
+    height: 70vh;
   }
   @include for-tablet-landscape-up {
     width: 50em;
@@ -31,7 +33,7 @@ mat-card-subtitle {
   }
   @include for-big-desktop-up {
     width: 55em;
-    height: 80vh;
+    height: 90vh;
   }
 
   .card {
@@ -43,6 +45,11 @@ mat-card-subtitle {
   .open-card {
     @include cards(var(--blue));
     background: var(--yellow);
+
+    & mat-card-subtitle {
+      color: var(--black);
+      line-height: 1.5em;
+    }
   }
 
   .img-blbsaur {
@@ -60,19 +67,19 @@ mat-card-subtitle {
     @include for-tablet-landscape-up {
       height: 16em;
       width: 13em;
-      top: 14em;
+      top: 18em;
       left: -8em;
     }
     @include for-desktop-up {
       height: 21em;
       width: 17em;
-      top: 9em;
+      top: 10em;
       left: -12em;
     }
     @include for-big-desktop-up {
       height: 21em;
       width: 17em;
-      top: 15em;
+      top: 14em;
       left: -12em;
     }
   }
@@ -96,6 +103,7 @@ mat-card-subtitle {
 
   .flippable-card {
     position: relative;
+    margin-top: 1em;
     margin-right: 1em;
     width: 18em;
     height: 12em;
@@ -111,25 +119,25 @@ mat-card-subtitle {
 
       @include for-phone-only {
         width: 19em;
-        height: 10em;
-        margin: 1em 0 1em 0;
+        height: 12em;
+        margin: 1.5em 0 1.5em 0;
       }
       @include for-tablet-portrait-up {
         width: 17em;
-        height: 10em;
-        margin: 1em 0 0 0;
+        height: 12em;
+        margin: 1.5em 0 0 0;
       }
       @include for-tablet-landscape-up {
         width: 20em;
-        height: 12em;
+        height: 14em;
       }
       @include for-desktop-up {
         width: 20em;
-        height: 12em;
+        height: 16em;
       }
       @include for-big-desktop-up {
         width: 20em;
-        height: 17em;
+        height: 16em;
       }
     }
 
@@ -138,7 +146,7 @@ mat-card-subtitle {
     }
 
     &:hover {
-      transform: rotateY(180deg) translateX(-11%);
+      transform: rotateY(180deg) translateX(-10%);
     }
   }
 }
