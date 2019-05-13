@@ -30,9 +30,9 @@ export class AuthService {
           this.db.collection('players')
             .doc(this.uid)
             .get()
-            .then((player: Player) => {
+            .then((player: any) => {
               console.log(player);
-              if (!player.id) {
+              if (!player.data()) {
                 this.writePlayerData(this.userDetails.uid, this.userDetails.displayName, this.userDetails.photoURL);
               }
             });
