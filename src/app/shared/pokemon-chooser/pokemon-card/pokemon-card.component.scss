@@ -1,17 +1,27 @@
 .pokemon {
+  position: relative;
+  margin-top: 2em;
   border-radius: 8px;
-  background-color: indigo;
+  background-color: var(--indigo);
   border: none;
-  padding: 2em;
+  padding: 2em 1em;
+  height: 14em;
   &:hover {
     cursor: pointer;
-    box-shadow: 0 0 8px 6px yellow;
+    box-shadow: 0 0 8px 6px var(--yellow);
   }
   p {
-    text-transform: capitalize;
-    margin: 0.8em 0;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 1em;
+    color: var(--white);
+    font-size: 1.4em;
     text-align: center;
-    font-size: 1.2em;
-    color: #fff;
+    text-transform: capitalize;
+  }
+  .pokemon-img {
+    display: block;
+    margin: 0 auto;
   }
 }
