@@ -18,6 +18,6 @@ export class PlayerInfoComponent {
    }
 
   public getWinrate(battles: any): number {
-    return battles.wins * 100 / battles.all;
+    return battles.wins * 100 / battles.all | 0;
   }
 }
