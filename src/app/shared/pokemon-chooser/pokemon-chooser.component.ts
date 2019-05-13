@@ -26,7 +26,7 @@ export class PokemonChooserComponent implements OnInit {
     public pokemonChooserService: PokemonChooserService,
     private toBattle: ToBattleService,
     private battle: BattleComponent
-    ){}
+    ) {}
 
   public choosePokemon(pokemon: Pokemon, step: CdkStep, stepper: MatStepper): void {
     if(stepper.selectedIndex === 0) {

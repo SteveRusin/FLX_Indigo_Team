@@ -3,7 +3,7 @@ mat-horizontal-stepper {
 }
 
 .pokemons {
-  width: 60%;
+  width: 10em;
 }
 
 .pokemon-list {
@@ -19,7 +19,7 @@ mat-horizontal-stepper {
   flex-wrap: wrap;
   margin-top: 1em;
   .choosed-pokemons-cards {
-    width:15%;
+    width: 10em;
   }
 }
 
@@ -35,7 +35,7 @@ mat-horizontal-stepper {
   font-size: 1.2em;
   &:hover {
     cursor: pointer;
-    background-color: #360859;
-    box-shadow: 0 0 8px 6px var(--yellow);
+    background-color: var(--yellow);
+    color: var(--blue);
   }
 }
