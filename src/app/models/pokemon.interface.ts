@@ -1,6 +1,7 @@
 export interface SpecAttack {
   move?: number;
   type: string;
+  name: string;
   [key: string]: any;
 }
 

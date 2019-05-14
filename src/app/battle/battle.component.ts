@@ -44,6 +44,8 @@ export class BattleComponent implements OnInit, OnDestroy {
   private healthCounterB: number = 100;
   private isSpecAttackA: boolean = false;
   private isSpecAttackB: boolean = false;
+  private superPunchA: string;
+  private superPunchB: string;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
@@ -82,11 +84,11 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.isVisibleFight = true;
     this.currentPokemonHealth = this.pokemonA.health;
     this.opponentPokemonHealth = this.pokemonB.health;
+    this.superPunchA = this.pokemonA.specAttack.name;
+    this.superPunchB = this.pokemonB.specAttack.name;
 
     // USE ANIMATIONS SERVICE
-    setTimeout(() => {
-      this.getPokemons();
-    }, 0);
+    setTimeout(() => this.getPokemons());
   }
 
     // USE ANIMATIONS SERVICE
