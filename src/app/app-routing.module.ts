@@ -16,7 +16,9 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'game', loadChildren: './battle/battle.module#BattleModule'
+    path: 'game',
+    loadChildren: './battle/battle.module#BattleModule',
+    data: { animation: 'Game' },
   },
   { path: '**', redirectTo: '', data: {animation: 'Home'} }
 ];

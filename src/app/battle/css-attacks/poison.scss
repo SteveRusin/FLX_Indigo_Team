@@ -1,0 +1,25 @@
+.poison {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(13, 73, 1), rgb(77, 110, 76));
+  border-radius: 2em;
+  filter: blur(0.5em);
+  transform: rotate(115deg);
+  animation: 1s pois infinite;
+  position: absolute;
+
+  @keyframes pois {
+    0% {
+      width: 6em;
+      height: 4em;
+    }
+    50% {
+      width: 4.5em;
+      height: 6.5em;
+    }
+    100% {
+      width: 6em;
+      height: 4em;
+    }
+  }
+}
