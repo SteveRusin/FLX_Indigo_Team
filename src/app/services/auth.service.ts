@@ -102,6 +102,7 @@ export class AuthService {
         name,
         email,
         avatar,
+        money: 500,
         battles: {
           all: 0,
           wins: 0,
