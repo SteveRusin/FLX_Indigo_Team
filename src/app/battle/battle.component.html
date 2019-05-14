@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="right-corner">
+        <div *ngIf="!isGameWithBot" class="right-corner">
             <div *ngIf="!isButtons">
                 <div *ngIf="isDefence" class="defence-wrapper">
                     <div (click)="defencePlace('opponent')" class="voodoo-div">

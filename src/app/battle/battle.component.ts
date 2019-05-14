@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Renderer2, OnDestroy} from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Renderer2, OnDestroy } from '@angular/core';
 import { BattleService } from '../services/battle.service';
 import { Pokemon } from '../models/pokemon.interface';
 import { BattleInfoComponent } from '../battle/battle.info/battle.info.component';
@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
   providers: [BattleService]
 })
 export class BattleComponent implements OnInit, OnDestroy {
+  public isGameWithBot: boolean = false;
   public title: string = '';
   public leftCornerDefence: boolean;
   public rightCornerDefence: boolean;
@@ -55,12 +56,27 @@ export class BattleComponent implements OnInit, OnDestroy {
   public currentBasePunch(): void {
     this.isButtons = !this.isButtons;
     this.killEvent();
-    this.opponentPokemonHealth -= this.battleService.basePunch(this.pokemonA, this.pokemonB)*this.punchCoefficient;
+    if (this.isGameWithBot) {
+      this.defencePlace('bot');
+    }
+    this.opponentPokemonHealth -= this.battleService.basePunch(this.pokemonA, this.pokemonB) * this.punchCoefficient;
+    if (this.isGameWithBot) {
+      this.punchPlace('bot');
+      if(this.battleService.isSpecAttack(this.pokemonB)&&this.pokemonB.health !== this.health.bHealth) {
+        console.log('bot spec!',this.health.bHealth);
+        this.opponentSpecAttack();
+      } else {
+        this.opponentBasePunch();
+      }
+    }
   }
   public currentSpecAttack(): void {
     this.killEvent();
     this.isButtons = !this.isButtons;
-    if (this.pokemonA.specAttack.type === 'recovery' || this.pokemonA.specAttack.type === 'defence') {
+    if (this.isGameWithBot) {
+      this.defencePlace('bot');
+    }
+    if (this.pokemonA.specAttack.type === 'recovery') {
       this.currentPokemonHealth = this.battleService.specAttack(this.pokemonA, this.pokemonB);
       if (this.currentPokemonHealth >= this.health.aHealth) {
         this.currentPokemonHealth = this.health.aHealth;
@@ -68,19 +84,23 @@ export class BattleComponent implements OnInit, OnDestroy {
     } else {
       this.opponentPokemonHealth = this.battleService.specAttack(this.pokemonA, this.pokemonB);
     }
+    if (this.isGameWithBot) {
+      this.punchPlace('bot');
+      this.opponentBasePunch();
+    }
   }
 
   public opponentBasePunch(): void {
     this.isButtons = !this.isButtons;
     this.killEvent();
-    this.currentPokemonHealth -= this.battleService.basePunch(this.pokemonB, this.pokemonA)*this.punchCoefficient;
+    this.currentPokemonHealth -= this.battleService.basePunch(this.pokemonB, this.pokemonA) * this.punchCoefficient;
   }
 
   public opponentSpecAttack(): void {
     this.killEvent();
     this.isButtons = !this.isButtons;
 
-    if (this.pokemonB.specAttack.type === 'recovery' || this.pokemonB.specAttack.type === 'defence') {
+    if (this.pokemonB.specAttack.type === 'recovery') {
       this.opponentPokemonHealth = this.battleService.specAttack(this.pokemonB, this.pokemonA);
       if (this.opponentPokemonHealth >= this.health.bHealth) {
         this.opponentPokemonHealth = this.health.bHealth;
@@ -105,8 +125,12 @@ export class BattleComponent implements OnInit, OnDestroy {
   }
   public opponentDefence(): void {
     this.killDefenceEvent();
-    this.isVoodoo = !this.isVoodoo;
-    this.isDefence = !this.isDefence;
+    //wtf
+    if (!this.isGameWithBot) {
+      this.isVoodoo = !this.isVoodoo;
+      this.isDefence = !this.isDefence;
+    }
+
     this.rightCornerDefence = this.battleService.setDefence(this.pokemonB, this.pokemonA);
     if (!this.rightCornerDefence) {
       this.pokemonB.health = this.opponentPokemonHealth;
@@ -141,7 +165,13 @@ export class BattleComponent implements OnInit, OnDestroy {
         this.pokemonB.placeOfPunch = punchArea;
       }
     });
-    if(this.counter>10) {
+    if (whoPunch === 'bot') {
+      this.pokemonB.placeOfPunch = this.botDefenceAndAttack();
+      console.log('bot punch', this.pokemonB.placeOfPunch);
+      this.opponentDefence();
+      //this.isVoodoo = !this.isVoodoo;
+    }
+    if (this.counter > 10) {
       this.punchCoefficient = 2;
     }
   }
@@ -157,6 +187,28 @@ export class BattleComponent implements OnInit, OnDestroy {
         this.opponentDefence();
       }
     });
+    if (whoPunch === 'bot') {
+      this.pokemonB.placeOfDefence = this.botDefenceAndAttack();
+      console.log('bot defence', this.pokemonB.placeOfDefence);
+      this.opponentDefence();
+      this.isVoodoo = !this.isVoodoo;
+      this.isDefence = !this.isDefence;
+    }
+  }
+  //generate place of defence and punch
+  public botDefenceAndAttack(): string {
+    //this.isVoodoo = !this.isVoodoo;
+    //this.isDefence = !this.isDefence;
+    const random: number = Math.floor(Math.random() * 3) + 1;
+    switch (random) {
+      case 1:
+        return 'topVoodoo';
+      case 2:
+        return 'middleVoodoo';
+      case 3:
+        return 'bottomVoodoo';
+      default:
+    }
   }
 
   public ngOnInit(): void { }
