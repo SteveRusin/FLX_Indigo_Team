@@ -18,7 +18,8 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatBadgeModule
 } from '@angular/material';
 
 import { HeaderComponent } from './header/header.component';
@@ -46,6 +47,7 @@ import { ProfileInfoService } from '../services/profile-info.service';
       ReactiveFormsModule,
       MatButtonModule,
       MatButtonToggleModule,
+      MatBadgeModule,
       MatCardModule,
       MatDialogModule,
       MatFormFieldModule,
