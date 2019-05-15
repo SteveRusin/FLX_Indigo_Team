@@ -1,0 +1,21 @@
+.rock {
+  width: 3em;
+  height: 3em;
+  background: linear-gradient(-45deg, rgb(148, 148, 148), rgb(36, 36, 36));
+  border-radius: 2em;
+  transform: rotate(115deg);
+  animation: 0.2s roc infinite;
+  position: absolute;
+
+  @keyframes roc {
+    0% {
+      transform: rotate(115deg);
+    }
+    50% {
+      transform: rotate(245deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

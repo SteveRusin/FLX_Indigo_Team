@@ -1,0 +1,45 @@
+.battle-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: snow;
+}
+
+.battle-info-left {
+  display: flex;
+}
+
+.battle-info-right {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#opponent-line {
+  float: right;
+}
+
+progress {
+  background-color: transparent 0;
+  border: 0;
+  height: 18px;
+  border-radius: 9px;
+}
+
+progress::-webkit-progress-bar {
+  background: transparent 0;
+}
+progress::-webkit-progress-value {
+  background: hsla(100, 100%, 50%, 1);
+  border-radius: 9px;
+}
+progress::after {
+  display: block;
+  content: attr(id)
+}
+
+mat-card {
+  position: absolute;
+  width: 10em;
+  text-align: center;
+  color: var(--white);
+}

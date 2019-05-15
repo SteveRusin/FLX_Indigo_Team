@@ -1,0 +1,150 @@
+@import './css-attacks/normal.scss';
+@import './css-attacks/bug.scss';
+@import './css-attacks/dark.scss';
+@import './css-attacks/dragon.scss';
+@import './css-attacks/electric.scss';
+@import './css-attacks/fairy.scss';
+@import './css-attacks/fighting.scss';
+@import './css-attacks/fire.scss';
+@import './css-attacks/flying.scss';
+@import './css-attacks/ghost.scss';
+@import './css-attacks/grass.scss';
+@import './css-attacks/ground.scss';
+@import './css-attacks/ice.scss';
+@import './css-attacks/poison.scss';
+@import './css-attacks/psychic.scss';
+@import './css-attacks/rock.scss';
+@import './css-attacks/steel.scss';
+@import './css-attacks/undef.scss';
+@import './css-attacks/water.scss';
+@import '../variables.scss';
+
+.battleImg {
+  background-size: cover !important;
+}
+.battle-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  width: 80vw;
+  height: 90vh;
+  h1 {
+    color: snow;
+    text-align: center;
+  }
+}
+.battle-btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  height: 21vh;
+}
+.hide-buttons {
+  display: none;
+}
+
+.players {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin-top: 10em;
+}
+
+.pokemonA {
+  height: 12vh;
+  width: auto;
+  margin: 6em 0 0 10em;
+}
+
+.pokemonB {
+  height: 10vh;
+  width: auto;
+  margin: 0 8em 0 0;
+  background-size: 5em;
+}
+
+.playerAttackA {
+  position: absolute;
+}
+
+.playerAttackB {
+  position: absolute;
+}
+
+.hide-buttons {
+    display: none
+}
+.attack-wrapper {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../assets/svg-images/swords.svg')no-repeat;
+}
+.voodoo-div {
+    background: url('../../assets/svg-images/halloween.svg') no-repeat;
+    width: 100px;
+    cursor: pointer;
+    .top-voodoo {
+        height: 40px;
+        &:hover {
+            background: rgba(240, 14, 14, 0.5);
+        }
+    }
+    .middle-voodoo {
+        height: 35px;
+        &:hover {
+            background: rgba(240, 14, 14, 0.5);
+        }
+    }
+    .bottom-voodoo {
+        height: 25px;
+        &:hover {
+            background: rgba(240, 14, 14, 0.5);
+        }
+    }
+}
+
+.defence-wrapper {
+    height: 150px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../assets/svg-images/shield-svgrepo-com.svg')no-repeat;
+    .defence-button {
+        background: url('../../assets/svg-images/halloween.svg') no-repeat;
+        width: 100px;
+        height: 150px;
+        cursor: pointer;
+        border: 0;
+    }
+}
+
+button {
+  display: inline-block;
+  padding: 1.5em;
+  margin: 0 0.2em;
+  border: 0.2em solid var(--indigo);
+  border-radius: 6px;
+  background: var(--indigo);
+  color: var(--white);
+  text-transform: uppercase;
+
+  &:hover {
+    color: var(--white);
+    background: var(--yellow);
+    border-color: var(--yellow);
+    transition: all 0.4s ease 0s;
+    }
+
+  &.spec:hover {
+    color: var(--white);
+    background: #ff0000;
+    border-color: #ff0000;
+    transition: all 0.4s ease 0s;
+    }
+}
