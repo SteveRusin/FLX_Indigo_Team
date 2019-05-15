@@ -1,4 +1,11 @@
-<app-pokemon-chooser *ngIf="!isVisibleFight"></app-pokemon-chooser>
+<div *ngIf="showSelectTypeOfGame" class="battle-type">
+    <h1>Please, select a game type: </h1>
+    <div class="battle-type-buttons">
+        <button mat-raised-button class="fight-btn" (click)="withComputer()">Play with computer</button>
+        <button mat-raised-button class="fight-btn" (click)="withPerson()">Play with person</button>
+    </div>
+</div>
+<app-pokemon-chooser *ngIf="!isVisibleFight && !showSelectTypeOfGame"></app-pokemon-chooser>
 <div *ngIf="isVisibleFight" class="battleImg" [style.background]="bg">
     <div class="battle-field">
         <app-battle-info [health]="health" [pokemonA]="pokemonA" [pokemonB]="pokemonB"></app-battle-info>
@@ -34,15 +41,9 @@
                         </div>
                     </div>
                     <div *ngIf="!isPunchSection">
-                        <button mat-raised-button
-                            matTooltip = "DAMAGE"
-                            aria-label = "spec attack tooltip"
-                        (click)="currentBasePunch()">punch</button>
-                        <button mat-raised-button
-                            matTooltip = "{{attackTooltipA | uppercase}}"
-                            aria-label = "spec attack tooltip"
-                            class="spec" (click)="currentSpecAttack()"
-                            *ngIf="this.battleService.isSpecAttack(this.pokemonA)">
+                        <button mat-raised-button matTooltip="DAMAGE" aria-label="spec attack tooltip" (click)="currentBasePunch()">punch</button>
+                        <button mat-raised-button matTooltip="{{attackTooltipA | uppercase}}" aria-label="spec attack tooltip"
+                            class="spec" (click)="currentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonA)">
                             {{superPunchA}}</button>
                     </div>
                 </div>
@@ -64,15 +65,9 @@
                         </div>
                     </div>
                     <div *ngIf="isPunchSection">
-                        <button mat-raised-button
-                            matTooltip = "DAMAGE"
-                            aria-label = "spec attack tooltip"
-                            (click)="opponentBasePunch()">punch</button>
-                        <button mat-raised-button
-                            matTooltip = "{{attackTooltipB | uppercase}}"
-                            aria-label = "spec attack tooltip"
-                            class="spec" (click)="opponentSpecAttack()"
-                            *ngIf="this.battleService.isSpecAttack(this.pokemonB)">{{superPunchB}}</button>
+                        <button mat-raised-button matTooltip="DAMAGE" aria-label="spec attack tooltip" (click)="opponentBasePunch()">punch</button>
+                        <button mat-raised-button matTooltip="{{attackTooltipB | uppercase}}" aria-label="spec attack tooltip"
+                            class="spec" (click)="opponentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonB)">{{superPunchB}}</button>
                     </div>
                 </div>
             </div>
