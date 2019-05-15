@@ -14,7 +14,7 @@ export class PokemonChooserService {
   constructor(
     private firestore: AngularFirestore,
     public authService: AuthService
-    ){}
+    ) {}
 
   public getPokemons(): Observable<Pokemon[]> {
     return this.firestore.collection('pokemons')

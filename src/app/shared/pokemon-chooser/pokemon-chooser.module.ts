@@ -7,6 +7,7 @@ import {
 } from '@angular/material/';
 import { PokemonChooserComponent } from './pokemon-chooser.component';
 import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
+import { SharedModule } from '../shared.module';
 //import { RouterModule } from '@angular/router';
 
 @NgModule({
@@ -16,6 +17,7 @@ import { PokemonCardComponent } from './pokemon-card/pokemon-card.component';
     MatStepperModule,
     MatIconModule,
     MatButtonModule,
+    SharedModule
     // RouterModule.forChild([
     // { path: '', component: PokemonChooserComponent }
     // ])

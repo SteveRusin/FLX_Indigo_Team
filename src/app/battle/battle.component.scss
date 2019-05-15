@@ -19,17 +19,6 @@
 @import './css-attacks/water.scss';
 @import '../variables.scss';
 
-.battle-type {
-  h1 {
-    text-align: center;
-  }
-  .battle-type-buttons {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-}
 .battleImg {
   background-size: cover !important;
 }

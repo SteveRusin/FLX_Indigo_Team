@@ -1,11 +1,4 @@
-<div *ngIf="showSelectTypeOfGame" class="battle-type">
-    <h1>Please, select a game type: </h1>
-    <div class="battle-type-buttons">
-        <button mat-raised-button class="fight-btn" (click)="withComputer()">Play with computer</button>
-        <button mat-raised-button class="fight-btn" (click)="withPerson()">Play with person</button>
-    </div>
-</div>
-<app-pokemon-chooser *ngIf="!isVisibleFight && !showSelectTypeOfGame"></app-pokemon-chooser>
+<app-pokemon-chooser *ngIf="!isVisibleFight"></app-pokemon-chooser>
 <div *ngIf="isVisibleFight" class="battleImg" [style.background]="bg">
     <div class="battle-field">
         <app-battle-info [health]="health" [pokemonA]="pokemonA" [pokemonB]="pokemonB"></app-battle-info>

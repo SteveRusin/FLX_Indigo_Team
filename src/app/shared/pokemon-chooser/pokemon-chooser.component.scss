@@ -1,28 +1,24 @@
 mat-horizontal-stepper {
   padding: 3em;
 }
-
-.pokemons {
-  width: 10em;
+.pokemons:hover {
+  cursor: pointer;
 }
-
 .pokemon-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   justify-items: center;
   margin-top: 1em;
 }
-
 .choosed-pokemons {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin-top: 1em;
   .choosed-pokemons-cards {
-    width: 10em;
+    width:15%;
   }
 }
-
 .fight-btn {
   display: block;
   width: 20%;
@@ -35,7 +31,7 @@ mat-horizontal-stepper {
   font-size: 1.2em;
   &:hover {
     cursor: pointer;
-    background-color: var(--yellow);
-    color: var(--blue);
+    background-color: #360859;
+    box-shadow: 0 0 8px 6px var(--yellow);
   }
 }

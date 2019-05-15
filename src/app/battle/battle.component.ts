@@ -18,7 +18,6 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
   animations: [ attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation ]
 })
 export class BattleComponent implements OnInit, OnDestroy {
-  public showSelectTypeOfGame: boolean = true;
   public isGameWithBot: boolean = false;
   public title: string = '';
   public leftCornerDefence: boolean;
@@ -70,6 +69,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     public battleAnimationsService: BattleAnimationsService, private _sanitizer: DomSanitizer) {
     this.subscription = this.toBattle.getPokemons()
       .subscribe((pokemons: Pokemon[]) => {
+        this.isGameWithBot = this.toBattle.battleType;
         this.pokemons = pokemons;
       });
   }
@@ -133,17 +133,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.aAttack = this.pokemonA.type;
     this.bAttack = this.pokemonB.type;
   }
-
     // END ANIMATIONS SERVICE
-    public withComputer(): void {
-      this.isGameWithBot = true;
-      this.showSelectTypeOfGame = false;
-    }
-    public withPerson(): void {
-      this.isGameWithBot = false;
-      this.showSelectTypeOfGame = false;
-    }
-
   public currentBasePunch(): void {
     this.isButtons = !this.isButtons;
     this.isSpecAttackA = false;
