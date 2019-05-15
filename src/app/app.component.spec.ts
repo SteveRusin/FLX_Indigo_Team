@@ -2,7 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
-console.log(TestBed.createComponent(AppComponent));
+// console.log(TestBed.createComponent(AppComponent));
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

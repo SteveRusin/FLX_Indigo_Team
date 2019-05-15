@@ -1,3 +1,7 @@
-export const environment:Record<string, boolean | Object> = {
-  production: true
+import { EnvironmentInterface } from './environment.interface';
+import { fireConfig } from 'src/firebase.config';
+
+export const environment: EnvironmentInterface = {
+  production: true,
+  fireConfig
 };
