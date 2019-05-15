@@ -1,0 +1,26 @@
+.ice {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(84, 72, 255), rgb(0, 26, 255));
+  transform: rotate(115deg);
+  animation: 0.3s ice infinite;
+  position: absolute;
+
+  @keyframes ice {
+    0% {
+      transform: rotate(72deg);
+    }
+    25% {
+      transform: rotate(144deg);
+    }
+    50% {
+      transform: rotate(216deg);
+    }
+    75% {
+      transform: rotate(288deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

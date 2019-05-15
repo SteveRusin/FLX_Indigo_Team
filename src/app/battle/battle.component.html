@@ -1,6 +1,19 @@
 <app-pokemon-chooser *ngIf="!isVisibleFight"></app-pokemon-chooser>
 <div *ngIf="isVisibleFight" class="battle-field">
     <app-battle-info [health]="health" [pokemonA]="pokemonA" [pokemonB]="pokemonB"></app-battle-info>
+    <h1>{{title}}</h1>
+
+    <div class="players">
+        <img #imgPokemonA class="pokemonA" [@defenseAnimation]=defenseA [@attackAnimation]=attackPopupA />
+        <img #imgPokemonB class="pokemonB" [@defenseAnimation]=defenseB [@attackAnimation]=attackPopupB />
+    </div>
+    <div [@attackAnimationA]=currentStateA class="playerAttackA">
+        <span [className]='aAttack'></span>
+    </div>
+    <div [@attackAnimationB]=currentStateB class="playerAttackB">
+        <span [className]='bAttack'></span>
+    </div>
+
     <h1 *ngIf="!this.battleService.isAlive(this.pokemonA) || !this.battleService.isAlive(this.pokemonB)">Game Over</h1>
     <div class="battle-btns" *ngIf="this.battleService.isAlive(this.pokemonA) && this.battleService.isAlive(this.pokemonB)">
         <div class="left-corner">
@@ -20,9 +33,9 @@
                     </div>
                 </div>
                 <div *ngIf="!isPunchSection">
-                    <button (click)="currentBasePunch()">punch</button>
-                    <button (click)="currentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonA)">super
-                        punch</button>
+                    <button mat-raised-button (click)="currentBasePunch()">punch</button>
+                    <button mat-raised-button class="spec" (click)="currentSpecAttack()"
+                    *ngIf="this.battleService.isSpecAttack(this.pokemonA)">{{superPunchA}}</button>
                 </div>
             </div>
         </div>
@@ -43,9 +56,9 @@
                     </div>
                 </div>
                 <div *ngIf="isPunchSection">
-                    <button (click)="opponentBasePunch()">punch</button>
-                    <button (click)="opponentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonB)">super
-                        punch</button>
+                    <button mat-raised-button (click)="opponentBasePunch()">punch</button>
+                    <button mat-raised-button class="spec" (click)="opponentSpecAttack()"
+                    *ngIf="this.battleService.isSpecAttack(this.pokemonB)">{{superPunchB}}</button>
                 </div>
             </div>
         </div>

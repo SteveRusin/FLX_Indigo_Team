@@ -1,0 +1,21 @@
+.ground {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(90, 59, 0), rgb(54, 41, 6));
+  border-radius: 2em;
+  transform: rotate(115deg);
+  animation: 0.2s ground infinite;
+  position: absolute;
+
+  @keyframes ground {
+    0% {
+      transform: rotate(115deg);
+    }
+    50% {
+      transform: rotate(245deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

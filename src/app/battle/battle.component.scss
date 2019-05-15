@@ -1,22 +1,76 @@
+@import './css-attacks/normal.scss';
+@import './css-attacks/bug.scss';
+@import './css-attacks/dark.scss';
+@import './css-attacks/dragon.scss';
+@import './css-attacks/electric.scss';
+@import './css-attacks/fairy.scss';
+@import './css-attacks/fighting.scss';
+@import './css-attacks/fire.scss';
+@import './css-attacks/flying.scss';
+@import './css-attacks/ghost.scss';
+@import './css-attacks/grass.scss';
+@import './css-attacks/ground.scss';
+@import './css-attacks/ice.scss';
+@import './css-attacks/poison.scss';
+@import './css-attacks/psychic.scss';
+@import './css-attacks/rock.scss';
+@import './css-attacks/steel.scss';
+@import './css-attacks/undef.scss';
+@import './css-attacks/water.scss';
+@import '../variables.scss';
+
 .battle-field {
-    margin: 0 auto;
-    background: url('../../assets/battle-fields/Pokémon_Stadium_2.png') border-box;
-    background-size: cover;
-    width: 80vw;
-    height: 90vh;
-    h1 {
-        color: snow;
-        text-align: center;
-    }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 0 auto;
+  background: url("../../assets/battle-fields/arena.png") border-box;
+  background-size: cover;
+  width: 80vw;
+  height: 90vh;
+  h1 {
+    color: snow;
+    text-align: center;
+  }
 }
 .battle-btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    position: relative;
-    top: 60vh;
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: relative;
+  height: 21vh;
 }
+.hide-buttons {
+  display: none;
+}
+
+.players {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.pokemonA {
+  height: 12vh;
+  width: auto;
+  margin: 8em 0 0 10em;
+}
+
+.pokemonB {
+  height: 10vh;
+  width: auto;
+  margin: 0 8em 0 0;
+  background-size: 5em;
+}
+
+.playerAttackA {
+  position: absolute;
+}
+
+.playerAttackB {
+  position: absolute;
+}
+
 .hide-buttons {
     display: none
 }
@@ -65,5 +119,30 @@
         height: 150px;
         cursor: pointer;
         border: 0;
+    }
+}
+
+button {
+  display: inline-block;
+  padding: 1.5em;
+  margin: 0 0.2em;
+  border: 0.2em solid var(--indigo);
+  border-radius: 6px;
+  background: var(--indigo);
+  color: var(--white);
+  text-transform: uppercase;
+
+  &:hover {
+    color: var(--white);
+    background: var(--yellow);
+    border-color: var(--yellow);
+    transition: all 0.4s ease 0s;
+    }
+
+  &.spec:hover {
+    color: var(--white);
+    background: #ff0000;
+    border-color: #ff0000;
+    transition: all 0.4s ease 0s;
     }
 }
