@@ -87,68 +87,73 @@ mat-card-subtitle {
 
 .card-container {
   position: relative;
+  width: 20em;
+  height: 16em;
   margin: 0 1.5em;
-  perspective: 1000px;
-  -webkit-perspective: 1000px;
-  -webkit-transform: scale(1, 1);
-  -webkit-transition-timing-function: ease-out;
-  -webkit-transition-duration: 500ms;
+  cursor: pointer;
 
+  &:hover .flippable-card {
+    transform: rotateY(.5turn);
+  }
+
+  @include for-phone-only {
+    width: 19em;
+    height: 12em;
+    margin: 1em 1.5em;
+  }
   @include for-tablet-portrait-up {
-    margin: 0;
+    width: 17em;
+    height: 12em;
+    margin: 1em 1.5em;
   }
   @include for-tablet-landscape-up {
-    margin: 0 1.5em;
+    width: 20em;
+    height: 14em;
   }
+  @include for-desktop-up {
+    width: 20em;
+    height: 16em;
+  }
+  @include for-big-desktop-up {
+    width: 20em;
+    height: 16em;
+  }
+}
+.flippable-card {
+  position: relative;
+  transition: transform 1.5s;
+  transform-style: preserve-3d;
+}
 
-  .flippable-card {
-    position: relative;
-    margin-top: 1em;
-    margin-right: 1em;
-    width: 18em;
+.card,
+.back {
+  position: absolute;
+  backface-visibility: hidden;
+  transition-timing-function: ease-out;
+  transform-style: preserve-3d;
+
+  @include for-phone-only {
+    width: 19em;
     height: 12em;
-    transform-style: preserve-3d;
-    transition: transform 1s;
-
-    mat-card {
-      display: block;
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      backface-visibility: hidden;
-      transition-timing-function: ease-out;
-
-      @include for-phone-only {
-        width: 19em;
-        height: 12em;
-        margin: 1.5em 0 1.5em 0;
-      }
-      @include for-tablet-portrait-up {
-        width: 17em;
-        height: 12em;
-        margin: 1.5em 0 0 0;
-      }
-      @include for-tablet-landscape-up {
-        width: 20em;
-        height: 14em;
-      }
-      @include for-desktop-up {
-        width: 20em;
-        height: 16em;
-      }
-      @include for-big-desktop-up {
-        width: 20em;
-        height: 16em;
-      }
-    }
-
-    & .back {
-      transform: rotateY(180deg);
-    }
-
-    &:hover {
-      transform: rotateY(180deg) translateX(-10%);
-    }
   }
+  @include for-tablet-portrait-up {
+    width: 17em;
+    height: 12em;
+  }
+  @include for-tablet-landscape-up {
+    width: 20em;
+    height: 14em;
+  }
+  @include for-desktop-up {
+    width: 20em;
+    height: 16em;
+  }
+  @include for-big-desktop-up {
+    width: 20em;
+    height: 16em;
+  }
+}
+
+.back {
+  transform: rotateY(.5turn);
 }

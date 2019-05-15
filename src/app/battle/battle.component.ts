@@ -8,6 +8,7 @@ import { Subscription } from 'rxjs';
 // USE ANIMATIONS SERVICE
 import { BattleAnimationsService } from '../services/battle.animations.service';
 import { attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation } from './animations.service';
+import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-battle',
@@ -47,6 +48,8 @@ export class BattleComponent implements OnInit, OnDestroy {
   private isSpecAttackB: boolean = false;
   private superPunchA: string;
   private superPunchB: string;
+  private attackTooltipA: string;
+  private attackTooltipB: string;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
@@ -63,7 +66,7 @@ export class BattleComponent implements OnInit, OnDestroy {
   @ViewChild('imgPokemonB') public imgPokemonB: ElementRef;
 
   constructor(private battleService: BattleService, private elementRef: ElementRef, private renderer: Renderer2, private toBattle: ToBattleService,
-    public battleAnimationsService: BattleAnimationsService) {
+    public battleAnimationsService: BattleAnimationsService, private _sanitizer: DomSanitizer) {
     this.subscription = this.toBattle.getPokemons()
       .subscribe((pokemons: Pokemon[]) => {
         this.pokemons = pokemons;
@@ -87,9 +90,21 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.opponentPokemonHealth = this.pokemonB.health;
     this.superPunchA = this.pokemonA.specAttack.name;
     this.superPunchB = this.pokemonB.specAttack.name;
+    this.attackTooltipA = this.pokemonA.specAttack.type;
+    this.attackTooltipB = this.pokemonB.specAttack.type;
 
     // USE ANIMATIONS SERVICE
     setTimeout(() => this.getPokemons());
+  }
+
+  public bg: SafeStyle;
+
+  public getArena(): SafeStyle {
+    const arenaImgArr: string[] = ['arena1.jpg', 'arena2.jpg', 'arena3.jpg', 'arena4.jpg', 'arena5.jpg'];
+    const randImg: number = Math.floor(Math.random() * arenaImgArr.length);
+    const style: SafeStyle = this._sanitizer.bypassSecurityTrustStyle(`url(../../assets/battle-fields/${arenaImgArr[randImg]})`);
+
+    return style;
   }
 
     // USE ANIMATIONS SERVICE
@@ -325,7 +340,9 @@ export class BattleComponent implements OnInit, OnDestroy {
     }
   }
 
-  public ngOnInit(): void { }
+  public ngOnInit(): void {
+    this.bg = this.getArena();
+  }
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
