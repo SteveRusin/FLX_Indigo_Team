@@ -9,16 +9,16 @@ import {
 
 export const attackAnimationsA: AnimationTriggerMetadata = trigger('attackAnimationA', [
   state('initial', style({
-    transform: 'translateX(18em) translateY(6em)',
+    transform: 'translateX(18em) translateY(8em)',
     opacity: 0,
   })),
   state('final', style({
-    transform: 'translateX(18em) translateY(6em)',
+    transform: 'translateX(18em) translateY(8em)',
     opacity: 0,
   })),
   transition('initial=>final', animate('0.6s ease-out',
     style({
-      transform: 'translateX(50em) translateY(-8em)',
+      transform: 'translateX(52em) translateY(-2em)',
       opacity: 1,
     })
   ))
@@ -26,16 +26,16 @@ export const attackAnimationsA: AnimationTriggerMetadata = trigger('attackAnimat
 
 export const attackAnimationsB: AnimationTriggerMetadata = trigger('attackAnimationB', [
   state('initial', style({
-    transform: 'translateX(53em) translateY(-9em)',
+    transform: 'translateX(54em) translateY(-3em)',
     opacity: 0,
   })),
   state('final', style({
-    transform: 'translateX(53em) translateY(-9em)',
+    transform: 'translateX(54em) translateY(-3em)',
     opacity: 0,
   })),
   transition('initial=>final', animate('0.6s ease-out',
     style({
-      transform: 'translateX(20em) translateY(4em)',
+      transform: 'translateX(24em) translateY(4em)',
       opacity: 1,
     })
   ))

@@ -19,13 +19,14 @@
 @import './css-attacks/water.scss';
 @import '../variables.scss';
 
+.battleImg {
+  background-size: cover !important;
+}
 .battle-field {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   margin: 0 auto;
-  background: url("../../assets/battle-fields/arena.png") border-box;
-  background-size: cover;
   width: 80vw;
   height: 90vh;
   h1 {
@@ -48,12 +49,13 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 10em;
 }
 
 .pokemonA {
   height: 12vh;
   width: auto;
-  margin: 8em 0 0 10em;
+  margin: 6em 0 0 10em;
 }
 
 .pokemonB {
