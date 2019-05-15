@@ -18,7 +18,8 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
   animations: [ attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation ]
 })
 export class BattleComponent implements OnInit, OnDestroy {
-  public isGameWithBot: boolean = true;
+  public showSelectTypeOfGame: boolean = true;
+  public isGameWithBot: boolean = false;
   public title: string = '';
   public leftCornerDefence: boolean;
   public rightCornerDefence: boolean;
@@ -134,6 +135,14 @@ export class BattleComponent implements OnInit, OnDestroy {
   }
 
     // END ANIMATIONS SERVICE
+    public withComputer(): void {
+      this.isGameWithBot = true;
+      this.showSelectTypeOfGame = false;
+    }
+    public withPerson(): void {
+      this.isGameWithBot = false;
+      this.showSelectTypeOfGame = false;
+    }
 
   public currentBasePunch(): void {
     this.isButtons = !this.isButtons;
@@ -146,7 +155,6 @@ export class BattleComponent implements OnInit, OnDestroy {
     if (this.isGameWithBot) {
       this.punchPlace('bot');
       if(this.battleService.isSpecAttack(this.pokemonB)&&this.pokemonB.health !== this.health.bHealth) {
-        console.log('bot spec!',this.health.bHealth);
         this.opponentSpecAttack();
       } else {
         this.opponentBasePunch();
@@ -229,7 +237,6 @@ export class BattleComponent implements OnInit, OnDestroy {
   }
   public opponentDefence(): void {
     this.killDefenceEvent();
-    //wtf
     if (!this.isGameWithBot) {
       this.isVoodoo = !this.isVoodoo;
       this.isDefence = !this.isDefence;
@@ -296,9 +303,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     });
     if (whoPunch === 'bot') {
       this.pokemonB.placeOfPunch = this.botDefenceAndAttack();
-      console.log('bot punch', this.pokemonB.placeOfPunch);
       this.opponentDefence();
-      //this.isVoodoo = !this.isVoodoo;
     }
     if (this.counter > 10) {
       this.punchCoefficient = 2;
@@ -318,16 +323,12 @@ export class BattleComponent implements OnInit, OnDestroy {
     });
     if (whoPunch === 'bot') {
       this.pokemonB.placeOfDefence = this.botDefenceAndAttack();
-      console.log('bot defence', this.pokemonB.placeOfDefence);
       this.opponentDefence();
       this.isVoodoo = !this.isVoodoo;
       this.isDefence = !this.isDefence;
     }
   }
-  //generate place of defence and punch
   public botDefenceAndAttack(): string {
-    //this.isVoodoo = !this.isVoodoo;
-    //this.isDefence = !this.isDefence;
     const random: number = Math.floor(Math.random() * 3) + 1;
     switch (random) {
       case 1:
