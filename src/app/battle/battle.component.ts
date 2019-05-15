@@ -323,7 +323,6 @@ export class BattleComponent implements OnInit, OnDestroy {
     });
     if (whoPunch === 'bot') {
       this.pokemonB.placeOfDefence = this.botDefenceAndAttack();
-      this.opponentDefence();
       this.isVoodoo = !this.isVoodoo;
       this.isDefence = !this.isDefence;
     }
