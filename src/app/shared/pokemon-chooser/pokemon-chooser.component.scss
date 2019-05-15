@@ -35,3 +35,18 @@ mat-horizontal-stepper {
     box-shadow: 0 0 8px 6px var(--yellow);
   }
 }
+
+img {
+  height: 15em;
+  width: auto;
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: space-around;
+
+  & button {
+    border: var(--blue) solid 0.1em;
+    color: var(--blue);
+  }
+}
