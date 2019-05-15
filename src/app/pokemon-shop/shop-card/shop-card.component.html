@@ -1,0 +1,39 @@
+<div class="wrapper">
+  <div [className]="pokemon.lock === true ? 'card-block' : 'card-open'">
+    <i class="material-icons lock">lock</i>
+    <button class="buy-btn" (click)="buyPokemon(pokemon)">BUY</button>
+    <span class="price">price: {{pokemon.price}}$</span>
+    <span class="price">Will be unlocked with {{pokemon.unlocked}} wins</span>
+  </div>
+  <div class="card">
+    <div class="card__body" [ngStyle]="setStyle(pokemon.type)">
+      <div class="card__head">
+        <div class="main-info">
+          <h1 class="name">{{pokemon.name}}</h1>
+          <span class="hp">{{pokemon.health}} HP</span>
+          <span class="energy"></span>
+        </div>
+
+        <div class="frame" (click)="changePosition(pokemon)">
+          <img class="sprites" src="http://pokestadium.com/sprites/xy/{{pokemon.position === true ? pokemon.name : 'back/' + pokemon.name}}.gif">
+        </div>
+
+        <div class="stats">
+          <span>{{pokemon.type}} Pokémon</span>
+        </div>
+
+        <div class="attacks">
+          <ul class="attack pkmn-power">
+            <li *ngFor="let name of objectKeys(pokemon.ability)"><strong>pokémon ability: {{name}}</strong></li>
+            <li><span class="energy inline"></span>attack type: {{ pokemon.type }}</li>
+            <li *ngFor="let damage of objectValues(pokemon.ability)"><span class="energy inline"></span>damage: {{damage}} points</li>
+            <li><strong>special attack: {{pokemon.specAttack.name}} </strong></li>
+            <li><span class="energy inline"></span>{{pokemon.specAttack.type}}: {{pokemon.specAttack.points}} points</li>
+            <li><span class="energy inline"></span>moves to recovery: {{pokemon.specAttack.moves}}</li>
+            <li><strong>weakness: {{pokemon.weakness}}</strong></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,5 +15,14 @@ export const routes: Routes = [
     data: { animation: 'Profile' },
     canActivate: [AuthGuard]
   },
+  {
+    path: 'game',
+    loadChildren: './battle/battle.module#BattleModule',
+    data: { animation: 'Game' },
+  },
+  {
+    path: 'shop',
+    loadChildren: './pokemon-shop/pokemon-shop.module#PokemonShopModule'
+  },
   { path: '**', redirectTo: '', data: {animation: 'Home'} }
 ];

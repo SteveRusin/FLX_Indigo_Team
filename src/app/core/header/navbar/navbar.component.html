@@ -2,8 +2,12 @@
   <a mat-button routerLink="">Home</a>
   <a mat-button routerLink="/game">Game</a>
 
-  <a mat-button *ngIf="isLogged()" routerLink="/profile">
-    <img src="{{getPlayerAvatar()}}" alt="avatar" class="profile-avatar">
+  <a mat-button *ngIf="isLogged() && userPlayer$ | async as player"
+    matBadge="{{player.money}}"
+    matBadgeColor="#FECE00"
+    matBadgePosition="allow before"
+    routerLink="/profile">
+    <img src="{{player.avatar}}" alt="avatar" class="profile-avatar">
   </a>
 
   <a mat-button *ngIf="!isLogged()" (click)="dialogForm()">Login</a>

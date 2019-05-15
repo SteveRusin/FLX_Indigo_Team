@@ -1,0 +1,24 @@
+.water {
+  width: 2em;
+  height: 2em;
+  background: linear-gradient(-45deg, rgb(170, 252, 255), rgb(0, 26, 255));
+  border-radius: 2em 2em 0px 2em;
+  transform: rotate(115deg);
+  animation: 0.2s wate infinite;
+  position: absolute;
+
+  @keyframes wate {
+    0% {
+      height: 2em;
+      width: 2em;
+    }
+    50% {
+      height: 1.5em;
+      width: 1.5em;
+    }
+    100% {
+      height: 2em;
+      width: 2em;
+    }
+  }
+}

@@ -7,6 +7,7 @@ mat-icon {
 
 mat-card-subtitle {
   color: var(--white);
+  line-height: 1.5em;
 }
 
 .faq-cards {
@@ -20,6 +21,7 @@ mat-card-subtitle {
   }
   @include for-tablet-portrait-up {
     width: 50em;
+    height: 70vh;
   }
   @include for-tablet-landscape-up {
     width: 50em;
@@ -31,7 +33,7 @@ mat-card-subtitle {
   }
   @include for-big-desktop-up {
     width: 55em;
-    height: 80vh;
+    height: 90vh;
   }
 
   .card {
@@ -43,6 +45,11 @@ mat-card-subtitle {
   .open-card {
     @include cards(var(--blue));
     background: var(--yellow);
+
+    & mat-card-subtitle {
+      color: var(--black);
+      line-height: 1.5em;
+    }
   }
 
   .img-blbsaur {
@@ -60,19 +67,19 @@ mat-card-subtitle {
     @include for-tablet-landscape-up {
       height: 16em;
       width: 13em;
-      top: 14em;
+      top: 18em;
       left: -8em;
     }
     @include for-desktop-up {
       height: 21em;
       width: 17em;
-      top: 9em;
+      top: 10em;
       left: -12em;
     }
     @include for-big-desktop-up {
       height: 21em;
       width: 17em;
-      top: 15em;
+      top: 14em;
       left: -12em;
     }
   }
@@ -80,65 +87,73 @@ mat-card-subtitle {
 
 .card-container {
   position: relative;
+  width: 20em;
+  height: 16em;
   margin: 0 1.5em;
-  perspective: 500px;
-  -webkit-perspective: 500px;
-  -webkit-transform: scale(1, 1);
-  -webkit-transition-timing-function: ease-out;
-  -webkit-transition-duration: 500ms;
+  cursor: pointer;
 
+  &:hover .flippable-card {
+    transform: rotateY(.5turn);
+  }
+
+  @include for-phone-only {
+    width: 19em;
+    height: 12em;
+    margin: 1em 1.5em;
+  }
   @include for-tablet-portrait-up {
-    margin: 0;
+    width: 17em;
+    height: 12em;
+    margin: 1em 1.5em;
   }
   @include for-tablet-landscape-up {
-    margin: 0 1.5em;
+    width: 20em;
+    height: 14em;
   }
+  @include for-desktop-up {
+    width: 20em;
+    height: 16em;
+  }
+  @include for-big-desktop-up {
+    width: 20em;
+    height: 16em;
+  }
+}
+.flippable-card {
+  position: relative;
+  transition: transform 1.5s;
+  transform-style: preserve-3d;
+}
 
-  .flippable-card {
-    position: relative;
-    margin-right: 1em;
-    width: 18em;
+.card,
+.back {
+  position: absolute;
+  backface-visibility: hidden;
+  transition-timing-function: ease-out;
+  transform-style: preserve-3d;
+
+  @include for-phone-only {
+    width: 19em;
     height: 12em;
-    transform-style: preserve-3d;
-    transition: transform 1s;
-
-    mat-card {
-      display: block;
-      position: absolute;
-      cursor: pointer;
-      backface-visibility: hidden;
-      transition-timing-function: ease-out;
-
-      @include for-phone-only {
-        width: 19em;
-        height: 10em;
-        margin: 1em 0 1em 0;
-      }
-      @include for-tablet-portrait-up {
-        width: 17em;
-        height: 10em;
-        margin: 1em 0 0 0;
-      }
-      @include for-tablet-landscape-up {
-        width: 20em;
-        height: 12em;
-      }
-      @include for-desktop-up {
-        width: 20em;
-        height: 12em;
-      }
-      @include for-big-desktop-up {
-        width: 20em;
-        height: 17em;
-      }
-    }
-
-    & .back {
-      transform: rotateY(180deg);
-    }
-
-    &:hover {
-      transform: rotateY(180deg) translateX(-11%);
-    }
   }
+  @include for-tablet-portrait-up {
+    width: 17em;
+    height: 12em;
+  }
+  @include for-tablet-landscape-up {
+    width: 20em;
+    height: 14em;
+  }
+  @include for-desktop-up {
+    width: 20em;
+    height: 16em;
+  }
+  @include for-big-desktop-up {
+    width: 20em;
+    height: 16em;
+  }
+}
+
+.back {
+  transform: rotateY(.5turn);
 }

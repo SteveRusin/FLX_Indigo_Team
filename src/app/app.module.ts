@@ -11,6 +11,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ToBattleService } from './services/to-battle.service';
+import { UploadFileService } from './services/upload-file.service';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
@@ -24,7 +25,7 @@ import { routes } from './app-routing.module';
   ],
   imports: [
     BrowserModule,
-    SharedModule,
+    SharedModule.forRoot(),
     RouterModule.forRoot(routes),
     CoreModule.forRoot(),
     AngularFireModule.
@@ -32,9 +33,14 @@ import { routes } from './app-routing.module';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
-  providers: [ AuthService, AuthGuardService, ToBattleService ],
-  bootstrap: [ AppComponent ]
+  providers: [
+    AuthService,
+    AuthGuardService,
+    ToBattleService,
+    UploadFileService
+  ],
+  bootstrap: [ AppComponent]
 })
 export class AppModule { }

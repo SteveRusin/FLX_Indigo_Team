@@ -1,0 +1,38 @@
+.profile-avatar {
+  width: 100%;
+  min-width: 240px;
+  cursor: pointer;
+  // &:hover {
+    // &::after {
+    //   z-index: 1000;
+    //   content: 'Change avatar';
+    //   color: var(--white);
+    //   font-size: 1.5em;
+    //   background: rgba($color: #000, $alpha: 0.7);
+    //   text-align: center;
+    //   width: 100%;
+    // }
+  // }
+}
+
+.avatar-wrap {
+  & > input {
+    visibility:hidden;
+    width:0;
+    height:0
+  }
+}
+
+.primary-color {
+  background: var(--blue);
+  color: #fff;
+}
+
+.change-avatar-buttons {
+  display: flex;
+  justify-content: flex-start;
+
+  button {
+    margin-right: 1em; 
+  }
+}

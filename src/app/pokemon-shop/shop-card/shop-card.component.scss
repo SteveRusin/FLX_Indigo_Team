@@ -1,0 +1,209 @@
+$card-size: 40vh;
+$font-size-large: $card-size * 0.06;
+
+*, *:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.wrapper {
+  user-select: none;
+  position: relative;
+  width: $card-size;
+  margin-top: 2em;
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Cabin', sans-serif;
+}
+.card-block {
+  position: absolute;
+  padding: 1em;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: rgba(0,0,0, 0.8);
+  border-radius: $card-size * 0.0316;
+  .lock {
+    display: block;
+    font-size: $card-size * 0.5;
+    color: #CED416;
+  }
+  .level, .price {
+    min-width: 100%;
+    color:#CED416;
+    text-align: center;
+    display: block;
+  }
+  .price {
+    font-size: $card-size * 0.088;
+  }
+  .buy-btn {
+    width: 50%;
+    margin: 0 auto;
+    padding: 0.5em;
+    display: block;
+    border: none;
+    font-weight: 800;
+    border-radius: $card-size * 0.0315;
+    background-color: #CED416;
+    &:hover {
+      cursor: pointer;
+      box-shadow:0px 0px 6px 4px#8a8e11;
+    }
+  }
+}
+.card-open {
+  display: none
+}
+.card {
+  border-radius: $card-size * 0.0316;
+}
+.card__body {
+  border-radius: $card-size * 0.0316;
+  background-size: cover;
+}
+.card__head {
+  padding: 3% 6%;
+}
+.main-info {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  height: $card-size * 0.1055;
+  margin-bottom: $card-size * 0.04;
+  .energy {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+}
+.name,
+.hp {
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  line-height: 1;
+}
+.name {
+  text-transform: capitalize;
+  font-size: $card-size * 0.082;
+  font-weight: 700;
+}
+.hp {
+  right: 9%;
+  bottom: 3%;
+  margin-left: auto;
+  margin-right: $card-size * 0.02;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+  font-size: $card-size * 0.07;
+  transform: scale(0.92, 1);
+  transform-origin: right;
+}
+.frame {
+  width: 100%;
+  padding: 10%;
+  height: $card-size * 0.5;
+  margin-bottom: $card-size * 0.0105;
+  img {
+    transform: scale(1.2);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+.stats {
+  text-align: center;
+  text-transform: capitalize;
+  > span {
+    color: #fff;
+    font-size: $card-size * 0.1;
+    font-weight: 600;
+    font-style: italic;
+  }
+}
+.energy {
+  position: relative;
+  display: inline-block;
+  border-radius: 100px;
+  margin-right: $card-size * 0.015;
+  width: $card-size * 0.07;
+  height: $card-size * 0.07;
+  background: radial-gradient(#fdaeba 40%, #f84c20, #c8340e 100%);
+  &:after {
+    content: '';
+    position: absolute;
+    display: block;
+    top: 14%;
+    left: 2%;
+    width: 50%;
+    height: 25%;
+    border-radius: 50%;
+    transform: rotate(-45deg);
+    background: linear-gradient(rgba(white, 0.8) 50%, transparent);
+  }
+  &.inline {
+    width: $card-size * 0.04;
+    height: $card-size * 0.04;
+  }
+}
+.attacks {
+  list-style: none;
+  padding: 0;
+}
+.attack {
+  padding-top: $card-size*0.015;
+  li {
+    color: #fff;
+    vertical-align: middle;
+    margin: $card-size*0.006 0;
+    font-size: $card-size*0.06;
+    list-style: none;
+    text-transform: capitalize;
+  }
+  &.pkmn-power {
+    strong {
+      font-size: $card-size*0.062;
+      color: #fff;
+    }
+  }
+  strong {
+    display: inline-block;
+    transform-origin: left;
+    font-size: $font-size-large*0.55;
+  }
+  p {
+    margin-bottom: $card-size*0.02;
+  }
+}
+.type-info {
+  margin-top: -0.2%;
+  height: $card-size*0.08;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  list-style: none;
+  span {
+    display: block;
+    font-size: $card-size * 0.029;
+    font-weight: 600;
+    letter-spacing: 0.022em;
+  }
+}
+.footer {
+  position: absolute;
+  bottom: 0.35%;
+  left: 1%;
+  right: 1%;
+  display: flex;
+  justify-content: space-between;
+  font-size: $card-size * 0.018;
+}

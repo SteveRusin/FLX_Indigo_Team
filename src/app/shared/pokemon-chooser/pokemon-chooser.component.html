@@ -1,30 +1,47 @@
-<mat-horizontal-stepper #stepper linear labelPosition="bottom">
-  <ng-template matStepperIcon="edit">
-    <mat-icon>check</mat-icon>
-  </ng-template>
+<div *ngIf="isVisible">
+  <mat-horizontal-stepper #stepper linear labelPosition="bottom">
+    <ng-template matStepperIcon="edit">
+      <mat-icon>check</mat-icon>
+    </ng-template>
 
-  <mat-step label="Choose Pokemon" #stepOne completed="false">
-    <div class="pokemon-list">
-      <app-pokemon-card
-        *ngFor="let pokemon of userPokemons$ | async" [pokemon]="pokemon"
-        (changedPokemon)="choosePokemon($event, stepOne, stepper)">
-      </app-pokemon-card>
-    </div>
-  </mat-step>
+    <mat-step label="Choose Game Type" #stepZero completed="false">
+      <div class="btn-wrapper">
+        <button mat-raised-button (click)="playerVsComputer(stepZero, stepper)">
+          <img src="../../../assets/battle-icons/humanVScomputer.png" />
+          <br>
+          <span class="playerVSComp"><b>Player vs Computer</b></span>
+        </button>
+        <button mat-raised-button (click)="playerVsPlayer(stepZero, stepper)">
+          <img src="../../../assets/battle-icons/humanVShuman.png" />
+          <br>
+          <span class="playerVSplayer"><b>Player vs Player</b></span>
+        </button>
+      </div>
+    </mat-step>
 
-  <mat-step label="Choose Opponent" #stepTwo completed="false">
-    <div class="pokemon-list">
-      <app-pokemon-card
-        *ngFor="let pokemon of pokemonsList$ | async" [pokemon]="pokemon"
-        (changedPokemon)="choosePokemon($event, stepTwo, stepper)">
-      </app-pokemon-card>
-    </div>
-  </mat-step>
-
-  <mat-step label="Go to fight" #stepThree completed="false">
-    <div class="pokemon-list">
-      <app-pokemon-card *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-pokemon-card>
-    </div>
-    <button (click)="sendPokemons()">SEND POKEMONS</button>
-  </mat-step>
-</mat-horizontal-stepper>
+    <mat-step label="Choose Pokemon" #stepOne completed="false">
+      <div class="pokemon-list">
+        <app-shop-card class="pokemons"
+          *ngFor="let pokemon of userPokemons$ | async" [pokemon]="pokemon"
+          (choseCard)="choosePokemon($event, stepOne, stepper)">
+        </app-shop-card>
+      </div>
+    </mat-step>
+  
+    <mat-step label="Choose Opponent" #stepTwo completed="false" *ngIf="!vsComputer">
+      <div class="pokemon-list">
+        <app-shop-card class="pokemons"
+          *ngFor="let pokemon of pokemonsList$ | async" [pokemon]="pokemon"
+          (choseCard)="choosePokemon($event, stepTwo, stepper)">
+        </app-shop-card>
+      </div>
+    </mat-step>
+  
+    <mat-step label="Go to fight" #stepThree completed="false">
+      <div class="choosed-pokemons">
+        <app-shop-card  class="choosed-pokemons-cards" *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-shop-card>
+      </div>
+      <button mat-raised-button class="fight-btn" (click)="sendPokemons()">FIGHT</button>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

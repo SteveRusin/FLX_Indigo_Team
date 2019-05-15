@@ -1,0 +1,16 @@
+.pokemon-single-container {
+  background:indigo;
+  padding: 1em 4em;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  justify-items: center;
+}
+
+.blink {
+  animation: blinking 1.8s linear infinite alternate;
+}
+
+@keyframes blinking {
+ from{ filter: drop-shadow(0 0 0 var(--yellow)); }
+  to{ filter: drop-shadow(0 0 1.2em var(--yellow)); }
+}
