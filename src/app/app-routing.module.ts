@@ -20,5 +20,9 @@ export const routes: Routes = [
     loadChildren: './battle/battle.module#BattleModule',
     data: { animation: 'Game' },
   },
+  {
+    path: 'shop',
+    loadChildren: './pokemon-shop/pokemon-shop.module#PokemonShopModule'
+  },
   { path: '**', redirectTo: '', data: {animation: 'Home'} }
 ];

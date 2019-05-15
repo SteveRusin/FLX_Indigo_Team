@@ -6,10 +6,12 @@ import { Pokemons } from '../shared/pokemon-chooser/pokemon-interface';
 export class ToBattleService {
 
   private subject: any = new Subject<any>();
+  public battleType: boolean;
 
   constructor() {}
 
-  public sendPokemons(pokemons: Pokemons): void {
+  public sendPokemons(battleType: boolean, pokemons: any): void {
+    this.battleType = battleType;
     this.subject.next(pokemons);
   }
 

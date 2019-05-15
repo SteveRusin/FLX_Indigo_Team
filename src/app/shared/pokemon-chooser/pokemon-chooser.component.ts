@@ -18,9 +18,12 @@ import { Pokemon } from './pokemon-interface';
 export class PokemonChooserComponent implements OnInit {
   public pokemonsList$: Observable<Pokemon[]>;
   public userPokemons$: Observable<Pokemon[]>;
-  public selectedPokemon: Pokemon[] = [];
+  public selectedPokemon: any = [];
 
   public isVisible: boolean = true;
+  public vsComputer: boolean = false;
+
+  public pokemonList: any = [];
 
   constructor(
     public pokemonChooserService: PokemonChooserService,
@@ -28,21 +31,34 @@ export class PokemonChooserComponent implements OnInit {
     private battle: BattleComponent
     ) {}
 
-  public choosePokemon(pokemon: Pokemon, step: CdkStep, stepper: MatStepper): void {
-    if(stepper.selectedIndex === 0) {
-      this.selectedPokemon[0] = pokemon;
-    } else {
-      this.selectedPokemon[1] = pokemon;
-    }
+  public playerVsComputer(step: CdkStep, stepper: MatStepper): void {
+    this.vsComputer = true;
+    this.nextStep(step, stepper);
+  }
+
+  public playerVsPlayer(step: CdkStep, stepper: MatStepper): void {
+    this.vsComputer = false;
+    this.nextStep(step, stepper);
+  }
+
+  public nextStep(step: CdkStep, stepper: MatStepper): void {
     if(!step.completed) {
       step.completed = true;
     }
     stepper.next();
   }
 
+  public choosePokemon(pokemon: Pokemon, step: CdkStep, stepper: MatStepper): void {
+    this.selectedPokemon[stepper.selectedIndex - 1] = pokemon;
+    if(this.vsComputer === true) {
+      this.selectedPokemon[1] = this.pokemonList[Math.floor(Math.random() * this.pokemonList.length)];
+    }
+    this. nextStep(step, stepper);
+  }
+
   public sendPokemons(): void {
     const [userPokemon, opponentPokemon]: Pokemon[] = this.selectedPokemon;
-    this.toBattle.sendPokemons({ userPokemon,  opponentPokemon});
+    this.toBattle.sendPokemons(this.vsComputer, { userPokemon,  opponentPokemon });
     this.battle.startFight();
   }
 
@@ -52,8 +68,9 @@ export class PokemonChooserComponent implements OnInit {
       this.pokemonChooserService.getUserPokemons(),
       (pokemons: Pokemon[], userPokemons: Pokemon[]): Pokemon[] =>  {
         const names: string[] = userPokemons.map((element: any) => element.payload.doc.id);
+        this.pokemonList = pokemons;
 
-        return pokemons.filter((pokemon: Pokemon) => {
+        return pokemons.filter((pokemon: any) => {
           return names.includes(pokemon.name);
         });
       });

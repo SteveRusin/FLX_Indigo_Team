@@ -9,3 +9,18 @@
 .profile-info {
   width: 100%;
 }
+.shop-btn {
+  margin-left: 1em;
+  display: inline-block;
+  padding: 0.4em 1em;
+  color: var(--white);
+  text-align: center;
+  text-decoration: none;
+  background-color: var(--blue);
+  text-transform: capitalize;
+  border-radius: 0.6em;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+}
