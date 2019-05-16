@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatStepper } from '@angular/material/stepper';
+import { MatStepper } from '@angular/material';
 import { CdkStep } from '@angular/cdk/stepper';
 import { combineLatest, Observable } from 'rxjs';
+
+import {ViewChildren,  QueryList} from '@angular/core';
 
 import { ToBattleService } from '../../services/to-battle.service';
 import { PokemonChooserService } from '../../services/pokemon-chooser.service';
@@ -25,6 +27,8 @@ export class PokemonChooserComponent implements OnInit {
 
   public pokemonList: any = [];
 
+  @ViewChildren('steps') public steps: QueryList<any>;
+
   constructor(
     public pokemonChooserService: PokemonChooserService,
     private toBattle: ToBattleService,
@@ -33,12 +37,20 @@ export class PokemonChooserComponent implements OnInit {
 
   public playerVsComputer(step: CdkStep, stepper: MatStepper): void {
     this.vsComputer = true;
+    this.setUncompleted();
     this.nextStep(step, stepper);
   }
 
   public playerVsPlayer(step: CdkStep, stepper: MatStepper): void {
     this.vsComputer = false;
+    this.setUncompleted();
     this.nextStep(step, stepper);
+  }
+
+  public setUncompleted(): void {
+    this.steps.map((result: any) => {
+      result.completed = false;
+    });
   }
 
   public nextStep(step: CdkStep, stepper: MatStepper): void {
