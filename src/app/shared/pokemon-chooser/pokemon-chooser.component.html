@@ -19,7 +19,7 @@
       </div>
     </mat-step>
 
-    <mat-step label="Choose Pokemon" #stepOne completed="false">
+    <mat-step label="Choose Pokemon" #steps #stepOne completed="false">
       <div class="pokemon-list">
         <app-shop-card class="pokemons"
           *ngFor="let pokemon of userPokemons$ | async" [pokemon]="pokemon"
@@ -27,8 +27,8 @@
         </app-shop-card>
       </div>
     </mat-step>
-
-    <mat-step label="Choose Opponent" #stepTwo completed="false" *ngIf="!vsComputer">
+  
+    <mat-step label="Choose Opponent" #steps #stepTwo completed="false" *ngIf="!vsComputer">
       <div class="pokemon-list">
         <app-shop-card class="pokemons"
           *ngFor="let pokemon of pokemonsList$ | async" [pokemon]="pokemon"
@@ -36,10 +36,10 @@
         </app-shop-card>
       </div>
     </mat-step>
-
-    <mat-step label="Go to fight" #stepThree completed="false">
+  
+    <mat-step label="Go to fight" #steps #stepThree completed="false">
       <div class="choosed-pokemons">
-        <app-shop-card  class="choosed-pokemons-cards" *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-shop-card>
+        <app-shop-card *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-shop-card>
       </div>
       <button mat-raised-button class="fight-btn" (click)="sendPokemons()">FIGHT</button>
     </mat-step>
