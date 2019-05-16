@@ -19,6 +19,7 @@ export const routes: Routes = [
     path: 'game',
     loadChildren: './battle/battle.module#BattleModule',
     data: { animation: 'Game' },
+    canActivate: [AuthGuard]
   },
   {
     path: 'shop',
