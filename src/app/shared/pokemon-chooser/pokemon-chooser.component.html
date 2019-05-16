@@ -27,7 +27,7 @@
       </div>
     </mat-step>
   
-    <mat-step label="Go to fight" #steps #stepThree completed="false" [editable]="editable">
+    <mat-step label="Go to fight" #steps #stepThree completed="false">
       <div class="choosed-pokemons">
         <app-shop-card *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-shop-card>
       </div>
