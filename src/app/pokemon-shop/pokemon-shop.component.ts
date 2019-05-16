@@ -53,7 +53,6 @@ export class PokemonShopComponent implements OnInit {
         userPokemons.forEach((pokemon: any) => {
           pokemon.lock = false;
         });
-
         const cards: any =  pokemons.filter((pokemon: any) => {
           if(!names.includes(pokemon.name)) {
             pokemon.lock = true;

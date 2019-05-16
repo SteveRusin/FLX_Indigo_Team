@@ -39,7 +39,8 @@ export class ProfileInfoService {
       );
 
       this.pokemons$ = this.db.collection('pokemons')
-        .valueChanges();
+        .valueChanges()
+        .pipe(shareReplay(1));
 
       const userPokemonNames$: Observable<DocumentData[]> = authService.user
         .pipe(
