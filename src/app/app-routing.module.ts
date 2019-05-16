@@ -23,7 +23,7 @@ export const routes: Routes = [
   },
   {
     path: 'shop',
-    loadChildren: './pokemon-shop/pokemon-shop.module#PokemonShopModule',
+    loadChildren: './pokemon-shop/pokemon-shop.module#PokemonShopModule'
   },
   { path: '**', redirectTo: '', data: {animation: 'Home'} }
 ];
