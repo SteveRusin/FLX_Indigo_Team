@@ -46,7 +46,7 @@ export class LoginFormComponent {
   }
 
   public signInWithEmailAndPassword(): void {
-    console.log(this.loginForm.value);
+    // console.log(this.loginForm.value);
     this.authService
       .signInWithEmailAndPassword(this.loginForm.value.email, this.loginForm.value.password);
     this.dialogRef.close();

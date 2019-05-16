@@ -22,7 +22,7 @@ export class AuthService {
     this.user = this._firebaseAuth.authState;
     this.user.subscribe(
       (user: firebase.User) => {
-        console.log(user);
+        // console.log(user);
         if (user) {
           this.userDetails = user;
           this.uid = this.userDetails.uid;
@@ -31,7 +31,7 @@ export class AuthService {
             .doc(this.uid)
             .get()
             .then((player: any) => {
-              console.log(player);
+              // console.log(player);
               if (!player.data()) {
                 this.writePlayerData(this.userDetails.uid, this.userDetails.displayName, this.userDetails.photoURL);
               }
@@ -60,7 +60,6 @@ export class AuthService {
   }
 
   public signInWithEmailAndPassword(email: string, password: string): void {
-    console.log(email, password);
     firebase.auth()
     .signInWithEmailAndPassword(email, password)
       .catch((error: any) => {

@@ -5,8 +5,18 @@
     </ng-template>
 
     <mat-step label="Choose Game Type" #stepZero completed="false">
-      <button mat-raised-button (click)="playerVsComputer(stepZero, stepper)">Player vs Computer</button>
-      <button mat-raised-button (click)="playerVsPlayer(stepZero, stepper)">Player vs Player</button>
+      <div class="btn-wrapper">
+        <button mat-raised-button (click)="playerVsComputer(stepZero, stepper)">
+          <img src="../../../assets/battle-icons/humanVShuman.png" />
+          <br>
+          <span class="playerVSComp"><b>Player vs Computer</b></span>
+        </button>
+        <button mat-raised-button (click)="playerVsPlayer(stepZero, stepper)">
+          <img src="../../../assets/battle-icons/humanVScomputer.png" />
+          <br>
+          <span class="playerVSplayer"><b>Player vs Player</b></span>
+        </button>
+      </div>
     </mat-step>
 
     <mat-step label="Choose Pokemon" #steps #stepOne completed="false">

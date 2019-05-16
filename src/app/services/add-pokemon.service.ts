@@ -26,6 +26,6 @@ export class AddPokemonService {
   }
 
   public test(): void {
-    console.log('!!!');
+    // console.log('!!!');
   }
 }
