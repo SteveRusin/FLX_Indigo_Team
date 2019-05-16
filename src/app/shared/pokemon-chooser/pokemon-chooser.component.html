@@ -7,12 +7,12 @@
     <mat-step label="Choose Game Type" #stepZero completed="false">
       <div class="btn-wrapper">
         <button mat-raised-button (click)="playerVsComputer(stepZero, stepper)">
-          <img src="../../../assets/battle-icons/humanVScomputer.png" />
+          <img src="../../../assets/battle-icons/humanVShuman.png" />
           <br>
           <span class="playerVSComp"><b>Player vs Computer</b></span>
         </button>
         <button mat-raised-button (click)="playerVsPlayer(stepZero, stepper)">
-          <img src="../../../assets/battle-icons/humanVShuman.png" />
+          <img src="../../../assets/battle-icons/humanVScomputer.png" />
           <br>
           <span class="playerVSplayer"><b>Player vs Player</b></span>
         </button>
@@ -27,7 +27,7 @@
         </app-shop-card>
       </div>
     </mat-step>
-  
+
     <mat-step label="Choose Opponent" #stepTwo completed="false" *ngIf="!vsComputer">
       <div class="pokemon-list">
         <app-shop-card class="pokemons"
@@ -36,7 +36,7 @@
         </app-shop-card>
       </div>
     </mat-step>
-  
+
     <mat-step label="Go to fight" #stepThree completed="false">
       <div class="choosed-pokemons">
         <app-shop-card  class="choosed-pokemons-cards" *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-shop-card>

@@ -1,6 +1,6 @@
 <nav class="navbar">
   <a mat-button routerLink="">Home</a>
-  <a mat-button routerLink="/game">Game</a>
+  <a mat-button *ngIf="isLogged()" routerLink="/game">Game</a>
 
   <a mat-button *ngIf="isLogged() && userPlayer$ | async as player"
     matBadge="{{player.money}}"
