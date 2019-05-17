@@ -23,7 +23,6 @@ export class ShopCardComponent implements OnInit {
   constructor() {}
   @Input() public pokemon: any;
   @Output() public choseCard: EventEmitter<any> = new EventEmitter();
-
   @Output() public buyCard: EventEmitter<any> = new EventEmitter();
 
   @HostListener('click')
