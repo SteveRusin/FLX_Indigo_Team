@@ -2,8 +2,8 @@
   <div [className]="pokemon.lock === true ? 'card-block' : 'card-open'">
     <i class="material-icons lock">lock</i>
     <button class="buy-btn" (click)="buyPokemon(pokemon)">BUY</button>
-    <span class="price">price: {{pokemon.price}}$</span>
-    <span class="price">Will be unlocked with {{pokemon.unlocked}} wins</span>
+    <span class="price">price: {{pokemon.price}}</span>
+    <span class="price">can be unlocked with {{pokemon.unlocked}} wins</span>
   </div>
   <div class="card">
     <div class="card__body" [ngStyle]="setStyle(pokemon.type)">
@@ -24,7 +24,7 @@
 
         <div class="attacks">
           <ul class="attack pkmn-power">
-            <li *ngFor="let name of objectKeys(pokemon.ability)"><strong>pokémon ability: {{name}}</strong></li>
+            <li *ngFor="let name of objectKeys(pokemon.ability)"><strong>ability: {{name}}</strong></li>
             <li><span class="energy inline"></span>attack type: {{ pokemon.type }}</li>
             <li *ngFor="let damage of objectValues(pokemon.ability)"><span class="energy inline"></span>damage: {{damage}} points</li>
             <li><strong>special attack: {{pokemon.specAttack.name}} </strong></li>

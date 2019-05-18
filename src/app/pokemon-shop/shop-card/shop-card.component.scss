@@ -9,7 +9,7 @@ $font-size-large: $card-size * 0.06;
 .wrapper {
   user-select: none;
   position: relative;
-  width: $card-size;
+  width:260px;
   margin-top: 2em;
   font-family: 'Gill Sans', 'Gill Sans MT', 'Cabin', sans-serif;
 }
@@ -29,7 +29,7 @@ $font-size-large: $card-size * 0.06;
   border-radius: $card-size * 0.0316;
   .lock {
     display: block;
-    font-size: $card-size * 0.5;
+    font-size: calc(8em + 1.6vmin);
     color: #CED416;
   }
   .level, .price {
@@ -39,7 +39,8 @@ $font-size-large: $card-size * 0.06;
     display: block;
   }
   .price {
-    font-size: $card-size * 0.088;
+    text-transform: capitalize;
+    font-size: calc(1em + 1.4vmin);
   }
   .buy-btn {
     width: 50%;
@@ -67,9 +68,10 @@ $font-size-large: $card-size * 0.06;
   background-size: cover;
 }
 .card__head {
-  padding: 3% 6%;
+  padding: 3% 4%;
 }
 .main-info {
+  margin-top: 6px;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -90,24 +92,24 @@ $font-size-large: $card-size * 0.06;
 }
 .name {
   text-transform: capitalize;
-  font-size: $card-size * 0.082;
+  font-size: calc(1em + 0.8vmin);
   font-weight: 700;
 }
 .hp {
-  right: 9%;
+  right: 10%;
   bottom: 3%;
   margin-left: auto;
   margin-right: $card-size * 0.02;
   letter-spacing: -0.05em;
   font-weight: 600;
-  font-size: $card-size * 0.07;
+  font-size: calc(1em + 0.8vmin);
   transform: scale(0.92, 1);
   transform-origin: right;
 }
 .frame {
   width: 100%;
   padding: 10%;
-  height: $card-size * 0.5;
+  height: 160px;
   margin-bottom: $card-size * 0.0105;
   img {
     transform: scale(1.2);
@@ -124,7 +126,7 @@ $font-size-large: $card-size * 0.06;
   text-transform: capitalize;
   > span {
     color: #fff;
-    font-size: $card-size * 0.1;
+    font-size: calc(1.2em + 0.8vmin);
     font-weight: 600;
     font-style: italic;
   }
@@ -133,9 +135,8 @@ $font-size-large: $card-size * 0.06;
   position: relative;
   display: inline-block;
   border-radius: 100px;
-  margin-right: $card-size * 0.015;
-  width: $card-size * 0.07;
-  height: $card-size * 0.07;
+  width: $card-size * 0.08;
+  height: $card-size * 0.08;
   background: radial-gradient(#fdaeba 40%, #f84c20, #c8340e 100%);
   &:after {
     content: '';
@@ -150,6 +151,7 @@ $font-size-large: $card-size * 0.06;
     background: linear-gradient(rgba(white, 0.8) 50%, transparent);
   }
   &.inline {
+    margin-right: $card-size * 0.015;
     width: $card-size * 0.04;
     height: $card-size * 0.04;
   }
@@ -163,14 +165,15 @@ $font-size-large: $card-size * 0.06;
   li {
     color: #fff;
     vertical-align: middle;
-    margin: $card-size*0.006 0;
-    font-size: $card-size*0.06;
+    margin: $card-size*0.0060;
+    font-size: calc(0.8em + 0.8vmin);
     list-style: none;
     text-transform: capitalize;
   }
   &.pkmn-power {
     strong {
-      font-size: $card-size*0.062;
+      font-weight: 600;
+      font-size: calc(0.6em + 0.8vmin);
       color: #fff;
     }
   }
@@ -197,12 +200,81 @@ $font-size-large: $card-size * 0.06;
     letter-spacing: 0.022em;
   }
 }
-.footer {
-  position: absolute;
-  bottom: 0.35%;
-  left: 1%;
-  right: 1%;
-  display: flex;
-  justify-content: space-between;
-  font-size: $card-size * 0.018;
+
+@media (min-width: 2800px) {
+  .stats {
+    span {
+      font-size: calc(0.8em + 0.8vmin);
+    }
+  }
+  .attack {
+    li {
+      font-size: calc(0.6em + 0.5vmin);
+    }
+    &.pkmn-power {
+      strong {
+        font-size: calc(0.2em + 0.2vmin);
+      }
+    }
+  }
+  .energy {
+    width: $card-size * 0.03;
+    height: $card-size * 0.03;
+  }
+  .energy.inline {
+    width: $card-size * 0.02;
+    height: $card-size * 0.02;
+  }
+  .hp {
+    font-size: calc(0.5em + 0.5vmin);
+  }
+  .name {
+    font-size: calc(0.6em + 0.6vmin);
+  }
+}
+
+@media (min-width: 2050px) and (max-width: 2799px) {
+  .attack {
+    li {
+      font-size: calc(0.6em + 0.8vmin);
+    }
+    &.pkmn-power {
+      strong {
+        font-size: calc(0.6em + 0.3vmin);
+      }
+    }
+  }
+  .energy {
+    width: $card-size * 0.05;
+    height: $card-size * 0.05;
+  }
+  .hp {
+    font-size: calc(0.6em + 0.6vmin);
+  }
+  .name {
+    font-size: calc(0.8em + 0.7vmin);
+  }
+}
+
+@media only screen and (min-width: 1800px) and (max-width: 2049px) {
+  .attack {
+    li {
+      font-size: calc(0.6em + 0.8vmin);
+    }
+    &.pkmn-power {
+      strong {
+        font-size: calc(0.8em + 0.3vmin);
+      }
+    }
+  }
+  .energy {
+    width: $card-size * 0.06;
+    height: $card-size * 0.06;
+  }
+  .hp {
+    font-size: calc(0.78em + 0.78vmin);
+  }
+  .name {
+    font-size: calc(0.85em + 0.85vmin);
+  }
 }

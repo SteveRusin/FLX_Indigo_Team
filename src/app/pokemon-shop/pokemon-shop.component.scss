@@ -3,6 +3,7 @@
   padding: 1em 4em;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-gap: 10px;
   justify-items: center;
 }
 
@@ -13,4 +14,11 @@
 @keyframes blinking {
  from{ filter: drop-shadow(0 0 0 var(--yellow)); }
   to{ filter: drop-shadow(0 0 1.2em var(--yellow)); }
+}
+
+@media only screen and (max-width: 380px) {
+  .pokemon-single-container {
+    padding: 1em 0em;
+    border: 1px solid red;
+  }
 }
