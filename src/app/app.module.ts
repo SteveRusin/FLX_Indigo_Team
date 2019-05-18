@@ -18,7 +18,6 @@ import { CoreModule } from './core/core.module';
 import { PreloaderComponent } from './shared/preloader/preloader.component';
 import { PreloaderService } from './shared/preloader/preloader.service';
 
-
 import { environment } from '../environments/environment';
 import { routes } from './app-routing.module';
 
