@@ -1,7 +1,7 @@
 navbar-login-dialog {
   .dialog-wrap {
     overflow: visible;
-    width: 25em;
+    width: 100%;
   }
 
   .line {
@@ -26,6 +26,10 @@ navbar-login-dialog {
   .form-container > * {
     padding: 5px 20px;
   }
+}
+
+.mat-dialog-container {
+  width: 25em;
 }
 
 .primary-color {
