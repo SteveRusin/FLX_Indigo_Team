@@ -100,7 +100,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.preloader.show();
     this.bg = this.getArena();
     setTimeout(this.getPokemons.bind(this));
-    setTimeout(() => this.preloader.hide(), 2000);
+    setTimeout(() => this.preloader.hide(), 1000);
   }
 
   public getArena(): SafeStyle {
