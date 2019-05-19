@@ -9,7 +9,11 @@ import { homeRoutes } from './home-page-routing.module';
 
 import { MatAutocompleteModule,
   MatCardModule,
-  MatIconModule
+  MatIconModule,
+  MatDialogModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatToolbarModule
 } from '@angular/material';
 
 @NgModule({
@@ -18,7 +22,12 @@ import { MatAutocompleteModule,
     RouterModule.forChild(homeRoutes),
     MatAutocompleteModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    MatToolbarModule,
   ],
   declarations: [
     HomePageComponent,
