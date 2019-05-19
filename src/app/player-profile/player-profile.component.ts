@@ -4,8 +4,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 
-import { ProfileInfoService } from '../services/profile-info.service';
-
 @Component({
   selector: 'app-player-profile',
   templateUrl: './player-profile.component.html',
@@ -14,9 +12,7 @@ import { ProfileInfoService } from '../services/profile-info.service';
 })
 export class PlayerProfileComponent implements OnInit {
 
-  constructor(
-    public profileInfoService: ProfileInfoService
-  ) { }
+  constructor() { }
 
   public ngOnInit(): void {
   }
