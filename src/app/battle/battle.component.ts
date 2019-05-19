@@ -3,7 +3,8 @@ import { BattleService } from '../services/battle.service';
 import { Pokemon } from '../models/pokemon.interface';
 import { BattleInfoComponent } from '../battle/battle.info/battle.info.component';
 import { ToBattleService } from '../services/to-battle.service';
-import { Subscription } from 'rxjs';
+import { PreloaderService } from '../shared/preloader/preloader.service';
+import { Subscription, Observable } from 'rxjs';
 
 // USE ANIMATIONS SERVICE
 import { BattleAnimationsService } from '../services/battle.animations.service';
@@ -50,6 +51,7 @@ export class BattleComponent implements OnInit, OnDestroy {
   private superPunchB: string;
   private attackTooltipA: string;
   private attackTooltipB: string;
+  public bg: SafeStyle;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
@@ -66,7 +68,7 @@ export class BattleComponent implements OnInit, OnDestroy {
   @ViewChild('imgPokemonB') public imgPokemonB: ElementRef;
 
   constructor(private battleService: BattleService, private elementRef: ElementRef, private renderer: Renderer2, private toBattle: ToBattleService,
-    public battleAnimationsService: BattleAnimationsService, private _sanitizer: DomSanitizer) {
+    public battleAnimationsService: BattleAnimationsService, private _sanitizer: DomSanitizer, private preloader: PreloaderService) {
     this.subscription = this.toBattle.getPokemons()
       .subscribe((pokemons: Pokemon[]) => {
         this.isGameWithBot = this.toBattle.battleType;
@@ -95,10 +97,11 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.attackTooltipB = this.pokemonB.specAttack.type;
 
     // USE ANIMATIONS SERVICE
-    setTimeout(() => this.getPokemons());
+    this.preloader.show();
+    this.bg = this.getArena();
+    setTimeout(this.getPokemons.bind(this));
+    setTimeout(() => this.preloader.hide(), 2000);
   }
-
-  public bg: SafeStyle;
 
   public getArena(): SafeStyle {
     const arenaImgArr: string[] = ['arena1.jpg', 'arena2.jpg', 'arena3.jpg', 'arena4.jpg', 'arena5.jpg'];
@@ -330,9 +333,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     }
   }
 
-  public ngOnInit(): void {
-    this.bg = this.getArena();
-  }
+  public ngOnInit(): void {}
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

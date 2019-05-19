@@ -15,8 +15,6 @@ import { UploadFileService } from './services/upload-file.service';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
-import { PreloaderComponent } from './shared/preloader/preloader.component';
-import { PreloaderService } from './shared/preloader/preloader.service';
 
 import { environment } from '../environments/environment';
 import { routes } from './app-routing.module';
@@ -24,7 +22,6 @@ import { routes } from './app-routing.module';
 @NgModule({
   declarations: [
     AppComponent,
-    PreloaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,7 +40,6 @@ import { routes } from './app-routing.module';
     AuthGuardService,
     ToBattleService,
     UploadFileService,
-    PreloaderService,
   ],
   bootstrap: [ AppComponent]
 })

@@ -1,4 +1,4 @@
-<preloader *ngIf="preloader$ | async"></preloader>
+<app-preloader *ngIf="preloader$ | async"></app-preloader>
 <app-header></app-header>
 <div [@routeAnimations]="o && o.activatedRouteData
       && o.activatedRouteData['animation']">
