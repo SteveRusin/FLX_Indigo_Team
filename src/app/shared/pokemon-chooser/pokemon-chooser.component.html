@@ -5,7 +5,7 @@
     </ng-template>
 
     <mat-step label="Choose Game Type" #stepZero completed="false">
-      <div class="btn-wrapper">
+      <div class="wrapper btn-wrapper">
         <button mat-raised-button (click)="playerVsComputer(stepZero, stepper)">
           <img src="../../../assets/battle-icons/humanVShuman.png" />
           <br>
@@ -20,23 +20,23 @@
     </mat-step>
 
     <mat-step label="Choose Pokemon" #steps #stepOne completed="false">
-      <div class="pokemon-list">
+      <div class="wrapper pokemon-list">
         <app-shop-card class="pokemons"
           *ngFor="let pokemon of userPokemons$ | async" [pokemon]="pokemon"
           (choseCard)="choosePokemon($event, stepOne, stepper)">
         </app-shop-card>
       </div>
     </mat-step>
-  
+
     <mat-step label="Choose Opponent" #steps #stepTwo completed="false" *ngIf="!vsComputer">
-      <div class="pokemon-list">
+      <div class="wrapper pokemon-list">
         <app-shop-card class="pokemons"
-          *ngFor="let pokemon of pokemonsList$ | async" [pokemon]="pokemon"
+          *ngFor="let pokemon of userPokemons$ | async" [pokemon]="pokemon"
           (choseCard)="choosePokemon($event, stepTwo, stepper)">
         </app-shop-card>
       </div>
     </mat-step>
-  
+
     <mat-step label="Go to fight" #steps #stepThree completed="false">
       <div class="choosed-pokemons">
         <app-shop-card *ngFor="let pokemon of selectedPokemon" [pokemon]="pokemon"></app-shop-card>

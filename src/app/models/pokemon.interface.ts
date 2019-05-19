@@ -21,4 +21,8 @@ export interface Pokemon {
   state?: string;
   placeOfPunch?: string;
   placeOfDefence?: string;
+  unlocked?: number; // @Ruslan
+  position?: boolean; // @Ruslan
+  price?: number; // @Ruslan
+  lock?: boolean; // @Ruslan
 }

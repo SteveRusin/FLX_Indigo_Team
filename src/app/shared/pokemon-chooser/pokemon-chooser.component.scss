@@ -1,15 +1,21 @@
-mat-horizontal-stepper {
-  padding: 3em;
+.wrapper  {
+  display: grid;
+  grid-gap: 10px;
+  justify-items: center;
+}
+.btn-wrapper  {
+  grid-template-columns: repeat(auto-fill, minmax(49%, 1fr));
+  & button {
+    border: var(--blue) solid 0.1em;
+    color: var(--blue);
+  }
+}
+.pokemon-list {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  margin-top: 1em;
 }
 .pokemons:hover {
   cursor: pointer;
-}
-.pokemon-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  grid-gap: 10px;
-  justify-items: center;
-  margin-top: 1em;
 }
 .choosed-pokemons {
   display: flex;
@@ -33,18 +39,7 @@ mat-horizontal-stepper {
     box-shadow: 0 0 8px 6px var(--yellow);
   }
 }
-
 img {
   height: 15em;
   width: auto;
-}
-
-.btn-wrapper {
-  display: flex;
-  justify-content: space-around;
-
-  & button {
-    border: var(--blue) solid 0.1em;
-    color: var(--blue);
-  }
 }

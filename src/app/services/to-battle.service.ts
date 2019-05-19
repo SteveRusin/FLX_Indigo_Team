@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject} from 'rxjs';
-import { Pokemons } from '../shared/pokemon-chooser/pokemon-interface';
 
 @Injectable()
 export class ToBattleService {
