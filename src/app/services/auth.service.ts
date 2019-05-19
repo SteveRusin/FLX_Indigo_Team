@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,10 @@ export class AuthService {
     private _firebaseAuth: AngularFireAuth,
     private router: Router
   ) {
-    this.user = this._firebaseAuth.authState;
+    this.user = this._firebaseAuth.authState
+      .pipe(
+        filter(Boolean)
+      );
     this.user.subscribe(
       (user: firebase.User) => {
         // console.log(user);
