@@ -39,7 +39,7 @@ import { routes } from './app-routing.module';
     AuthService,
     AuthGuardService,
     ToBattleService,
-    UploadFileService
+    UploadFileService,
   ],
   bootstrap: [ AppComponent]
 })

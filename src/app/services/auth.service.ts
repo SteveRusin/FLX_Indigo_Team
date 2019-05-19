@@ -3,8 +3,7 @@ import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
-
-import { Player } from '../models/player';
+import { filter } from 'rxjs/operators';
 
 @Injectable()
 export class AuthService {
@@ -13,13 +12,16 @@ export class AuthService {
   public db: any = firebase.firestore();
   public uid: string;
   public data: any;
-  public avatar: 'https://cdn0.iconfinder.com/data/icons/avatar-profile/452/pikachu_pokemon_profile_avatar_people-512.png';
+  public avatar: string = 'https://cdn0.iconfinder.com/data/icons/avatar-profile/452/pikachu_pokemon_profile_avatar_people-512.png';
 
   constructor(
     private _firebaseAuth: AngularFireAuth,
     private router: Router
   ) {
-    this.user = this._firebaseAuth.authState;
+    this.user = this._firebaseAuth.authState
+      .pipe(
+        filter(Boolean)
+      );
     this.user.subscribe(
       (user: firebase.User) => {
         // console.log(user);
@@ -33,7 +35,7 @@ export class AuthService {
             .then((player: any) => {
               // console.log(player);
               if (!player.data()) {
-                this.writePlayerData(this.userDetails.uid, this.userDetails.displayName, this.userDetails.photoURL);
+                this.writePlayerData(this.userDetails.uid, this.userDetails.displayName, this.userDetails.email, this.userDetails.photoURL);
               }
             });
         } else {
@@ -80,7 +82,7 @@ export class AuthService {
         player.user.updateProfile({
           displayName: nickname
         });
-        this.writePlayerData(player.user.uid, nickname);
+        this.writePlayerData(player.user.uid, nickname, email);
       })
       .catch((error: any) => {
         const errorCode: string = error.code;
@@ -93,14 +95,13 @@ export class AuthService {
       });
   }
 
-  public writePlayerData(playerId: string, name: string, avatar: string = this.avatar): void {
-    const { email }: firebase.User = this.userDetails;
+  public writePlayerData(playerId: string, name: string, email: string, avatar: string = this.avatar): void {
     this.db.collection('players')
       .doc(playerId)
       .set({
         name,
         email,
-        avatar,
+        avatar: avatar,
         money: 500,
         battles: {
           all: 0,
