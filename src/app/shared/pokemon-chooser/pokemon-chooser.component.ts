@@ -2,14 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatStepper } from '@angular/material';
 import { CdkStep } from '@angular/cdk/stepper';
 import { combineLatest, Observable } from 'rxjs';
-
-import {ViewChildren,  QueryList} from '@angular/core';
+import {  ViewChildren,  QueryList  } from '@angular/core';
 
 import { ToBattleService } from '../../services/to-battle.service';
 import { PokemonChooserService } from '../../services/pokemon-chooser.service';
 
 import { BattleComponent } from '../../battle/battle.component';
-import { Pokemon } from './pokemon-interface';
+import { Pokemon } from '../../models/pokemon.interface';
 
 @Component({
   selector: 'app-pokemon-chooser',
@@ -20,12 +19,12 @@ import { Pokemon } from './pokemon-interface';
 export class PokemonChooserComponent implements OnInit {
   public pokemonsList$: Observable<Pokemon[]>;
   public userPokemons$: Observable<Pokemon[]>;
-  public selectedPokemon: any = [];
+  public selectedPokemon: Pokemon[] = [];
 
   public isVisible: boolean = true;
   public vsComputer: boolean = false;
 
-  public pokemonList: any = [];
+  public pokemonList: Pokemon[] = [];
 
   @ViewChildren('steps') public steps: QueryList<any>;
 
@@ -48,12 +47,13 @@ export class PokemonChooserComponent implements OnInit {
   }
 
   public setUncompleted(): void {
-    this.steps.map((result: any) => {
+    this.steps.map((result: CdkStep) => {
       result.completed = false;
     });
   }
 
   public nextStep(step: CdkStep, stepper: MatStepper): void {
+    console.log(this.userPokemons$);
     if(!step.completed) {
       step.completed = true;
     }
@@ -82,10 +82,10 @@ export class PokemonChooserComponent implements OnInit {
         const names: string[] = userPokemons.map((element: any) => element.payload.doc.id);
         this.pokemonList = pokemons;
 
-        return pokemons.filter((pokemon: any) => {
+        return pokemons.filter((pokemon: Pokemon) => {
           return names.includes(pokemon.name);
         });
       });
-    this.pokemonsList$ = this.pokemonChooserService.getPokemons();
+      this.pokemonsList$ = this.pokemonChooserService.getPokemons();
   }
 }

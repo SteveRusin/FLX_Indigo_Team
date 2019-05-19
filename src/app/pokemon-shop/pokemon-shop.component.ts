@@ -10,6 +10,8 @@ import { take } from 'rxjs/operators';
 import { ProfileInfoService } from 'src/app/services/profile-info.service';
 import { AddPokemonService } from '../services/add-pokemon.service';
 import { BuyPokemonService } from '../services/buy-pokemon.service';
+import { Pokemon } from '../models/pokemon.interface';
+import { Player } from '../models/player';
 
 @Component({
   selector: 'app-pokemon-shop',
@@ -17,10 +19,10 @@ import { BuyPokemonService } from '../services/buy-pokemon.service';
   styleUrls: ['./pokemon-shop.component.scss']
 })
 export class PokemonShopComponent implements OnInit {
-  public userPlayer$: Observable<any>;
-  public userPokemons$: Observable<any>;
-  public pokemons$: Observable<any>;
-  public pokemons: Observable<any>;
+  public userPlayer$: Observable<Player>;
+  public userPokemons$: Observable<Pokemon[]>;
+  public pokemons$: Observable<Pokemon[]>;
+  public pokemons: Observable<Pokemon[]>;
 
   constructor(
     public profileInfoService: ProfileInfoService,
@@ -32,11 +34,10 @@ export class PokemonShopComponent implements OnInit {
     this.pokemons$ = profileInfoService.pokemons$;
   }
 
-  public unlockedPokemon(pokemon: any): void {
+  public unlockedPokemon(pokemon: Pokemon): void {
     this.userPlayer$.pipe(take(1))
-    .subscribe((response: any) => {
+    .subscribe((response: Player) => {
       if(pokemon.unlocked < response.battles.wins) {
-        pokemon.lock = false;
         this.addPokemonService.addPokemon(pokemon);
       } else if(pokemon.price < response.money) {
         this.buyPokemonService.writeCredits(response.money - pokemon.price, pokemon);
@@ -48,12 +49,12 @@ export class PokemonShopComponent implements OnInit {
     this.pokemons = combineLatest(
       this.pokemons$,
       this.userPokemons$,
-      (pokemons: any[], userPokemons: any[]): any =>  {
-        const names: string[] = userPokemons.map((pokemon: any) => pokemon.name);
-        userPokemons.forEach((pokemon: any) => {
+      (pokemons: Pokemon[], userPokemons: Pokemon[]): Pokemon[] =>  {
+        const names: string[] = userPokemons.map((pokemon: Pokemon) => pokemon.name);
+        userPokemons.forEach((pokemon: Pokemon) => {
           pokemon.lock = false;
         });
-        const cards: any =  pokemons.filter((pokemon: any) => {
+        const cards: Pokemon[] =  pokemons.filter((pokemon: Pokemon) => {
           if(!names.includes(pokemon.name)) {
             pokemon.lock = true;
 

@@ -7,4 +7,5 @@ export interface Player {
   battles?: Battles;
   uid?: string;
   id?: string;
+  money?: number; // @Ruslan
 }
