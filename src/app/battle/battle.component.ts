@@ -95,7 +95,6 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.superPunchB = this.pokemonB.specAttack.name;
     this.attackTooltipA = this.pokemonA.specAttack.type;
     this.attackTooltipB = this.pokemonB.specAttack.type;
-
     // USE ANIMATIONS SERVICE
     this.preloader.show();
     this.bg = this.getArena();
@@ -111,7 +110,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     return style;
   }
 
-    // USE ANIMATIONS SERVICE
+  // USE ANIMATIONS SERVICE
   public changeStateA(state: string): void {
     this.currentStateA = 'initial';
     setTimeout(() => this.currentStateA = state);

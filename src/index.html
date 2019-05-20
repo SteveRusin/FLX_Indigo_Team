@@ -62,21 +62,36 @@
     }
 
     @keyframes wiggle {
-      70% {
-        transform: rotate(0deg)
-      }
-
-      80% {
+      0% {
         transform: rotate(12deg)
       }
 
-      90% {
+      25% {
+        transform: rotate(-6deg)
+      }
+
+      50% {
+        transform: rotate(12deg)
+      }
+
+      75% {
         transform: rotate(-6deg)
       }
 
       100% {
-        transform: rotate(0deg)
+        transform: rotate(12deg)
       }
+    }
+
+    .wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100;
+      background: rgba(13, 29, 47, 0.9);
+      pointer-events: none;
     }
   </style>
 
@@ -84,8 +99,10 @@
 
 <body>
   <app-root>
-    <div class="ball">
-      <div class="middle"></div>
+    <div class="wrapper">
+      <div class="ball">
+        <div class="middle"></div>
+      </div>
     </div>
   </app-root>
 </body>
