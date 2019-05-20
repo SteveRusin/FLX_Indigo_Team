@@ -79,10 +79,6 @@ export class BattleComponent implements OnInit, OnDestroy {
         this.pokemons = pokemons;
       });
     this.userPlayer$ = profileInfoService.userPlayer$;
-    this.preloader.show();
-    this.bg = this.getArena();
-    setTimeout(this.getPokemons.bind(this));
-    setTimeout(() => this.preloader.hide(), 1000);
   }
   public pokemonA: Pokemon = {};
   public pokemonB: Pokemon = {};
@@ -110,6 +106,10 @@ export class BattleComponent implements OnInit, OnDestroy {
 
     // USE ANIMATIONS SERVICE
     setTimeout(() => this.getPokemons());
+    this.preloader.show();
+    this.bg = this.getArena();
+    setTimeout(this.getPokemons.bind(this));
+    setTimeout(() => this.preloader.hide(), 1000);
   }
 
   public bg: SafeStyle;
