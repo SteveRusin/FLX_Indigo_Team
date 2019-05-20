@@ -78,4 +78,14 @@ export class BattleService {
 
     return currentValue;
   }
+  public getKeyOfObj(obj: object): string {
+    let currentKey: string;
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        currentKey = key;
+      }
+    }
+
+    return currentKey;
+  }
 }

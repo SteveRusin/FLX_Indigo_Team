@@ -3,8 +3,9 @@ import { BattleService } from '../services/battle.service';
 import { Pokemon } from '../models/pokemon.interface';
 import { BattleInfoComponent } from '../battle/battle.info/battle.info.component';
 import { ToBattleService } from '../services/to-battle.service';
-import { PreloaderService } from '../shared/preloader/preloader.service';
 import { Subscription, Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
+import { ProfileInfoService } from 'src/app/services/profile-info.service';
 
 // USE ANIMATIONS SERVICE
 import { BattleAnimationsService } from '../services/battle.animations.service';
@@ -16,7 +17,7 @@ import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.scss'],
   providers: [BattleService],
-  animations: [ attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation ]
+  animations: [attackAnimation, attackAnimationsA, attackAnimationsB, defenseAnimation]
 })
 export class BattleComponent implements OnInit, OnDestroy {
   public isGameWithBot: boolean = false;
@@ -36,6 +37,8 @@ export class BattleComponent implements OnInit, OnDestroy {
   public killDefenceEvent: any;
   public punchCoefficient: number = 1;
   private counter: number = 0;
+  public userPlayer$: Observable<any>;
+  public userStatistic: any;
 
   public aAttack: string;
   public bAttack: string;
@@ -51,7 +54,6 @@ export class BattleComponent implements OnInit, OnDestroy {
   private superPunchB: string;
   private attackTooltipA: string;
   private attackTooltipB: string;
-  public bg: SafeStyle;
 
   @ViewChild(BattleInfoComponent) public battleInfo: BattleInfoComponent;
 
@@ -68,12 +70,14 @@ export class BattleComponent implements OnInit, OnDestroy {
   @ViewChild('imgPokemonB') public imgPokemonB: ElementRef;
 
   constructor(private battleService: BattleService, private elementRef: ElementRef, private renderer: Renderer2, private toBattle: ToBattleService,
-    public battleAnimationsService: BattleAnimationsService, private _sanitizer: DomSanitizer, private preloader: PreloaderService) {
+    public battleAnimationsService: BattleAnimationsService, private _sanitizer: DomSanitizer, public auth: AuthService,
+    public profileInfoService: ProfileInfoService) {
     this.subscription = this.toBattle.getPokemons()
       .subscribe((pokemons: Pokemon[]) => {
         this.isGameWithBot = this.toBattle.battleType;
         this.pokemons = pokemons;
       });
+    this.userPlayer$ = profileInfoService.userPlayer$;
   }
   public pokemonA: Pokemon = {};
   public pokemonB: Pokemon = {};
@@ -95,13 +99,15 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.superPunchB = this.pokemonB.specAttack.name;
     this.attackTooltipA = this.pokemonA.specAttack.type;
     this.attackTooltipB = this.pokemonB.specAttack.type;
+    this.userPlayer$.subscribe((response: any) => {
+      this.userStatistic = response;
+    });
 
     // USE ANIMATIONS SERVICE
-    this.preloader.show();
-    this.bg = this.getArena();
-    setTimeout(this.getPokemons.bind(this));
-    setTimeout(() => this.preloader.hide(), 1000);
+    setTimeout(() => this.getPokemons());
   }
+
+  public bg: SafeStyle;
 
   public getArena(): SafeStyle {
     const arenaImgArr: string[] = ['arena1.jpg', 'arena2.jpg', 'arena3.jpg', 'arena4.jpg', 'arena5.jpg'];
@@ -111,7 +117,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     return style;
   }
 
-    // USE ANIMATIONS SERVICE
+  // USE ANIMATIONS SERVICE
   public changeStateA(state: string): void {
     this.currentStateA = 'initial';
     setTimeout(() => this.currentStateA = state);
@@ -136,8 +142,9 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.aAttack = this.pokemonA.type;
     this.bAttack = this.pokemonB.type;
   }
-    // END ANIMATIONS SERVICE
+  // END ANIMATIONS SERVICE
   public currentBasePunch(): void {
+    //this.auth.setUserStatistic(this.auth.uid);
     this.isButtons = !this.isButtons;
     this.isSpecAttackA = false;
     this.killEvent();
@@ -147,7 +154,7 @@ export class BattleComponent implements OnInit, OnDestroy {
     this.opponentPokemonHealth -= this.battleService.basePunch(this.pokemonA, this.pokemonB) * this.punchCoefficient;
     if (this.isGameWithBot) {
       this.punchPlace('bot');
-      if(this.battleService.isSpecAttack(this.pokemonB)&&this.pokemonB.health !== this.health.bHealth) {
+      if (this.battleService.isSpecAttack(this.pokemonB) && this.pokemonB.health !== this.health.bHealth) {
         this.opponentSpecAttack();
       } else {
         this.opponentBasePunch();
@@ -208,12 +215,12 @@ export class BattleComponent implements OnInit, OnDestroy {
       this.pokemonB.health = this.opponentPokemonHealth;
       this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
       // USE ANIMATIONS SERVICE
-      if ( this.isSpecAttackB && this.pokemonB.specAttack.type === 'damage') {
+      if (this.isSpecAttackB && this.pokemonB.specAttack.type === 'damage') {
         this.changeStateB('final');
         this.battleInfo.showPopup('attack', -this.healthCounterB, 'b');
-      } else if ( this.isSpecAttackB && this.pokemonB.specAttack.type === 'recovery'
-      || this.pokemonB.specAttack.type === 'defence') {
-        this.battleInfo.showPopup('defence', this.healthCounterA, 'a');
+      } else if (this.isSpecAttackB && this.pokemonB.specAttack.type === 'recovery'
+        || this.pokemonB.specAttack.type === 'defence') {
+        this.battleInfo.showPopup('defence', -this.healthCounterA, 'a');
         this.changeDefenseB();
       } else {
         this.changeStateB('final');
@@ -242,12 +249,12 @@ export class BattleComponent implements OnInit, OnDestroy {
       this.pokemonA.health = this.currentPokemonHealth;
       this.setProgressLine(this.pokemonA.health, this.pokemonB.health);
       // USE ANIMATIONS SERVICE
-      if ( this.isSpecAttackA && this.pokemonA.specAttack.type === 'damage') {
+      if (this.isSpecAttackA && this.pokemonA.specAttack.type === 'damage') {
         this.changeStateA('final');
         this.battleInfo.showPopup('attack', -this.healthCounterA, 'a');
-      } else if ( this.isSpecAttackA && this.pokemonA.specAttack.type === 'recovery'
-      || this.pokemonA.specAttack.type === 'defence') {
-        this.battleInfo.showPopup('defence', this.healthCounterB, 'b');
+      } else if (this.isSpecAttackA && this.pokemonA.specAttack.type === 'recovery'
+        || this.pokemonA.specAttack.type === 'defence') {
+        this.battleInfo.showPopup('defence', -this.healthCounterB, 'b');
         this.changeDefenseA();
       } else {
         this.changeStateA('final');
@@ -331,10 +338,23 @@ export class BattleComponent implements OnInit, OnDestroy {
         return 'bottomVoodoo';
       default:
     }
+
   }
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.bg = this.getArena();
+  }
   public ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    if ((!this.battleService.isAlive(this.pokemonA) || !this.battleService.isAlive(this.pokemonB)) && this.userStatistic !== undefined) {
+      this.userStatistic.battles.all += 1;
+      if (this.battleService.isAlive(this.pokemonA)) {
+        this.userStatistic.battles.wins += 1;
+      } else {
+        this.userStatistic.battles.defeats += 1;
+      }
+      //this.battleService.isAlive(this.pokemonA) ? this.userStatistic.wins += 1 : this.userStatistic.defeats += 1;
+      this.auth.setUserStatistic(this.auth.uid, this.userStatistic);
+    }
   }
 }
