@@ -6,6 +6,7 @@ import { ToBattleService } from '../services/to-battle.service';
 import { Subscription, Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 import { ProfileInfoService } from 'src/app/services/profile-info.service';
+import { PreloaderService } from '../shared/preloader/preloader.service';
 
 // USE ANIMATIONS SERVICE
 import { BattleAnimationsService } from '../services/battle.animations.service';
@@ -71,13 +72,17 @@ export class BattleComponent implements OnInit, OnDestroy {
 
   constructor(private battleService: BattleService, private elementRef: ElementRef, private renderer: Renderer2, private toBattle: ToBattleService,
     public battleAnimationsService: BattleAnimationsService, private _sanitizer: DomSanitizer, public auth: AuthService,
-    public profileInfoService: ProfileInfoService) {
+    public profileInfoService: ProfileInfoService,private preloader: PreloaderService) {
     this.subscription = this.toBattle.getPokemons()
       .subscribe((pokemons: Pokemon[]) => {
         this.isGameWithBot = this.toBattle.battleType;
         this.pokemons = pokemons;
       });
     this.userPlayer$ = profileInfoService.userPlayer$;
+    this.preloader.show();
+    this.bg = this.getArena();
+    setTimeout(this.getPokemons.bind(this));
+    setTimeout(() => this.preloader.hide(), 1000);
   }
   public pokemonA: Pokemon = {};
   public pokemonB: Pokemon = {};
@@ -353,7 +358,6 @@ export class BattleComponent implements OnInit, OnDestroy {
       } else {
         this.userStatistic.battles.defeats += 1;
       }
-      //this.battleService.isAlive(this.pokemonA) ? this.userStatistic.wins += 1 : this.userStatistic.defeats += 1;
       this.auth.setUserStatistic(this.auth.uid, this.userStatistic);
     }
   }
