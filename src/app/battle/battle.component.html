@@ -34,10 +34,9 @@
                         </div>
                     </div>
                     <div *ngIf="!isPunchSection">
-                        <button mat-raised-button matTooltip="DAMAGE" aria-label="spec attack tooltip" (click)="currentBasePunch()">punch</button>
+                        <button mat-raised-button matTooltip="DAMAGE" aria-label="spec attack tooltip" (click)="currentBasePunch()">{{this.battleService.getKeyOfObj(this.pokemonA.ability)}}</button>
                         <button mat-raised-button matTooltip="{{attackTooltipA | uppercase}}" aria-label="spec attack tooltip"
-                            class="spec" (click)="currentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonA)">
-                            {{superPunchA}}</button>
+                            class="spec" (click)="currentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonA)">{{superPunchA}}</button>
                     </div>
                 </div>
             </div>
@@ -58,7 +57,7 @@
                         </div>
                     </div>
                     <div *ngIf="isPunchSection">
-                        <button mat-raised-button matTooltip="DAMAGE" aria-label="spec attack tooltip" (click)="opponentBasePunch()">punch</button>
+                        <button mat-raised-button matTooltip="DAMAGE" aria-label="spec attack tooltip" (click)="opponentBasePunch()">{{this.battleService.getKeyOfObj(this.pokemonB.ability)}}</button>
                         <button mat-raised-button matTooltip="{{attackTooltipB | uppercase}}" aria-label="spec attack tooltip"
                             class="spec" (click)="opponentSpecAttack()" *ngIf="this.battleService.isSpecAttack(this.pokemonB)">{{superPunchB}}</button>
                     </div>

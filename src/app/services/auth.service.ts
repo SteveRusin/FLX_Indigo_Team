@@ -123,4 +123,19 @@ export class AuthService {
         }
       });
   }
+  public setUserStatistic(playerId: string,info: any): void {
+    this.db.collection('players')
+      .doc(playerId)
+      .set({
+        name: info.name,
+        email: info.email,
+        avatar: info.avatar,
+        money: info.money,
+        battles: {
+          all: info.battles.all,
+          defeats: info.battles.defeats,
+          wins: info.battles.wins
+        }
+      });
+  }
 }
