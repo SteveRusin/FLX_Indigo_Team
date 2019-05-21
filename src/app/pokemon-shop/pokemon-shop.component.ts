@@ -37,9 +37,9 @@ export class PokemonShopComponent implements OnInit {
   public unlockedPokemon(pokemon: Pokemon): void {
     this.userPlayer$.pipe(take(1))
     .subscribe((response: Player) => {
-      if(pokemon.unlocked < response.battles.wins) {
+      if(pokemon.unlocked <= response.battles.wins) {
         this.addPokemonService.addPokemon(pokemon);
-      } else if(pokemon.price < response.money) {
+      } else if(pokemon.price <= response.money) {
         this.buyPokemonService.writeCredits(response.money - pokemon.price, pokemon);
       }
     });
