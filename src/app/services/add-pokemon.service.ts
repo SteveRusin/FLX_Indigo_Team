@@ -14,16 +14,14 @@ export class AddPokemonService {
 
   public addPokemon(pokemon: Pokemon): void {
     const userId: string = this.authService.uid;
-    this.firestore.collection('players')
-    .doc(userId)
-    .collection('pokemons')
-    .doc(pokemon.name)
-    .set({name: pokemon.name})
-    .then(function(): void {
-      console.log('Document successfully written!');
-    })
-    .catch(function(error: any): void {
-      console.error('Error writing document: ', error);
-    });
+    try {
+      this.firestore.collection('players')
+      .doc(userId)
+      .collection('pokemons')
+      .doc(pokemon.name)
+      .set({name: pokemon.name});
+   } catch (e) {
+      throw new Error(e);
+   }
   }
 }

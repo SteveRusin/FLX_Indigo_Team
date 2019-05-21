@@ -17,15 +17,13 @@ export class BuyPokemonService {
 
   public writeCredits(credits: number, pokemon: Pokemon): void {
     const userId: string = this.authService.uid;
-    this.firestore.collection('players')
-    .doc(userId)
-    .update({money: credits})
-    .then(function(): void {
-      console.log('Document successfully written!');
-    })
-    .catch(function(error: any): void {
-      console.error('Error writing document: ', error);
-    });
-    this.addPokemonService.addPokemon(pokemon);
+    try {
+      this.firestore.collection('players')
+      .doc(userId)
+      .update({money: credits});
+   } catch (e) {
+      throw new Error(e);
+   }
+   this.addPokemonService.addPokemon(pokemon);
   }
 }

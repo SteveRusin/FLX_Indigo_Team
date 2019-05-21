@@ -7,9 +7,9 @@ $font-size-large: $card-size * 0.06;
   padding: 0;
 }
 .wrapper {
+  width: 260px;
   user-select: none;
   position: relative;
-  width:260px;
   margin-top: 2em;
   font-family: 'Gill Sans', 'Gill Sans MT', 'Cabin', sans-serif;
 }
@@ -48,6 +48,7 @@ $font-size-large: $card-size * 0.06;
     padding: 0.5em;
     display: block;
     border: none;
+    outline: none;
     font-weight: 800;
     border-radius: $card-size * 0.0315;
     background-color: #CED416;

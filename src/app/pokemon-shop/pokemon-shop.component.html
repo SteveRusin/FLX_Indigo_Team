@@ -1,5 +1,5 @@
 <div class="pokemon-single-container" *ngIf="userPlayer$ | async as player">
   <app-shop-card [pokemon]="pokemon" (buyCard)="unlockedPokemon(pokemon)" *ngFor="let pokemon of pokemons | async"
-    [className]="pokemon.unlocked < player.battles.wins && pokemon.lock === true ? 'blink' : 'none'">
+    [className]="pokemon.unlocked <= player.battles.wins && pokemon.lock === true ? 'blink' : 'none'">
   </app-shop-card>
 </div>
